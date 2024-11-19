@@ -1,9 +1,9 @@
 package dict_item
 
 import (
-	"github.com/summmer-gonner/traffica/admin/internal/logic/sys/dict_item"
-	"github.com/summmer-gonner/traffica/admin/internal/svc"
-	"github.com/summmer-gonner/traffica/admin/internal/types"
+	"github.com/summer-gonner/traffica/admin/internal/logic/sys/dict_item"
+	"github.com/summer-gonner/traffica/admin/internal/svc"
+	"github.com/summer-gonner/traffica/admin/internal/types"
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"

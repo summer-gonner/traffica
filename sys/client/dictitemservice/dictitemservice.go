@@ -5,7 +5,7 @@ package dictitemservice
 
 import (
 	"context"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

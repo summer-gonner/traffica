@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/menuservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/logic/menuservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type MenuServiceServer struct {
@@ -53,6 +53,6 @@ func (s *MenuServiceServer) QueryMenuDetail(ctx context.Context, in *sysclient2.
 
 // 查询菜单信息表列表
 func (s *MenuServiceServer) QueryMenuList(ctx context.Context, in *sysclient2.QueryMenuListReq) (*sysclient2.QueryMenuListResp, error) {
-	l := menuservicelogic.menuservicelogic.NewQueryMenuListLogic(ctx, s.svcCtx)
+	l := menuservicelogic.NewQueryMenuListLogic(ctx, s.svcCtx)
 	return l.QueryMenuList(in)
 }

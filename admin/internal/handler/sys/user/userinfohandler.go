@@ -1,8 +1,8 @@
 package user
 
 import (
-	"github.com/summmer-gonner/traffica/admin/internal/logic/sys/user"
-	"github.com/summmer-gonner/traffica/admin/internal/svc"
+	"github.com/summer-gonner/traffica/admin/internal/logic/sys/user"
+	"github.com/summer-gonner/traffica/admin/internal/svc"
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"

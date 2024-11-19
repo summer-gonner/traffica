@@ -6,7 +6,7 @@ package query
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/gen/model"
+	"github.com/summer-gonner/traffica/sys/gen/model"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"

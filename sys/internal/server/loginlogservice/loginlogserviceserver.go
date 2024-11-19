@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/loginlogservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/logic/loginlogservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type LoginLogServiceServer struct {
@@ -29,7 +29,7 @@ func (s *LoginLogServiceServer) DeleteLoginLog(ctx context.Context, in *sysclien
 
 // 查询系统登录日志表详情
 func (s *LoginLogServiceServer) QueryLoginLogDetail(ctx context.Context, in *sysclient2.QueryLoginLogDetailReq) (*sysclient2.QueryLoginLogDetailResp, error) {
-	l := loginlogservicelogic.loginlogservicelogic.NewQueryLoginLogDetailLogic(ctx, s.svcCtx)
+	l := loginlogservicelogic.NewQueryLoginLogDetailLogic(ctx, s.svcCtx)
 	return l.QueryLoginLogDetail(in)
 }
 

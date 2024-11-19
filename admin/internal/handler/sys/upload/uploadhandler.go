@@ -1,8 +1,8 @@
 package upload
 
 import (
-	"github.com/summmer-gonner/traffica/admin/internal/logic/sys/upload"
-	"github.com/summmer-gonner/traffica/admin/internal/svc"
+	"github.com/summer-gonner/traffica/admin/internal/logic/sys/upload"
+	"github.com/summer-gonner/traffica/admin/internal/svc"
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"

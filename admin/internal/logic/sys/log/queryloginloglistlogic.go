@@ -2,10 +2,10 @@ package log
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/admin/internal/common/errorx"
-	"github.com/summmer-gonner/traffica/admin/internal/svc"
-	"github.com/summmer-gonner/traffica/admin/internal/types"
-	"github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/admin/internal/common/errorx"
+	"github.com/summer-gonner/traffica/admin/internal/svc"
+	"github.com/summer-gonner/traffica/admin/internal/types"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 	"github.com/zeromicro/go-zero/core/logc"
 	"google.golang.org/grpc/status"
 	"strings"

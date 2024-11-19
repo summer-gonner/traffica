@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/userservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/logic/userservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type UserServiceServer struct {
@@ -77,7 +77,7 @@ func (s *UserServiceServer) QueryUserList(ctx context.Context, in *sysclient2.Qu
 
 // 查询用户与角色的关联
 func (s *UserServiceServer) QueryUserRoleList(ctx context.Context, in *sysclient2.QueryUserRoleListReq) (*sysclient2.QueryUserRoleListResp, error) {
-	l := userservicelogic.userservicelogic.NewQueryUserRoleListLogic(ctx, s.svcCtx)
+	l := userservicelogic.NewQueryUserRoleListLogic(ctx, s.svcCtx)
 	return l.QueryUserRoleList(in)
 }
 

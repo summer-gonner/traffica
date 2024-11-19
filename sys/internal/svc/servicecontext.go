@@ -1,8 +1,8 @@
 package svc
 
 import (
-	"github.com/summmer-gonner/traffica/sys/gen/query"
-	"github.com/summmer-gonner/traffica/sys/internal/config"
+	"github.com/summer-gonner/traffica/sys/gen/query"
+	"github.com/summer-gonner/traffica/sys/internal/config"
 	"github.com/zeromicro/go-zero/core/logx"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

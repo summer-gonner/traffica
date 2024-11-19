@@ -2,8 +2,8 @@ package loginlogservicelogic
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	"github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

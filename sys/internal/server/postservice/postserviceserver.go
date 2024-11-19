@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/postservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/logic/postservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type PostServiceServer struct {
@@ -35,7 +35,7 @@ func (s *PostServiceServer) DeletePost(ctx context.Context, in *sysclient2.Delet
 
 // 更新岗位管理
 func (s *PostServiceServer) UpdatePost(ctx context.Context, in *sysclient2.UpdatePostReq) (*sysclient2.UpdatePostResp, error) {
-	l := postservicelogic.postservicelogic.NewUpdatePostLogic(ctx, s.svcCtx)
+	l := postservicelogic.NewUpdatePostLogic(ctx, s.svcCtx)
 	return l.UpdatePost(in)
 }
 

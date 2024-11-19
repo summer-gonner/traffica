@@ -2,8 +2,8 @@ package upload
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/admin/internal/svc"
-	"github.com/summmer-gonner/traffica/admin/internal/types"
+	"github.com/summer-gonner/traffica/admin/internal/svc"
+	"github.com/summer-gonner/traffica/admin/internal/types"
 	"github.com/zeromicro/go-zero/core/logc"
 	"io"
 	"net/http"

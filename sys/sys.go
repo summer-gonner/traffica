@@ -3,18 +3,18 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/summmer-gonner/traffica/sys/internal/config"
-	deptserviceServer "github.com/summmer-gonner/traffica/sys/internal/server/deptservice"
-	dictitemserviceServer "github.com/summmer-gonner/traffica/sys/internal/server/dictitemservice"
-	dicttypeserviceServer "github.com/summmer-gonner/traffica/sys/internal/server/dicttypeservice"
-	loginlogserviceServer "github.com/summmer-gonner/traffica/sys/internal/server/loginlogservice"
-	menuserviceServer "github.com/summmer-gonner/traffica/sys/internal/server/menuservice"
-	operatelogServer "github.com/summmer-gonner/traffica/sys/internal/server/operatelogservice"
-	postserviceServer "github.com/summmer-gonner/traffica/sys/internal/server/postservice"
-	roleserviceServer "github.com/summmer-gonner/traffica/sys/internal/server/roleservice"
-	userserviceServer "github.com/summmer-gonner/traffica/sys/internal/server/userservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	"github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/config"
+	deptserviceServer "github.com/summer-gonner/traffica/sys/internal/server/deptservice"
+	dictitemserviceServer "github.com/summer-gonner/traffica/sys/internal/server/dictitemservice"
+	dicttypeserviceServer "github.com/summer-gonner/traffica/sys/internal/server/dicttypeservice"
+	loginlogserviceServer "github.com/summer-gonner/traffica/sys/internal/server/loginlogservice"
+	menuserviceServer "github.com/summer-gonner/traffica/sys/internal/server/menuservice"
+	operatelogServer "github.com/summer-gonner/traffica/sys/internal/server/operatelogservice"
+	postserviceServer "github.com/summer-gonner/traffica/sys/internal/server/postservice"
+	roleserviceServer "github.com/summer-gonner/traffica/sys/internal/server/roleservice"
+	userserviceServer "github.com/summer-gonner/traffica/sys/internal/server/userservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -23,7 +23,7 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-var configFile = flag.String("f", "rpc/sys/etc/sys.yaml", "the config file")
+var configFile = flag.String("f", "sys/etc/sys.yaml", "the config file")
 
 func main() {
 	flag.Parse()

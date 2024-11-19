@@ -1,9 +1,9 @@
 package menu
 
 import (
-	"github.com/summmer-gonner/traffica/admin/internal/logic/sys/menu"
-	"github.com/summmer-gonner/traffica/admin/internal/svc"
-	"github.com/summmer-gonner/traffica/admin/internal/types"
+	"github.com/summer-gonner/traffica/admin/internal/logic/sys/menu"
+	"github.com/summer-gonner/traffica/admin/internal/svc"
+	"github.com/summer-gonner/traffica/admin/internal/types"
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"

@@ -2,11 +2,11 @@ package userservicelogic
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/gen/query"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/common"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/deptservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	"github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/gen/query"
+	"github.com/summer-gonner/traffica/sys/internal/logic/common"
+	"github.com/summer-gonner/traffica/sys/internal/logic/deptservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 	"github.com/zeromicro/go-zero/core/logc"
 
 	"github.com/zeromicro/go-zero/core/logx"

@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/deptservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/logic/deptservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type DeptServiceServer struct {
@@ -29,7 +29,7 @@ func (s *DeptServiceServer) AddDept(ctx context.Context, in *sysclient2.AddDeptR
 
 // 删除部门信息表
 func (s *DeptServiceServer) DeleteDept(ctx context.Context, in *sysclient2.DeleteDeptReq) (*sysclient2.DeleteDeptResp, error) {
-	l := deptservicelogic.deptservicelogic.NewDeleteDeptLogic(ctx, s.svcCtx)
+	l := deptservicelogic.NewDeleteDeptLogic(ctx, s.svcCtx)
 	return l.DeleteDept(in)
 }
 

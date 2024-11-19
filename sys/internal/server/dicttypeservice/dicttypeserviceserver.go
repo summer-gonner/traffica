@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/dicttypeservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/logic/dicttypeservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type DictTypeServiceServer struct {
@@ -47,7 +47,7 @@ func (s *DictTypeServiceServer) UpdateDictTypeStatus(ctx context.Context, in *sy
 
 // 查询字典类型表详情
 func (s *DictTypeServiceServer) QueryDictTypeDetail(ctx context.Context, in *sysclient2.QueryDictTypeDetailReq) (*sysclient2.QueryDictTypeDetailResp, error) {
-	l := dicttypeservicelogic.dicttypeservicelogic.NewQueryDictTypeDetailLogic(ctx, s.svcCtx)
+	l := dicttypeservicelogic.NewQueryDictTypeDetailLogic(ctx, s.svcCtx)
 	return l.QueryDictTypeDetail(in)
 }
 

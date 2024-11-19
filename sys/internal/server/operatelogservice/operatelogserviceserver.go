@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/operatelogservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/logic/operatelogservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type OperateLogServiceServer struct {
@@ -41,6 +41,6 @@ func (s *OperateLogServiceServer) QueryOperateLogDetail(ctx context.Context, in 
 
 // 查询系统操作日志表列表
 func (s *OperateLogServiceServer) QueryOperateLogList(ctx context.Context, in *sysclient2.QueryOperateLogListReq) (*sysclient2.QueryOperateLogListResp, error) {
-	l := operatelogservicelogic.operatelogservicelogic.NewQueryOperateLogListLogic(ctx, s.svcCtx)
+	l := operatelogservicelogic.NewQueryOperateLogListLogic(ctx, s.svcCtx)
 	return l.QueryOperateLogList(in)
 }

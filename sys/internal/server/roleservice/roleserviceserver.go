@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/roleservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/logic/roleservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type RoleServiceServer struct {
@@ -47,7 +47,7 @@ func (s *RoleServiceServer) UpdateRoleStatus(ctx context.Context, in *sysclient2
 
 // 查询角色信息表详情
 func (s *RoleServiceServer) QueryRoleDetail(ctx context.Context, in *sysclient2.QueryRoleDetailReq) (*sysclient2.QueryRoleDetailResp, error) {
-	l := roleservicelogic.roleservicelogic.NewQueryRoleDetailLogic(ctx, s.svcCtx)
+	l := roleservicelogic.NewQueryRoleDetailLogic(ctx, s.svcCtx)
 	return l.QueryRoleDetail(in)
 }
 

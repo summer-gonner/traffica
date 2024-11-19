@@ -1,17 +1,17 @@
 package svc
 
 import (
-	"github.com/summmer-gonner/traffica/admin/internal/config"
-	middleware2 "github.com/summmer-gonner/traffica/admin/internal/middleware"
-	"github.com/summmer-gonner/traffica/sys/client/deptservice"
-	"github.com/summmer-gonner/traffica/sys/client/dictitemservice"
-	"github.com/summmer-gonner/traffica/sys/client/dicttypeservice"
-	"github.com/summmer-gonner/traffica/sys/client/loginlogservice"
-	"github.com/summmer-gonner/traffica/sys/client/menuservice"
-	"github.com/summmer-gonner/traffica/sys/client/operatelogservice"
-	"github.com/summmer-gonner/traffica/sys/client/postservice"
-	"github.com/summmer-gonner/traffica/sys/client/roleservice"
-	"github.com/summmer-gonner/traffica/sys/client/userservice"
+	"github.com/summer-gonner/traffica/admin/internal/config"
+	middleware2 "github.com/summer-gonner/traffica/admin/internal/middleware"
+	"github.com/summer-gonner/traffica/sys/client/deptservice"
+	"github.com/summer-gonner/traffica/sys/client/dictitemservice"
+	"github.com/summer-gonner/traffica/sys/client/dicttypeservice"
+	"github.com/summer-gonner/traffica/sys/client/loginlogservice"
+	"github.com/summer-gonner/traffica/sys/client/menuservice"
+	"github.com/summer-gonner/traffica/sys/client/operatelogservice"
+	"github.com/summer-gonner/traffica/sys/client/postservice"
+	"github.com/summer-gonner/traffica/sys/client/roleservice"
+	"github.com/summer-gonner/traffica/sys/client/userservice"
 
 	"github.com/zeromicro/go-zero/core/stores/redis"
 	"github.com/zeromicro/go-zero/rest"

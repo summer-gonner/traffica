@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"github.com/summmer-gonner/traffica/sys/internal/logic/dictitemservice"
-	"github.com/summmer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/internal/logic/dictitemservice"
+	"github.com/summer-gonner/traffica/sys/internal/svc"
+	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type DictItemServiceServer struct {
@@ -29,7 +29,7 @@ func (s *DictItemServiceServer) AddDictItem(ctx context.Context, in *sysclient2.
 
 // 删除字典数据表
 func (s *DictItemServiceServer) DeleteDictItem(ctx context.Context, in *sysclient2.DeleteDictItemReq) (*sysclient2.DeleteDictItemResp, error) {
-	l := dictitemservicelogic.dictitemservicelogic.NewDeleteDictItemLogic(ctx, s.svcCtx)
+	l := dictitemservicelogic.NewDeleteDictItemLogic(ctx, s.svcCtx)
 	return l.DeleteDictItem(in)
 }
 

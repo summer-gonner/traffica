@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"bytes"
-	"github.com/summmer-gonner/traffica/sys/client/operatelogservice"
-	"github.com/summmer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/client/operatelogservice"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 	"github.com/ua-parser/uap-go/uaparser"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/rest/httpx"

@@ -2,16 +2,16 @@
 package handler
 
 import (
-	"github.com/summmer-gonner/traffica/admin/internal/handler/sys/dept"
-	"github.com/summmer-gonner/traffica/admin/internal/handler/sys/dict_item"
-	"github.com/summmer-gonner/traffica/admin/internal/handler/sys/dict_type"
-	"github.com/summmer-gonner/traffica/admin/internal/handler/sys/log"
-	"github.com/summmer-gonner/traffica/admin/internal/handler/sys/menu"
-	"github.com/summmer-gonner/traffica/admin/internal/handler/sys/post"
-	"github.com/summmer-gonner/traffica/admin/internal/handler/sys/role"
-	sysupload "github.com/summmer-gonner/traffica/admin/internal/handler/sys/upload"
-	"github.com/summmer-gonner/traffica/admin/internal/handler/sys/user"
-	"github.com/summmer-gonner/traffica/admin/internal/svc"
+	"github.com/summer-gonner/traffica/admin/internal/handler/sys/dept"
+	"github.com/summer-gonner/traffica/admin/internal/handler/sys/dict_item"
+	"github.com/summer-gonner/traffica/admin/internal/handler/sys/dict_type"
+	"github.com/summer-gonner/traffica/admin/internal/handler/sys/log"
+	"github.com/summer-gonner/traffica/admin/internal/handler/sys/menu"
+	"github.com/summer-gonner/traffica/admin/internal/handler/sys/post"
+	"github.com/summer-gonner/traffica/admin/internal/handler/sys/role"
+	sysupload "github.com/summer-gonner/traffica/admin/internal/handler/sys/upload"
+	"github.com/summer-gonner/traffica/admin/internal/handler/sys/user"
+	"github.com/summer-gonner/traffica/admin/internal/svc"
 	"github.com/zeromicro/go-zero/rest"
 	"net/http"
 )
