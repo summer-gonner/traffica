@@ -1,7 +1,7 @@
 
 ###用户登录
 @host = http://127.0.0.1:8888
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0SUQiOjEsImRlcHROYW1lIjoi5oC75YWs5Y-45LiAIiwiZXhwIjoxNzMxOTg1ODk5LCJpYXQiOjE3MzE4OTk0OTksInVzZXJJZCI6MSwidXNlck5hbWUiOiJhZG1pbiJ9.02QAF5TRsSzP8rYisn9p-ZuBYsC0Hx9ekrlmvLvyQto
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0SUQiOjEsImRlcHROYW1lIjoi5oC75YWs5Y-45LiAIiwiZXhwIjoxNzMyMTA1ODkwLCJpYXQiOjE3MzIwMTk0OTAsInVzZXJJZCI6MSwidXNlck5hbWUiOiJhZG1pbiJ9.6ZYZP-AVThs_iaTbBg5EFuTzTVtuC5BXa-8dEd3E6iQ
 POST {{host}}/api/sys/user/login
 Content-Type: application/json
 
@@ -31,7 +31,9 @@ Authorization: Bearer {{token}}
   "deptId": 4,
   "delFlag": 1,
   "jobId": 1,
-  "roleId": 0
+  "roleId": 0,
+  "userName": "test",
+  "userStatus": 1
 
 }
 
