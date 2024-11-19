@@ -13,7 +13,7 @@ import (
 	"net/http"
 )
 
-var configFile = flag.String("f", "api/admin/etc/admin-api.yaml", "the config file")
+var configFile = flag.String("f", "etc/admin-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()
