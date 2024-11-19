@@ -1,0 +1,23 @@
+Name: sys.rpc
+ListenOn: 0.0.0.0:8080
+Etcd:
+  Hosts:
+    - 127.0.0.1:2379
+  Key: sys.rpc
+
+Mysql:
+  Datasource: root:Sy122812@tcp(rm-bp175i9yux3f5w3t5so.mysql.rds.aliyuncs.com:3306)/gozero?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+JWT:
+  AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
+  AccessExpire: 86400
+
+Log:
+  ServiceName: sys-service
+  Stat: false # go-zero 版本 >= 1.5.0 才支持
+#  Mode: file
+#  Path: logs/ums
+Prometheus:
+  Host: 127.0.0.1
+  Port: 8180
+  Path: /metrics

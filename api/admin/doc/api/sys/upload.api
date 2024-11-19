@@ -1,0 +1,26 @@
+info (
+	desc:   "文件上传"
+	author: "koobe"
+	email:  "1002219331@qq.com"
+)
+
+type (
+	UploadResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+		Data    string `json:"data"`
+	}
+)
+
+@server (
+	jwt:        Auth
+	middleware: CheckUrl
+	group:      sys/upload
+	prefix:     /api/sys
+)
+service admin-api {
+	//上传文件
+	@handler Upload
+	post /upload returns (UploadResp)
+}
+

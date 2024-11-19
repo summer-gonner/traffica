@@ -1,0 +1,87 @@
+
+###用户登录
+@host = http://127.0.0.1:8888
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0SUQiOjEsImRlcHROYW1lIjoi5oC75YWs5Y-45LiAIiwiZXhwIjoxNzMxOTg1ODk5LCJpYXQiOjE3MzE4OTk0OTksInVzZXJJZCI6MSwidXNlck5hbWUiOiJhZG1pbiJ9.02QAF5TRsSzP8rYisn9p-ZuBYsC0Hx9ekrlmvLvyQto
+POST {{host}}/api/sys/user/login
+Content-Type: application/json
+
+{
+  "account": "admin",
+  "password": "123456"
+}
+> {% client.global.set("token", response.body.data.token); %}
+
+### 获取个人信息
+GET {{host}}/api/sys/user/info
+Authorization: Bearer {{token}}
+
+
+### 添加用户
+POST {{host}}/api/sys/user/addUser
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "test21",
+  "nickName": "测试人员1",
+  "avatar": "",
+  "email": "1002219321@qq.com",
+  "mobile": "18613033350",
+  "status": 1,
+  "deptId": 4,
+  "delFlag": 1,
+  "jobId": 1,
+  "roleId": 0
+
+}
+
+### 删除用户
+GET {{host}}/api/sys/user/deleteUser?ids=[6]
+Authorization: Bearer {{token}}
+
+
+### 修改用户
+POST {{host}}/api/sys/user/updateUser
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 3,
+  "name": "test1",
+  "nickName": "测试人员",
+  "avatar": "",
+  "email": "1002219331@qq.com",
+  "mobile": "18613030350",
+  "status": 1,
+  "deptId": 4,
+  "delFlag": 1,
+  "jobId": 1,
+  "roleId": 0,
+  "roleName": "",
+  "jobName": "",
+  "deptName": ""
+}
+
+### 用户列表
+GET {{host}}/api/sys/user/queryUserList
+Authorization: Bearer {{token}}
+
+### 查询用户与角色的关联
+GET {{host}}/api/sys/user/queryUserRoleList?userId=1
+Authorization: Bearer {{token}}
+
+
+### 更新用户与角色的关联
+POST {{host}}/api/sys/user/updateUserRoleList
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userId": 2,
+  "roleIds": [1,2,3]
+}
+
+### 查询所有部门和岗位
+GET {{host}}/api/sys/user/queryDeptAndPostList
+Content-Type: application/json
+Authorization: Bearer {{token}}

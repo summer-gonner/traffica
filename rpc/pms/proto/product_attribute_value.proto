@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "./proto";
+
+// 添加存储产品参数信息的表
+message AddProductAttributeValueReq {
+  int64 product_attribute_id = 1; //
+  int64 product_id = 2; //
+  string value = 3; //手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开
+
+}
+
+message AddProductAttributeValueResp {
+  string pong = 1;
+}
+
+// 删除存储产品参数信息的表
+message DeleteProductAttributeValueReq {
+  repeated int64 ids = 1;
+}
+
+message DeleteProductAttributeValueResp {
+  string pong = 1;
+}
+
+// 更新存储产品参数信息的表
+message UpdateProductAttributeValueReq {
+  int64 id = 1; //
+  int64 product_attribute_id = 2; //
+  int64 product_id = 3; //
+  string value = 4; //手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开
+
+}
+
+message UpdateProductAttributeValueResp {
+  string pong = 1;
+}
+
+
+// 分页查询存储产品参数信息的表列表
+message QueryProductAttributeValueListReq {
+  int64 product_id = 1; //
+
+}
+
+message ProductAttributeValueListData {
+  int64 id = 1; //
+  int64 product_attribute_id = 2; //
+  int64 product_id = 3; //
+  string value = 4; //手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开
+
+}
+
+message QueryProductAttributeValueListResp {
+  int64 total = 1;
+  repeated  ProductAttributeValueListData list = 2;
+}
+
+// 存储产品参数信息的表
+service ProductAttributeValueService {
+  // 添加存储产品参数信息的表
+  rpc AddProductAttributeValue(AddProductAttributeValueReq) returns (AddProductAttributeValueResp){}
+  // 删除存储产品参数信息的表
+  rpc DeleteProductAttributeValue(DeleteProductAttributeValueReq) returns (DeleteProductAttributeValueResp){}
+  // 更新存储产品参数信息的表
+  rpc UpdateProductAttributeValue(UpdateProductAttributeValueReq) returns (UpdateProductAttributeValueResp ){}
+  // 查询存储产品参数信息的表列表
+  rpc QueryProductAttributeValueList(QueryProductAttributeValueListReq) returns (QueryProductAttributeValueListResp){}
+
+
+}

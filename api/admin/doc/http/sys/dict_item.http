@@ -1,0 +1,57 @@
+###用户登录
+POST {{host}}/api/sys/user/login
+Content-Type: application/json
+
+{
+  "account": "admin",
+  "password": "123456"
+}
+> {%
+    client.global.set("token", response.body.data.token);
+%}
+
+### 添加字典项
+POST {{host}}/api/sys/dictItem/addDictItem
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "delFlag": 1,
+  "dictLabel": "test",
+  "dictSort": 1,
+  "dictStatus": 1,
+  "dictType": "1",
+  "dictValue": "1",
+  "isDefault": 1,
+  "remark": "test",
+  "updateBy": "",
+  "updateTime": ""
+}
+
+### 删除字典项
+GET {{host}}/api/sys/dictItem/deleteDictItem?ids=[5]
+Authorization: Bearer {{token}}
+
+
+### 修改字典项
+POST {{host}}/api/sys/dictItem/updateDictItem
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "delFlag": 1,
+  "dictLabel": "1",
+  "dictSort": 1,
+  "dictStatus": 1,
+  "dictType": "1",
+  "dictValue": "1",
+  "id": 1,
+  "isDefault": 1,
+  "remark": "test",
+  "updateBy": "",
+  "updateTime": ""
+}
+
+### 查询字典项列表
+GET {{host}}/api/sys/dictItem/queryDictItemList
+Authorization: Bearer {{token}}

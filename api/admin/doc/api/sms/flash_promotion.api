@@ -1,0 +1,99 @@
+info (
+	desc:   "秒杀活动"
+	author: "koobe"
+	email:  "1002219331@qq.com"
+)
+
+type (
+	AddFlashPromotionReq {
+		Title     string `json:"title"` //活动标题
+		StartDate string `json:"startDate"` // 开始日期
+		EndDate   string `json:"endDate"` // 结束日期
+		Status    int32  `json:"status"` // 上下线状态
+	}
+	AddFlashPromotionResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+	ListFlashPromotionReq {
+		Current   int64  `form:"current,default=1"`
+		PageSize  int64  `form:"pageSize,default=20"`
+		Title     string `form:"title,optional"` //标题
+		Status    int32  `form:"status,,default=2"` // 上下线状态
+		StartDate string `form:"startDate,optional"` // 开始日期
+		EndDate   string `form:"endDate,optional"` // 结束日期
+	}
+	ListFlashPromotionData {
+		Id         int64  `json:"id"`
+		Title      string `json:"title"` //标题
+		StartDate  string `json:"startDate"` // 开始日期
+		EndDate    string `json:"endDate"` // 结束日期
+		Status     int32  `json:"status"` // 上下线状态
+		CreateTime string `json:"createTime"` // 秒杀时间段名称
+	}
+	ListFlashPromotionResp {
+		Code     string                    `json:"code"`
+		Message  string                    `json:"message"`
+		Current  int64                     `json:"current,default=1"`
+		Data     []*ListFlashPromotionData `json:"data"`
+		PageSize int64                     `json:"pageSize,default=20"`
+		Success  bool                      `json:"success"`
+		Total    int64                     `json:"total"`
+	}
+	UpdateFlashPromotionReq {
+		Id        int64  `json:"id"`
+		Title     string `json:"title"`
+		StartDate string `json:"startDate"` // 开始日期
+		EndDate   string `json:"endDate"` // 结束日期
+		Status    int32  `json:"status"` // 上下线状态
+	}
+	UpdateFlashPromotionResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+	UpdateFlashPromotionStatusReq {
+		Ids             []int64 `json:"ids"`
+		Status int32   `json:"status"`
+	}
+	UpdateFlashPromotionStatusResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+	DeleteFlashPromotionReq {
+		Ids []int64 `form:"ids"`
+	}
+	DeleteFlashPromotionResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+)
+
+@server (
+	jwt:        Auth
+	middleware: CheckUrl
+	group:      sms/flashpromotion
+	prefix:     /api/sms/flashPromotion
+)
+service admin-api {
+	//添加秒杀活动
+	@handler FlashPromotionAdd
+	post /addFlashPromotion (AddFlashPromotionReq) returns (AddFlashPromotionResp)
+
+	//查询秒杀活动
+	@handler FlashPromotionList
+	get /queryFlashPromotionList (ListFlashPromotionReq) returns (ListFlashPromotionResp)
+
+	//更新秒杀活动
+	@handler FlashPromotionUpdate
+	post /updateFlashPromotion (UpdateFlashPromotionReq) returns (UpdateFlashPromotionResp)
+
+	//更新秒杀活动状态
+	@handler UpdateFlashPromotionStatus
+	post /updateFlashPromotionStatus (UpdateFlashPromotionStatusReq) returns (UpdateFlashPromotionStatusResp)
+
+
+	//删除秒杀活动
+	@handler FlashPromotionDelete
+	get /deleteFlashPromotion (DeleteFlashPromotionReq) returns (DeleteFlashPromotionResp)
+}
+

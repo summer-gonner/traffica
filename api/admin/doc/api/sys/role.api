@@ -1,0 +1,232 @@
+info (
+	desc:   "角色信息"
+	author: "liufeihua"
+	email:  "1002219331@qq.com"
+)
+
+type (
+	// 添加角色信息
+	AddRoleReq {
+		DataScope  int32  `json:"dataScope,default=0"` //数据权限
+		IsAdmin    int32  `json:"isAdmin,default=0"` //是否超级管理员
+		Remark     string `json:"remark,optional"` //备注
+		RoleKey    string `json:"roleKey"` //权限字符
+		RoleName   string `json:"roleName"` //角色名称
+		RoleSort   int32  `json:"roleSort"` //角色排序
+		RoleStatus int32  `json:"roleStatus"` //角色状态
+	}
+	AddRoleResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+	// 删除角色信息
+	DeleteRoleReq {
+		Ids []int64 `form:"ids"`
+	}
+	DeleteRoleResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+	// 更新角色信息
+	UpdateRoleReq {
+		DataScope  int32  `json:"dataScope,default=0"` //数据权限
+		Id         int64  `json:"id"` //编号
+		IsAdmin    int32  `json:"isAdmin,default=0"` //是否超级管理员
+		Remark     string `json:"remark,optional"` //备注
+		RoleKey    string `json:"roleKey"` //权限字符
+		RoleName   string `json:"roleName"` //角色名称
+		RoleSort   int32  `json:"roleSort"` //角色排序
+		RoleStatus int32  `json:"roleStatus"` //角色状态
+	}
+	UpdateRoleResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+	// 更新角色信息状态
+	UpdateRoleStatusReq {
+		RoleIds    []int64 `json:"roleIds"` //编号
+		RoleStatus int32   `json:"roleStatus"` //角色状态
+	}
+	UpdateRoleStatusResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+	// 查询角色信息详情
+	QueryRoleDetailReq {
+		Id int64 `form:"id"`
+	}
+	QueryRoleDetailData {
+		CreateBy   string `json:"createBy"` //创建者
+		CreateTime string `json:"createTime"` //创建时间
+		DataScope  int32  `json:"dataScope"` //数据权限
+		Id         int64  `json:"id"` //编号
+		IsAdmin    int32  `json:"isAdmin"` //是否超级管理员
+		Remark     string `json:"remark"` //备注
+		RoleKey    string `json:"roleKey"` //权限字符
+		RoleName   string `json:"roleName"` //角色名称
+		RoleSort   int32  `json:"roleSort"` //角色排序
+		RoleStatus int32  `json:"roleStatus"` //角色状态
+		UpdateBy   string `json:"updateBy"` //更新者
+		UpdateTime string `json:"updateTime"` //更新时间
+	}
+	QueryRoleDetailResp {
+		Code    string              `json:"code"`
+		Message string              `json:"message"`
+		Data    QueryRoleDetailData `json:"data"`
+	}
+	// 分页查询角色信息列
+	QueryRoleListReq {
+		Current    int64  `form:"current,default=1"` //第几页
+		PageSize   int64  `form:"pageSize,default=20"` //每页的数量
+		IsAdmin    int32  `form:"isAdmin,default=2"` //是否超级管理员
+		RoleKey    string `form:"roleKey,optional"` //权限字符
+		RoleName   string `form:"roleName,optional"` //角色名称
+		RoleStatus int32  `form:"roleStatus,default=2"` //角色状态
+	}
+	QueryRoleListData {
+		CreateBy   string `json:"createBy"` //创建者
+		CreateTime string `json:"createTime"` //创建时间
+		DataScope  int32  `json:"dataScope"` //数据权限
+		Id         int64  `json:"id"` //编号
+		IsAdmin    int32  `json:"isAdmin"` //是否超级管理员
+		Remark     string `json:"remark"` //备注
+		RoleKey    string `json:"roleKey"` //权限字符
+		RoleName   string `json:"roleName"` //角色名称
+		RoleSort   int32  `json:"roleSort"` //角色排序
+		RoleStatus int32  `json:"roleStatus"` //角色状态
+		UpdateBy   string `json:"updateBy"` //更新者
+		UpdateTime string `json:"updateTime"` //更新时间
+	}
+	QueryRoleListResp {
+		Code     string               `json:"code"`
+		Message  string               `json:"message"`
+		Current  int64                `json:"current,default=1"`
+		Data     []*QueryRoleListData `json:"data"`
+		PageSize int64                `json:"pageSize,default=20"`
+		Success  bool                 `json:"success"`
+		Total    int64                `json:"total"`
+	}
+	QueryRoleMenuListReq {
+		RoleId int64 `form:"roleId"`
+	}
+	MenuTreeListData {
+		Key      string `json:"key"` // 菜单名称
+		Title    string `json:"title"` // 菜单名称
+		ParentId int64  `json:"parentId"` // 父菜单ID，一级菜单为0
+		Id       int64  `json:"id"` // 父菜单ID，一级菜单为0
+		Label    string `json:"label"` // 父菜单ID，一级菜单为0
+	}
+	RoleMenuListData {
+		MenuList []MenuTreeListData `json:"menuList"`
+		MenuIds  []int64            `json:"menuIds"`
+	}
+	QueryRoleMenuListResp {
+		Code    string           `json:"code"`
+		Message string           `json:"message"`
+		Data    RoleMenuListData `json:"data"`
+	}
+	UpdateRoleMenuListReq {
+		RoleId  int64   `json:"roleId"`
+		MenuIds []int64 `json:"menuIds"`
+	}
+	UpdateRoleMenuListResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+	// 根据roleId分页查询用户信息列表
+	QueryRoleUserListReq {
+		Current    int64  `form:"current,default=1"` //第几页
+		PageSize   int64  `form:"pageSize,default=20"` //每页的数量
+		RoleId     int64  `form:"roleId"` //角色id
+		IsExist    int64  `form:"isExist"` //角色是否已经拥有用户
+		Mobile     string `form:"mobile,optional"` //手机号
+		UserName   string `form:"userName,optional"` //昵称
+
+	}
+	QueryRoleUserListData {
+		Avatar     string `json:"avatar"` //头像
+		CreateBy   string `json:"createBy"` //创建者
+		CreateTime string `json:"createTime"` //创建时间
+		DeptId     int64  `json:"deptId"` //部门id
+		Email      string `json:"email"` //邮箱
+		Id         int64  `json:"id"` //编号
+		LoginIp    string `json:"loginIp"` //登录ip
+		LoginTime  string `json:"loginTime"` //登录时间
+		Mobile     string `json:"mobile"` //手机号
+		NickName   string `json:"nickName"` //昵称
+		Remark     string `json:"remark"` //备注信息
+		UpdateBy   string `json:"updateBy"` //更新者
+		UpdateTime string `json:"updateTime"` //更新时间
+		UserName   string `json:"userName"` //用户名
+		UserStatus int32  `json:"userStatus"` //帐号状态（0正常 1停用）
+	}
+	QueryRoleUserListResp {
+		Code     string               `json:"code"`
+		Message  string               `json:"message"`
+		Current  int64                `json:"current,default=1"`
+		Data     []*QueryRoleUserListData `json:"data"`
+		PageSize int64                `json:"pageSize,default=20"`
+		Success  bool                 `json:"success"`
+		Total    int64                `json:"total"`
+	}
+
+	CancelAuthorizationReq {
+		RoleId  int64   `json:"roleId"`
+		UserIds []int64 `json:"userIds"`
+		IsExist    int64  `json:"isExist"` //0：取消授权，1：确认授权
+	}
+	CancelAuthorizationResp {
+		Code    string `json:"code"`
+		Message string `json:"message"`
+	}
+)
+
+@server (
+	jwt:        Auth
+	middleware: CheckUrl
+	group:      sys/role
+	prefix:     /api/sys/role
+)
+service admin-api {
+	// 添加角色信息
+	@handler AddRole
+	post /addRole (AddRoleReq) returns (AddRoleResp)
+
+	// 删除角色信息
+	@handler DeleteRole
+	get /deleteRole (DeleteRoleReq) returns (DeleteRoleResp)
+
+	// 更新角色信息
+	@handler UpdateRole
+	post /updateRole (UpdateRoleReq) returns (UpdateRoleResp)
+
+	// 更新角色信息状态
+	@handler UpdateRoleStatus
+	post /updateRoleStatus (UpdateRoleStatusReq) returns (UpdateRoleStatusResp)
+
+	// 查询角色信息详情
+	@handler QueryRoleDetail
+	get /queryRoleDetail (QueryRoleDetailReq) returns (QueryRoleDetailResp)
+
+	// 分页查询角色信息列表
+	@handler QueryRoleList
+	get /queryRoleList (QueryRoleListReq) returns (QueryRoleListResp)
+
+	//查询角色与菜单的关联
+	@handler QueryRoleMenuList
+	get /queryRoleMenuList (QueryRoleMenuListReq) returns (QueryRoleMenuListResp)
+
+	//更新角色与菜单的关联
+	@handler UpdateRoleMenuList
+	post /updateRoleMenuList (UpdateRoleMenuListReq) returns (UpdateRoleMenuListResp)
+
+	//根据roleId分页查询用户信息列表
+	@handler QueryRoleUserList
+	get /queryRoleUserList (QueryRoleUserListReq) returns (QueryRoleUserListResp)
+
+	//取消授权
+	@handler CancelAuthorization
+	post /cancelAuthorization (CancelAuthorizationReq) returns (CancelAuthorizationResp)
+
+}
+
