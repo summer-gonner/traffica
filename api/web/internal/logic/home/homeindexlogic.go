@@ -2,13 +2,13 @@ package home
 
 import (
 	"context"
-	"github.com/feihua/zero-admin/rpc/cms/cmsclient"
-	"github.com/feihua/zero-admin/rpc/pms/pmsclient"
-	"github.com/feihua/zero-admin/rpc/sms/smsclient"
+	"github.com/summmer-gonner/traffica/rpc/cms/cmsclient"
+	"github.com/summmer-gonner/traffica/rpc/pms/pmsclient"
+	"github.com/summmer-gonner/traffica/rpc/sms/smsclient"
 	"time"
 
-	"github.com/feihua/zero-admin/api/web/internal/svc"
-	"github.com/feihua/zero-admin/api/web/internal/types"
+	"github.com/summmer-gonner/traffica/api/web/internal/svc"
+	"github.com/summmer-gonner/traffica/api/web/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

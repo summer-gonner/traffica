@@ -3,10 +3,10 @@ package collection
 import (
 	"context"
 	"encoding/json"
-	"github.com/feihua/zero-admin/rpc/ums/umsclient"
+	"github.com/summmer-gonner/traffica/rpc/ums/umsclient"
 
-	"github.com/feihua/zero-admin/api/front/internal/svc"
-	"github.com/feihua/zero-admin/api/front/internal/types"
+	"github.com/summmer-gonner/traffica/api/front/internal/svc"
+	"github.com/summmer-gonner/traffica/api/front/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

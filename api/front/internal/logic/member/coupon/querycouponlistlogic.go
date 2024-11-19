@@ -3,10 +3,10 @@ package coupon
 import (
 	"context"
 	"encoding/json"
-	"github.com/feihua/zero-admin/rpc/sms/smsclient"
+	"github.com/summmer-gonner/traffica/rpc/sms/smsclient"
 
-	"github.com/feihua/zero-admin/api/front/internal/svc"
-	"github.com/feihua/zero-admin/api/front/internal/types"
+	"github.com/summmer-gonner/traffica/api/front/internal/svc"
+	"github.com/summmer-gonner/traffica/api/front/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

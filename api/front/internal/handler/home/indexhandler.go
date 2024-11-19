@@ -3,8 +3,8 @@ package home
 import (
 	"net/http"
 
-	"github.com/feihua/zero-admin/api/front/internal/logic/home"
-	"github.com/feihua/zero-admin/api/front/internal/svc"
+	"github.com/summmer-gonner/traffica/api/front/internal/logic/home"
+	"github.com/summmer-gonner/traffica/api/front/internal/svc"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

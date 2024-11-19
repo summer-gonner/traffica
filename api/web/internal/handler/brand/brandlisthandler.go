@@ -3,8 +3,8 @@ package brand
 import (
 	"net/http"
 
-	"github.com/feihua/zero-admin/api/web/internal/logic/brand"
-	"github.com/feihua/zero-admin/api/web/internal/svc"
+	"github.com/summmer-gonner/traffica/api/web/internal/logic/brand"
+	"github.com/summmer-gonner/traffica/api/web/internal/svc"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

@@ -3,11 +3,11 @@ package brand
 import (
 	"context"
 	"errors"
-	"github.com/feihua/zero-admin/rpc/pms/pmsclient"
+	"github.com/summmer-gonner/traffica/rpc/pms/pmsclient"
 	"github.com/zeromicro/go-zero/core/logc"
 
-	"github.com/feihua/zero-admin/api/web/internal/svc"
-	"github.com/feihua/zero-admin/api/web/internal/types"
+	"github.com/summmer-gonner/traffica/api/web/internal/svc"
+	"github.com/summmer-gonner/traffica/api/web/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

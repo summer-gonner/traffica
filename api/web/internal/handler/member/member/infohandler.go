@@ -3,8 +3,8 @@ package member
 import (
 	"net/http"
 
-	"github.com/feihua/zero-admin/api/web/internal/logic/member/member"
-	"github.com/feihua/zero-admin/api/web/internal/svc"
+	"github.com/summmer-gonner/traffica/api/web/internal/logic/member/member"
+	"github.com/summmer-gonner/traffica/api/web/internal/svc"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

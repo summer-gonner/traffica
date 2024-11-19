@@ -2,11 +2,11 @@ package category
 
 import (
 	"context"
-	"github.com/feihua/zero-admin/rpc/pms/pmsclient"
+	"github.com/summmer-gonner/traffica/rpc/pms/pmsclient"
 	"strconv"
 
-	"github.com/feihua/zero-admin/api/front/internal/svc"
-	"github.com/feihua/zero-admin/api/front/internal/types"
+	"github.com/summmer-gonner/traffica/api/front/internal/svc"
+	"github.com/summmer-gonner/traffica/api/front/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

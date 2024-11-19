@@ -4,13 +4,13 @@ package handler
 import (
 	"net/http"
 
-	brand "github.com/feihua/zero-admin/api/web/internal/handler/brand"
-	cart "github.com/feihua/zero-admin/api/web/internal/handler/cart"
-	category "github.com/feihua/zero-admin/api/web/internal/handler/category"
-	home "github.com/feihua/zero-admin/api/web/internal/handler/home"
-	membermember "github.com/feihua/zero-admin/api/web/internal/handler/member/member"
-	product "github.com/feihua/zero-admin/api/web/internal/handler/product"
-	"github.com/feihua/zero-admin/api/web/internal/svc"
+	brand "github.com/summmer-gonner/traffica/api/web/internal/handler/brand"
+	cart "github.com/summmer-gonner/traffica/api/web/internal/handler/cart"
+	category "github.com/summmer-gonner/traffica/api/web/internal/handler/category"
+	home "github.com/summmer-gonner/traffica/api/web/internal/handler/home"
+	membermember "github.com/summmer-gonner/traffica/api/web/internal/handler/member/member"
+	product "github.com/summmer-gonner/traffica/api/web/internal/handler/product"
+	"github.com/summmer-gonner/traffica/api/web/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

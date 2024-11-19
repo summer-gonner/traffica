@@ -3,9 +3,9 @@ package order
 import (
 	"net/http"
 
-	"github.com/feihua/zero-admin/api/front/internal/logic/order"
-	"github.com/feihua/zero-admin/api/front/internal/svc"
-	"github.com/feihua/zero-admin/api/front/internal/types"
+	"github.com/summmer-gonner/traffica/api/front/internal/logic/order"
+	"github.com/summmer-gonner/traffica/api/front/internal/svc"
+	"github.com/summmer-gonner/traffica/api/front/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

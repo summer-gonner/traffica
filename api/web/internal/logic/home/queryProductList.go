@@ -2,9 +2,9 @@ package home
 
 import (
 	"context"
-	"github.com/feihua/zero-admin/api/web/internal/types"
-	"github.com/feihua/zero-admin/rpc/pms/client/productservice"
-	"github.com/feihua/zero-admin/rpc/pms/pmsclient"
+	"github.com/summmer-gonner/traffica/api/web/internal/types"
+	"github.com/summmer-gonner/traffica/rpc/pms/client/productservice"
+	"github.com/summmer-gonner/traffica/rpc/pms/pmsclient"
 )
 
 // 根据商品Ids查询商品
