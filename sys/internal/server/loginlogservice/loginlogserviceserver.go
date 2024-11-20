@@ -5,14 +5,15 @@ package server
 
 import (
 	"context"
+
 	"github.com/summer-gonner/traffica/sys/internal/logic/loginlogservice"
 	"github.com/summer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type LoginLogServiceServer struct {
 	svcCtx *svc.ServiceContext
-	sysclient2.UnimplementedLoginLogServiceServer
+	sysclient.UnimplementedLoginLogServiceServer
 }
 
 func NewLoginLogServiceServer(svcCtx *svc.ServiceContext) *LoginLogServiceServer {
@@ -22,19 +23,19 @@ func NewLoginLogServiceServer(svcCtx *svc.ServiceContext) *LoginLogServiceServer
 }
 
 // 删除系统登录日志表
-func (s *LoginLogServiceServer) DeleteLoginLog(ctx context.Context, in *sysclient2.DeleteLoginLogReq) (*sysclient2.DeleteLoginLogResp, error) {
+func (s *LoginLogServiceServer) DeleteLoginLog(ctx context.Context, in *sysclient.DeleteLoginLogReq) (*sysclient.DeleteLoginLogResp, error) {
 	l := loginlogservicelogic.NewDeleteLoginLogLogic(ctx, s.svcCtx)
 	return l.DeleteLoginLog(in)
 }
 
 // 查询系统登录日志表详情
-func (s *LoginLogServiceServer) QueryLoginLogDetail(ctx context.Context, in *sysclient2.QueryLoginLogDetailReq) (*sysclient2.QueryLoginLogDetailResp, error) {
+func (s *LoginLogServiceServer) QueryLoginLogDetail(ctx context.Context, in *sysclient.QueryLoginLogDetailReq) (*sysclient.QueryLoginLogDetailResp, error) {
 	l := loginlogservicelogic.NewQueryLoginLogDetailLogic(ctx, s.svcCtx)
 	return l.QueryLoginLogDetail(in)
 }
 
 // 查询系统登录日志表列表
-func (s *LoginLogServiceServer) QueryLoginLogList(ctx context.Context, in *sysclient2.QueryLoginLogListReq) (*sysclient2.QueryLoginLogListResp, error) {
+func (s *LoginLogServiceServer) QueryLoginLogList(ctx context.Context, in *sysclient.QueryLoginLogListReq) (*sysclient.QueryLoginLogListResp, error) {
 	l := loginlogservicelogic.NewQueryLoginLogListLogic(ctx, s.svcCtx)
 	return l.QueryLoginLogList(in)
 }

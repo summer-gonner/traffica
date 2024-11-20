@@ -5,14 +5,15 @@ package server
 
 import (
 	"context"
+
 	"github.com/summer-gonner/traffica/sys/internal/logic/menuservice"
 	"github.com/summer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type MenuServiceServer struct {
 	svcCtx *svc.ServiceContext
-	sysclient2.UnimplementedMenuServiceServer
+	sysclient.UnimplementedMenuServiceServer
 }
 
 func NewMenuServiceServer(svcCtx *svc.ServiceContext) *MenuServiceServer {
@@ -22,37 +23,37 @@ func NewMenuServiceServer(svcCtx *svc.ServiceContext) *MenuServiceServer {
 }
 
 // 添加菜单信息表
-func (s *MenuServiceServer) AddMenu(ctx context.Context, in *sysclient2.AddMenuReq) (*sysclient2.AddMenuResp, error) {
+func (s *MenuServiceServer) AddMenu(ctx context.Context, in *sysclient.AddMenuReq) (*sysclient.AddMenuResp, error) {
 	l := menuservicelogic.NewAddMenuLogic(ctx, s.svcCtx)
 	return l.AddMenu(in)
 }
 
 // 删除菜单信息表
-func (s *MenuServiceServer) DeleteMenu(ctx context.Context, in *sysclient2.DeleteMenuReq) (*sysclient2.DeleteMenuResp, error) {
+func (s *MenuServiceServer) DeleteMenu(ctx context.Context, in *sysclient.DeleteMenuReq) (*sysclient.DeleteMenuResp, error) {
 	l := menuservicelogic.NewDeleteMenuLogic(ctx, s.svcCtx)
 	return l.DeleteMenu(in)
 }
 
 // 更新菜单信息表
-func (s *MenuServiceServer) UpdateMenu(ctx context.Context, in *sysclient2.UpdateMenuReq) (*sysclient2.UpdateMenuResp, error) {
+func (s *MenuServiceServer) UpdateMenu(ctx context.Context, in *sysclient.UpdateMenuReq) (*sysclient.UpdateMenuResp, error) {
 	l := menuservicelogic.NewUpdateMenuLogic(ctx, s.svcCtx)
 	return l.UpdateMenu(in)
 }
 
 // 更新菜单信息表状态
-func (s *MenuServiceServer) UpdateMenuStatus(ctx context.Context, in *sysclient2.UpdateMenuStatusReq) (*sysclient2.UpdateMenuStatusResp, error) {
+func (s *MenuServiceServer) UpdateMenuStatus(ctx context.Context, in *sysclient.UpdateMenuStatusReq) (*sysclient.UpdateMenuStatusResp, error) {
 	l := menuservicelogic.NewUpdateMenuStatusLogic(ctx, s.svcCtx)
 	return l.UpdateMenuStatus(in)
 }
 
 // 查询菜单信息表详情
-func (s *MenuServiceServer) QueryMenuDetail(ctx context.Context, in *sysclient2.QueryMenuDetailReq) (*sysclient2.QueryMenuDetailResp, error) {
+func (s *MenuServiceServer) QueryMenuDetail(ctx context.Context, in *sysclient.QueryMenuDetailReq) (*sysclient.QueryMenuDetailResp, error) {
 	l := menuservicelogic.NewQueryMenuDetailLogic(ctx, s.svcCtx)
 	return l.QueryMenuDetail(in)
 }
 
 // 查询菜单信息表列表
-func (s *MenuServiceServer) QueryMenuList(ctx context.Context, in *sysclient2.QueryMenuListReq) (*sysclient2.QueryMenuListResp, error) {
+func (s *MenuServiceServer) QueryMenuList(ctx context.Context, in *sysclient.QueryMenuListReq) (*sysclient.QueryMenuListResp, error) {
 	l := menuservicelogic.NewQueryMenuListLogic(ctx, s.svcCtx)
 	return l.QueryMenuList(in)
 }
