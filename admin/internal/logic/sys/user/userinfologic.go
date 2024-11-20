@@ -90,11 +90,6 @@ func (l *UserInfoLogic) UserInfo() (*types.UserInfoResp, error) {
 			Name:        resp.Name,
 			MenuTree:    MenuTree,
 			MenuTreeVue: MenuTreeVue,
-			//Username: resp.Username,
-			//Remark:   resp.Remark,
-			//Phone:    resp.Phone,
-			//NickName: resp.Nickname,
-			//Email:    resp.Email,
 		},
 	}, nil
 }

@@ -1088,13 +1088,9 @@ message MenuListTree {
 
 message InfoResp {
   string avatar = 1;
-  string username = 2;
-  string nickname=3;
-  string  email=4;
-  string  phone=5;
-  string  remark=6;
-//  repeated MenuListTree menuListTree = 3;
-//  repeated string BackgroundUrls = 4;
+  string name = 2;
+  repeated MenuListTree menuListTree = 3;
+  repeated string BackgroundUrls = 4;
 }
 message ProfileReq {
   int64 UserId = 1;
