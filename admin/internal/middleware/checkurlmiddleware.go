@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/summer-gonner/traffica/admin/internal/common/errorx"
-	"github.com/summer-gonner/traffica/common/stringutils"
+	"github.com/summer-gonner/traffica/admin/internal/utils/stringutils"
 	"github.com/zeromicro/go-zero/core/logc"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 	"github.com/zeromicro/go-zero/rest/httpx"
@@ -12,19 +12,15 @@ import (
 	"strings"
 )
 
-var URI_LIST = []string{
-	"/api/sys/user/info",
-	"/api/sys/user/queryAllRelations",
-	"/api/sys/role/queryMenuByRoleId",
-	"/api/sys/user/menus",
-	"/api/sys/user/permissions",
-}
-
 type CheckUrlMiddleware struct {
 	Redis *redis.Redis
 }
 
-var URI_LIST = []string{"/api/sys/user/info", "/api/sys/user/queryAllRelations", "/api/sys/role/queryMenuByRoleId"}
+var URI_LIST = []string{
+	"/api/sys/user/info",
+	"/api/sys/user/queryAllRelations",
+	"/api/sys/role/queryMenuByRoleId",
+	"/api/sys/user/profile"}
 
 func NewCheckUrlMiddleware(Redis *redis.Redis) *CheckUrlMiddleware {
 	return &CheckUrlMiddleware{Redis: Redis}
@@ -43,14 +39,10 @@ func (m *CheckUrlMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		if contains(URI_LIST, uri) {
+		if stringutils.Contains(URI_LIST, uri) {
 			next(w, r)
 			return
 		}
-		if stringutils.Contains(URI_LIST, uri) {
-
-		}
-
 		//获取用户能访问的url
 		urls, err := m.Redis.Get("zero:mall:token:" + userId)
 		if err != nil {
@@ -83,12 +75,4 @@ func (m *CheckUrlMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 
 		next(w, r)
 	}
-}
-func contains(uriList []string, value string) bool {
-	for _, uri := range uriList {
-		if uri == value {
-			return true
-		}
-	}
-	return false
 }

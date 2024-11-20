@@ -50,12 +50,12 @@ func (l *UserInfoLogic) UserInfo() (*types.UserInfoResp, error) {
 		Code:    "000000",
 		Message: "获取个人信息成功",
 		Data: types.UserInfoData{
-			Avatar:   resp.Avatar,
-			Username: resp.Name,
-			Remark:   "beizhu",
-			Phone:    "178222222222",
-			NickName: resp.Name,
-			Email:    "22222@111.com",
+			Avatar: resp.Avatar,
+			//Username: resp.Username,
+			//Remark:   resp.Remark,
+			//Phone:    resp.Phone,
+			//NickName: resp.Nickname,
+			//Email:    resp.Email,
 		},
 	}, nil
 }
