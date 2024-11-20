@@ -5,14 +5,15 @@ package server
 
 import (
 	"context"
+
 	"github.com/summer-gonner/traffica/sys/internal/logic/postservice"
 	"github.com/summer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type PostServiceServer struct {
 	svcCtx *svc.ServiceContext
-	sysclient2.UnimplementedPostServiceServer
+	sysclient.UnimplementedPostServiceServer
 }
 
 func NewPostServiceServer(svcCtx *svc.ServiceContext) *PostServiceServer {
@@ -22,37 +23,37 @@ func NewPostServiceServer(svcCtx *svc.ServiceContext) *PostServiceServer {
 }
 
 // 添加岗位管理
-func (s *PostServiceServer) AddPost(ctx context.Context, in *sysclient2.AddPostReq) (*sysclient2.AddPostResp, error) {
+func (s *PostServiceServer) AddPost(ctx context.Context, in *sysclient.AddPostReq) (*sysclient.AddPostResp, error) {
 	l := postservicelogic.NewAddPostLogic(ctx, s.svcCtx)
 	return l.AddPost(in)
 }
 
 // 删除岗位管理
-func (s *PostServiceServer) DeletePost(ctx context.Context, in *sysclient2.DeletePostReq) (*sysclient2.DeletePostResp, error) {
+func (s *PostServiceServer) DeletePost(ctx context.Context, in *sysclient.DeletePostReq) (*sysclient.DeletePostResp, error) {
 	l := postservicelogic.NewDeletePostLogic(ctx, s.svcCtx)
 	return l.DeletePost(in)
 }
 
 // 更新岗位管理
-func (s *PostServiceServer) UpdatePost(ctx context.Context, in *sysclient2.UpdatePostReq) (*sysclient2.UpdatePostResp, error) {
+func (s *PostServiceServer) UpdatePost(ctx context.Context, in *sysclient.UpdatePostReq) (*sysclient.UpdatePostResp, error) {
 	l := postservicelogic.NewUpdatePostLogic(ctx, s.svcCtx)
 	return l.UpdatePost(in)
 }
 
 // 更新岗位管理状态
-func (s *PostServiceServer) UpdatePostStatus(ctx context.Context, in *sysclient2.UpdatePostStatusReq) (*sysclient2.UpdatePostStatusResp, error) {
+func (s *PostServiceServer) UpdatePostStatus(ctx context.Context, in *sysclient.UpdatePostStatusReq) (*sysclient.UpdatePostStatusResp, error) {
 	l := postservicelogic.NewUpdatePostStatusLogic(ctx, s.svcCtx)
 	return l.UpdatePostStatus(in)
 }
 
 // 查询岗位管理详情
-func (s *PostServiceServer) QueryPostDetail(ctx context.Context, in *sysclient2.QueryPostDetailReq) (*sysclient2.QueryPostDetailResp, error) {
+func (s *PostServiceServer) QueryPostDetail(ctx context.Context, in *sysclient.QueryPostDetailReq) (*sysclient.QueryPostDetailResp, error) {
 	l := postservicelogic.NewQueryPostDetailLogic(ctx, s.svcCtx)
 	return l.QueryPostDetail(in)
 }
 
 // 查询岗位管理列表
-func (s *PostServiceServer) QueryPostList(ctx context.Context, in *sysclient2.QueryPostListReq) (*sysclient2.QueryPostListResp, error) {
+func (s *PostServiceServer) QueryPostList(ctx context.Context, in *sysclient.QueryPostListReq) (*sysclient.QueryPostListResp, error) {
 	l := postservicelogic.NewQueryPostListLogic(ctx, s.svcCtx)
 	return l.QueryPostList(in)
 }

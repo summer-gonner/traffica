@@ -23,7 +23,7 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-var configFile = flag.String("f", "sys/etc/sys.yaml", "the config file")
+var configFile = flag.String("f", "etc/sys.yaml", "the config file")
 
 func main() {
 	flag.Parse()

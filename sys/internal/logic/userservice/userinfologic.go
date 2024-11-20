@@ -51,13 +51,15 @@ func (l *UserInfoLogic) UserInfo(in *sysclient.InfoReq) (*sysclient.InfoResp, er
 	}
 
 	//3.查询用户菜单和权限
-	menuList, apiUrls := l.queryUserMenuAndApiUrls(in.UserId)
+	//menuList, apiUrls := l.queryUserMenuAndApiUrls(in.UserId)
 
 	return &sysclient.InfoResp{
-		Avatar:         info.Avatar,
-		Name:           info.UserName,
-		MenuListTree:   menuList,
-		BackgroundUrls: apiUrls,
+		Avatar:   info.Avatar,
+		Username: info.UserName,
+		Nickname: info.NickName,
+		Email:    info.Email,
+		Phone:    info.Mobile,
+		Remark:   info.Remark,
 	}, nil
 }
 

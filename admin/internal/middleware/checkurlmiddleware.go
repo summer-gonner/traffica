@@ -11,6 +11,14 @@ import (
 	"strings"
 )
 
+var URI_LIST = []string{
+	"/api/sys/user/info",
+	"/api/sys/user/queryAllRelations",
+	"/api/sys/role/queryMenuByRoleId",
+	"/api/sys/user/menus",
+	"/api/sys/user/permissions",
+}
+
 type CheckUrlMiddleware struct {
 	Redis *redis.Redis
 }
@@ -32,7 +40,7 @@ func (m *CheckUrlMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		if uri == "/api/sys/user/info" || uri == "/api/sys/user/queryAllRelations" || uri == "/api/sys/role/queryMenuByRoleId" {
+		if contains(URI_LIST, uri) {
 			next(w, r)
 			return
 		}
@@ -69,4 +77,12 @@ func (m *CheckUrlMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 
 		next(w, r)
 	}
+}
+func contains(uriList []string, value string) bool {
+	for _, uri := range uriList {
+		if uri == value {
+			return true
+		}
+	}
+	return false
 }

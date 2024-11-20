@@ -5,14 +5,15 @@ package server
 
 import (
 	"context"
+
 	"github.com/summer-gonner/traffica/sys/internal/logic/operatelogservice"
 	"github.com/summer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type OperateLogServiceServer struct {
 	svcCtx *svc.ServiceContext
-	sysclient2.UnimplementedOperateLogServiceServer
+	sysclient.UnimplementedOperateLogServiceServer
 }
 
 func NewOperateLogServiceServer(svcCtx *svc.ServiceContext) *OperateLogServiceServer {
@@ -22,25 +23,25 @@ func NewOperateLogServiceServer(svcCtx *svc.ServiceContext) *OperateLogServiceSe
 }
 
 // 添加系统操作日志表
-func (s *OperateLogServiceServer) AddOperateLog(ctx context.Context, in *sysclient2.AddOperateLogReq) (*sysclient2.AddOperateLogResp, error) {
+func (s *OperateLogServiceServer) AddOperateLog(ctx context.Context, in *sysclient.AddOperateLogReq) (*sysclient.AddOperateLogResp, error) {
 	l := operatelogservicelogic.NewAddOperateLogLogic(ctx, s.svcCtx)
 	return l.AddOperateLog(in)
 }
 
 // 删除系统操作日志表
-func (s *OperateLogServiceServer) DeleteOperateLog(ctx context.Context, in *sysclient2.DeleteOperateLogReq) (*sysclient2.DeleteOperateLogResp, error) {
+func (s *OperateLogServiceServer) DeleteOperateLog(ctx context.Context, in *sysclient.DeleteOperateLogReq) (*sysclient.DeleteOperateLogResp, error) {
 	l := operatelogservicelogic.NewDeleteOperateLogLogic(ctx, s.svcCtx)
 	return l.DeleteOperateLog(in)
 }
 
 // 查询系统操作日志表详情
-func (s *OperateLogServiceServer) QueryOperateLogDetail(ctx context.Context, in *sysclient2.QueryOperateLogDetailReq) (*sysclient2.QueryOperateLogDetailResp, error) {
+func (s *OperateLogServiceServer) QueryOperateLogDetail(ctx context.Context, in *sysclient.QueryOperateLogDetailReq) (*sysclient.QueryOperateLogDetailResp, error) {
 	l := operatelogservicelogic.NewQueryOperateLogDetailLogic(ctx, s.svcCtx)
 	return l.QueryOperateLogDetail(in)
 }
 
 // 查询系统操作日志表列表
-func (s *OperateLogServiceServer) QueryOperateLogList(ctx context.Context, in *sysclient2.QueryOperateLogListReq) (*sysclient2.QueryOperateLogListResp, error) {
+func (s *OperateLogServiceServer) QueryOperateLogList(ctx context.Context, in *sysclient.QueryOperateLogListReq) (*sysclient.QueryOperateLogListResp, error) {
 	l := operatelogservicelogic.NewQueryOperateLogListLogic(ctx, s.svcCtx)
 	return l.QueryOperateLogList(in)
 }

@@ -5,14 +5,15 @@ package server
 
 import (
 	"context"
+
 	"github.com/summer-gonner/traffica/sys/internal/logic/deptservice"
 	"github.com/summer-gonner/traffica/sys/internal/svc"
-	sysclient2 "github.com/summer-gonner/traffica/sys/sysclient"
+	"github.com/summer-gonner/traffica/sys/sysclient"
 )
 
 type DeptServiceServer struct {
 	svcCtx *svc.ServiceContext
-	sysclient2.UnimplementedDeptServiceServer
+	sysclient.UnimplementedDeptServiceServer
 }
 
 func NewDeptServiceServer(svcCtx *svc.ServiceContext) *DeptServiceServer {
@@ -22,37 +23,37 @@ func NewDeptServiceServer(svcCtx *svc.ServiceContext) *DeptServiceServer {
 }
 
 // 添加部门信息表
-func (s *DeptServiceServer) AddDept(ctx context.Context, in *sysclient2.AddDeptReq) (*sysclient2.AddDeptResp, error) {
+func (s *DeptServiceServer) AddDept(ctx context.Context, in *sysclient.AddDeptReq) (*sysclient.AddDeptResp, error) {
 	l := deptservicelogic.NewAddDeptLogic(ctx, s.svcCtx)
 	return l.AddDept(in)
 }
 
 // 删除部门信息表
-func (s *DeptServiceServer) DeleteDept(ctx context.Context, in *sysclient2.DeleteDeptReq) (*sysclient2.DeleteDeptResp, error) {
+func (s *DeptServiceServer) DeleteDept(ctx context.Context, in *sysclient.DeleteDeptReq) (*sysclient.DeleteDeptResp, error) {
 	l := deptservicelogic.NewDeleteDeptLogic(ctx, s.svcCtx)
 	return l.DeleteDept(in)
 }
 
 // 更新部门信息表
-func (s *DeptServiceServer) UpdateDept(ctx context.Context, in *sysclient2.UpdateDeptReq) (*sysclient2.UpdateDeptResp, error) {
+func (s *DeptServiceServer) UpdateDept(ctx context.Context, in *sysclient.UpdateDeptReq) (*sysclient.UpdateDeptResp, error) {
 	l := deptservicelogic.NewUpdateDeptLogic(ctx, s.svcCtx)
 	return l.UpdateDept(in)
 }
 
 // 更新部门信息表状态
-func (s *DeptServiceServer) UpdateDeptStatus(ctx context.Context, in *sysclient2.UpdateDeptStatusReq) (*sysclient2.UpdateDeptStatusResp, error) {
+func (s *DeptServiceServer) UpdateDeptStatus(ctx context.Context, in *sysclient.UpdateDeptStatusReq) (*sysclient.UpdateDeptStatusResp, error) {
 	l := deptservicelogic.NewUpdateDeptStatusLogic(ctx, s.svcCtx)
 	return l.UpdateDeptStatus(in)
 }
 
 // 查询部门信息表详情
-func (s *DeptServiceServer) QueryDeptDetail(ctx context.Context, in *sysclient2.QueryDeptDetailReq) (*sysclient2.QueryDeptDetailResp, error) {
+func (s *DeptServiceServer) QueryDeptDetail(ctx context.Context, in *sysclient.QueryDeptDetailReq) (*sysclient.QueryDeptDetailResp, error) {
 	l := deptservicelogic.NewQueryDeptDetailLogic(ctx, s.svcCtx)
 	return l.QueryDeptDetail(in)
 }
 
 // 查询部门信息表列表
-func (s *DeptServiceServer) QueryDeptList(ctx context.Context, in *sysclient2.QueryDeptListReq) (*sysclient2.QueryDeptListResp, error) {
+func (s *DeptServiceServer) QueryDeptList(ctx context.Context, in *sysclient.QueryDeptListReq) (*sysclient.QueryDeptListResp, error) {
 	l := deptservicelogic.NewQueryDeptListLogic(ctx, s.svcCtx)
 	return l.QueryDeptList(in)
 }

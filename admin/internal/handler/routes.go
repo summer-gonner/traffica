@@ -369,6 +369,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodGet,
+					Path:    "/menus",
+					Handler: user.UserInfoHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/permissions",
+					Handler: user.UserInfoHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
 					Path:    "/queryDeptAndPostList",
 					Handler: user.QueryDeptAndPostListHandler(serverCtx),
 				},
