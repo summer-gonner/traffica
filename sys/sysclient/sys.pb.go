@@ -8369,12 +8369,12 @@ func (x *MenuListTree) GetId() int64 {
 	return 0
 }
 
-func (x *MenuListTree) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
+//func (x *MenuListTree) GetName() string {
+//	if x != nil {
+//		return x.Name
+//	}
+//	return ""
+//}
 
 func (x *MenuListTree) GetIcon() string {
 	if x != nil {
