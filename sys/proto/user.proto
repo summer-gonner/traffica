@@ -2358,13 +2358,20 @@ message PostData {
   string update_time = 11; //更新时间
 
 }
+message UserMenusReq {
+  string  userId=1;
+}
+message UserMenusResp {
 
+}
 // 用户信息表
 service UserService {
   // 用户登录
   rpc Login(LoginReq) returns(loginResp);
   // 获取用户个人信息
   rpc UserInfo(InfoReq) returns(InfoResp);
+  //获取当前登录人的菜单
+  rpc UserMenus(UserMenusReq)returns(UserMenusResp);
   // 获取账号资料
   rpc UserProfile(ProfileReq)returns(ProfileResp);
   // 重置用户密码

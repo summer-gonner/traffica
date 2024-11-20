@@ -12,8 +12,8 @@ Content-Type: application/json
 > {% client.global.set("token", response.body.data.token); %}
 
 #### 获取个人信息
-#GET {{host}}/api/sys/user/info
-#Authorization: Bearer {{token}}
+GET {{host}}/api/sys/user/info
+Authorization: Bearer {{token}}
 
 ### 获取个人资料
 GET {{host}}/api/sys/user/profile
