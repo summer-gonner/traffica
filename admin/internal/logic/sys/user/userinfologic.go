@@ -51,6 +51,8 @@ func (l *UserInfoLogic) UserInfo() (*types.UserInfoResp, error) {
 		Message: "获取个人信息成功",
 		Data: types.UserInfoData{
 			Avatar: resp.Avatar,
+			Name:   resp.Name,
+
 			//Username: resp.Username,
 			//Remark:   resp.Remark,
 			//Phone:    resp.Phone,
