@@ -1140,12 +1140,10 @@ type UploadResp struct {
 }
 
 type UserInfoData struct {
-	Avatar   string `json:"avatar"`
-	Username string `json:"username"`
-	NickName string `json:"nickName"`
-	Email    string `json:"email"`
-	Phone    string `json:"phone"`
-	Remark   string `json:"remark"`
+	Avatar      string             `json:"avatar"`
+	Name        string             `json:"name"`
+	MenuTree    []*ListMenuTree    `json:"menuTree"`
+	MenuTreeVue []*ListMenuTreeVue `json:"menuTreeVue"`
 }
 
 type UserProfileData struct {

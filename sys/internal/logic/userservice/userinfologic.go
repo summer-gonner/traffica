@@ -54,12 +54,8 @@ func (l *UserInfoLogic) UserInfo(in *sysclient.InfoReq) (*sysclient.InfoResp, er
 	//menuList, apiUrls := l.queryUserMenuAndApiUrls(in.UserId)
 
 	return &sysclient.InfoResp{
-		Avatar:   info.Avatar,
-		Username: info.UserName,
-		Nickname: info.NickName,
-		Email:    info.Email,
-		Phone:    info.Mobile,
-		Remark:   info.Remark,
+		Avatar: info.Avatar,
+		Name:   info.UserName,
 	}, nil
 }
 

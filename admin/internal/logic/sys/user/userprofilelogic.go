@@ -32,10 +32,12 @@ func (l *UserProfileLogic) UserProfile() (resp *types.UserProfileResp, err error
 	// 这里的key和生成jwt token时传入的key一致
 	userId, _ := l.ctx.Value("userId").(json.Number).Int64()
 
-	resp, err := l.svcCtx.UserService.UserProfile(l.ctx, &sysclient.InfoReq{
+	profileResp, err := l.svcCtx.UserService.UserProfile(l.ctx, &sysclient.ProfileReq{
 		UserId: userId,
 	})
-
+	if err != nil {
+		return nil, err
+	}
 	if err != nil {
 		logc.Errorf(l.ctx, "根据userId: %d,查询用户信息异常:%s", userId, err.Error())
 		s, _ := status.FromError(err)
@@ -46,12 +48,12 @@ func (l *UserProfileLogic) UserProfile() (resp *types.UserProfileResp, err error
 		Code:    "000000",
 		Message: "获取个人信息成功",
 		Data: types.UserProfileData{
-			Avatar:   resp.Avatar,
-			Username: resp.Username,
-			Remark:   resp.Remark,
-			Phone:    resp.Phone,
-			NickName: resp.Nickname,
-			Email:    resp.Email,
+			Avatar:   profileResp.Avatar,
+			Username: profileResp.Username,
+			Remark:   profileResp.Remark,
+			Phone:    profileResp.Phone,
+			NickName: profileResp.Nickname,
+			Email:    profileResp.Email,
 		},
 	}, nil
 
