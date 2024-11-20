@@ -15,6 +15,9 @@ Content-Type: application/json
 GET {{host}}/api/sys/user/info
 Authorization: Bearer {{token}}
 
+### 获取个人资料
+GET {{host}}/api/sys/user/profile
+Authorization: Bearer {{token}}
 
 ### 添加用户
 POST {{host}}/api/sys/user/addUser

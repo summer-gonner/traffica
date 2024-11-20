@@ -64,6 +64,8 @@ type (
 	OperateLogListData        = sysclient.OperateLogListData
 	PostData                  = sysclient.PostData
 	PostListData              = sysclient.PostListData
+	ProfileReq                = sysclient.ProfileReq
+	ProfileResp               = sysclient.ProfileResp
 	QueryDeptAndPostListReq   = sysclient.QueryDeptAndPostListReq
 	QueryDeptAndPostListResp  = sysclient.QueryDeptAndPostListResp
 	QueryDeptDetailReq        = sysclient.QueryDeptDetailReq

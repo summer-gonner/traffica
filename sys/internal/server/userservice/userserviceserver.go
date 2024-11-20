@@ -34,6 +34,12 @@ func (s *UserServiceServer) UserInfo(ctx context.Context, in *sysclient.InfoReq)
 	return l.UserInfo(in)
 }
 
+// 获取账号资料
+func (s *UserServiceServer) UserProfile(ctx context.Context, in *sysclient.ProfileReq) (*sysclient.ProfileResp, error) {
+	l := userservicelogic.NewUserProfileLogic(ctx, s.svcCtx)
+	return l.UserProfile(in)
+}
+
 // 重置用户密码
 func (s *UserServiceServer) ReSetPassword(ctx context.Context, in *sysclient.ReSetPasswordReq) (*sysclient.ReSetPasswordResp, error) {
 	l := userservicelogic.NewReSetPasswordLogic(ctx, s.svcCtx)

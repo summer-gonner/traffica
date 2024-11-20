@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/summer-gonner/traffica/admin/internal/common/errorx"
+	"github.com/summer-gonner/traffica/common/stringutils"
 	"github.com/zeromicro/go-zero/core/logc"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 	"github.com/zeromicro/go-zero/rest/httpx"
@@ -22,6 +23,8 @@ var URI_LIST = []string{
 type CheckUrlMiddleware struct {
 	Redis *redis.Redis
 }
+
+var URI_LIST = []string{"/api/sys/user/info", "/api/sys/user/queryAllRelations", "/api/sys/role/queryMenuByRoleId"}
 
 func NewCheckUrlMiddleware(Redis *redis.Redis) *CheckUrlMiddleware {
 	return &CheckUrlMiddleware{Redis: Redis}
@@ -43,6 +46,9 @@ func (m *CheckUrlMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 		if contains(URI_LIST, uri) {
 			next(w, r)
 			return
+		}
+		if stringutils.Contains(URI_LIST, uri) {
+
 		}
 
 		//获取用户能访问的url

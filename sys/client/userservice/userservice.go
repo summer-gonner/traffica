@@ -64,6 +64,8 @@ type (
 	OperateLogListData        = sysclient.OperateLogListData
 	PostData                  = sysclient.PostData
 	PostListData              = sysclient.PostListData
+	ProfileReq                = sysclient.ProfileReq
+	ProfileResp               = sysclient.ProfileResp
 	QueryDeptAndPostListReq   = sysclient.QueryDeptAndPostListReq
 	QueryDeptAndPostListResp  = sysclient.QueryDeptAndPostListResp
 	QueryDeptDetailReq        = sysclient.QueryDeptDetailReq
@@ -152,6 +154,8 @@ type (
 		Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
 		// 获取用户个人信息
 		UserInfo(ctx context.Context, in *InfoReq, opts ...grpc.CallOption) (*InfoResp, error)
+		// 获取账号资料
+		UserProfile(ctx context.Context, in *ProfileReq, opts ...grpc.CallOption) (*ProfileResp, error)
 		// 重置用户密码
 		ReSetPassword(ctx context.Context, in *ReSetPasswordReq, opts ...grpc.CallOption) (*ReSetPasswordResp, error)
 		// 添加用户信息表
@@ -195,6 +199,12 @@ func (m *defaultUserService) Login(ctx context.Context, in *LoginReq, opts ...gr
 func (m *defaultUserService) UserInfo(ctx context.Context, in *InfoReq, opts ...grpc.CallOption) (*InfoResp, error) {
 	client := sysclient.NewUserServiceClient(m.cli.Conn())
 	return client.UserInfo(ctx, in, opts...)
+}
+
+// 获取账号资料
+func (m *defaultUserService) UserProfile(ctx context.Context, in *ProfileReq, opts ...grpc.CallOption) (*ProfileResp, error) {
+	client := sysclient.NewUserServiceClient(m.cli.Conn())
+	return client.UserProfile(ctx, in, opts...)
 }
 
 // 重置用户密码

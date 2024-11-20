@@ -143,8 +143,8 @@ github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o
 github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
 github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
-github.com/summer-gonner/traffica/sys v0.0.0-20241119181544-5668c0286dab h1:gMaQrvCqUgksoXlTfY3kOiPQOFnHMoDs3EEHQmAfbh0=
-github.com/summer-gonner/traffica/sys v0.0.0-20241119181544-5668c0286dab/go.mod h1:7fgSBXT/4Y4Gf0bkhFICC2KWC8IY3wzEhsZUKe94bnI=
+github.com/summer-gonner/traffica/sys v0.0.0-20241119184431-7614b36984d1 h1:lkdO0Xk++4j2lN+Tht5s9OsuBBtKUyTNf6C28gR9Trw=
+github.com/summer-gonner/traffica/sys v0.0.0-20241119184431-7614b36984d1/go.mod h1:7fgSBXT/4Y4Gf0bkhFICC2KWC8IY3wzEhsZUKe94bnI=
 github.com/ua-parser/uap-go v0.0.0-20241012191800-bbb40edc15aa h1:VzPR4xFM7HARqNocjdHg75ZL9SAgFtaF3P57ZdDcG6I=
 github.com/ua-parser/uap-go v0.0.0-20241012191800-bbb40edc15aa/go.mod h1:BUbeWZiieNxAuuADTBNb3/aeje6on3DhU3rpWsQSB1E=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

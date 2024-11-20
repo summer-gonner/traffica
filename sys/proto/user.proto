@@ -2141,7 +2141,17 @@ message InfoResp {
   string remark=5;
   string  email=6;
 }
-
+message ProfileReq {
+  int64 UserId = 1;
+}
+message ProfileResp {
+  string avatar = 1;
+  string username = 2;
+  string  nickname=3;
+  string  email=4;
+  string  remark=5;
+  string  phone=6;
+}
 message ReSetPasswordReq {
   int64 id = 1;
   string update_by = 2;
@@ -2355,6 +2365,8 @@ service UserService {
   rpc Login(LoginReq) returns(loginResp);
   // 获取用户个人信息
   rpc UserInfo(InfoReq) returns(InfoResp);
+  // 获取账号资料
+  rpc UserProfile(ProfileReq)returns(ProfileResp);
   // 重置用户密码
   rpc ReSetPassword(ReSetPasswordReq) returns(ReSetPasswordResp);
   // 添加用户信息表
