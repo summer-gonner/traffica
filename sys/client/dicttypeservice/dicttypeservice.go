@@ -152,6 +152,8 @@ type (
 	UserMenusData             = sysclient.UserMenusData
 	UserMenusReq              = sysclient.UserMenusReq
 	UserMenusResp             = sysclient.UserMenusResp
+	UserPermissionReq         = sysclient.UserPermissionReq
+	UserPermissionResp        = sysclient.UserPermissionResp
 
 	DictTypeService interface {
 		// 添加字典类型表

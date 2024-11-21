@@ -2358,6 +2358,7 @@ const (
 	UserService_Login_FullMethodName                = "/sysclient.UserService/Login"
 	UserService_UserInfo_FullMethodName             = "/sysclient.UserService/UserInfo"
 	UserService_UserMenus_FullMethodName            = "/sysclient.UserService/UserMenus"
+	UserService_UserPermissions_FullMethodName      = "/sysclient.UserService/UserPermissions"
 	UserService_UserProfile_FullMethodName          = "/sysclient.UserService/UserProfile"
 	UserService_ReSetPassword_FullMethodName        = "/sysclient.UserService/ReSetPassword"
 	UserService_AddUser_FullMethodName              = "/sysclient.UserService/AddUser"
@@ -2383,6 +2384,7 @@ type UserServiceClient interface {
 	UserInfo(ctx context.Context, in *InfoReq, opts ...grpc.CallOption) (*InfoResp, error)
 	// 获取当前用户的菜单信息
 	UserMenus(ctx context.Context, in *UserMenusReq, opts ...grpc.CallOption) (*UserMenusResp, error)
+	UserPermissions(ctx context.Context, in *UserPermissionReq, opts ...grpc.CallOption) (*UserPermissionResp, error)
 	// 获取用户资料
 	UserProfile(ctx context.Context, in *ProfileReq, opts ...grpc.CallOption) (*ProfileResp, error)
 	// 重置用户密码
@@ -2439,6 +2441,16 @@ func (c *userServiceClient) UserMenus(ctx context.Context, in *UserMenusReq, opt
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserMenusResp)
 	err := c.cc.Invoke(ctx, UserService_UserMenus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) UserPermissions(ctx context.Context, in *UserPermissionReq, opts ...grpc.CallOption) (*UserPermissionResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserPermissionResp)
+	err := c.cc.Invoke(ctx, UserService_UserPermissions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2567,6 +2579,7 @@ type UserServiceServer interface {
 	UserInfo(context.Context, *InfoReq) (*InfoResp, error)
 	// 获取当前用户的菜单信息
 	UserMenus(context.Context, *UserMenusReq) (*UserMenusResp, error)
+	UserPermissions(context.Context, *UserPermissionReq) (*UserPermissionResp, error)
 	// 获取用户资料
 	UserProfile(context.Context, *ProfileReq) (*ProfileResp, error)
 	// 重置用户密码
@@ -2604,6 +2617,9 @@ func (UnimplementedUserServiceServer) UserInfo(context.Context, *InfoReq) (*Info
 }
 func (UnimplementedUserServiceServer) UserMenus(context.Context, *UserMenusReq) (*UserMenusResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserMenus not implemented")
+}
+func (UnimplementedUserServiceServer) UserPermissions(context.Context, *UserPermissionReq) (*UserPermissionResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserPermissions not implemented")
 }
 func (UnimplementedUserServiceServer) UserProfile(context.Context, *ProfileReq) (*ProfileResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserProfile not implemented")
@@ -2701,6 +2717,24 @@ func _UserService_UserMenus_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).UserMenus(ctx, req.(*UserMenusReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_UserPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserPermissionReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).UserPermissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_UserPermissions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).UserPermissions(ctx, req.(*UserPermissionReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2921,6 +2955,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UserMenus",
 			Handler:    _UserService_UserMenus_Handler,
+		},
+		{
+			MethodName: "UserPermissions",
+			Handler:    _UserService_UserPermissions_Handler,
 		},
 		{
 			MethodName: "UserProfile",

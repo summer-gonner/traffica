@@ -152,6 +152,8 @@ type (
 	UserMenusData             = sysclient.UserMenusData
 	UserMenusReq              = sysclient.UserMenusReq
 	UserMenusResp             = sysclient.UserMenusResp
+	UserPermissionReq         = sysclient.UserPermissionReq
+	UserPermissionResp        = sysclient.UserPermissionResp
 
 	UserService interface {
 		// 用户登录
@@ -160,6 +162,7 @@ type (
 		UserInfo(ctx context.Context, in *InfoReq, opts ...grpc.CallOption) (*InfoResp, error)
 		// 获取当前用户的菜单信息
 		UserMenus(ctx context.Context, in *UserMenusReq, opts ...grpc.CallOption) (*UserMenusResp, error)
+		UserPermissions(ctx context.Context, in *UserPermissionReq, opts ...grpc.CallOption) (*UserPermissionResp, error)
 		// 获取用户资料
 		UserProfile(ctx context.Context, in *ProfileReq, opts ...grpc.CallOption) (*ProfileResp, error)
 		// 重置用户密码
@@ -211,6 +214,11 @@ func (m *defaultUserService) UserInfo(ctx context.Context, in *InfoReq, opts ...
 func (m *defaultUserService) UserMenus(ctx context.Context, in *UserMenusReq, opts ...grpc.CallOption) (*UserMenusResp, error) {
 	client := sysclient.NewUserServiceClient(m.cli.Conn())
 	return client.UserMenus(ctx, in, opts...)
+}
+
+func (m *defaultUserService) UserPermissions(ctx context.Context, in *UserPermissionReq, opts ...grpc.CallOption) (*UserPermissionResp, error) {
+	client := sysclient.NewUserServiceClient(m.cli.Conn())
+	return client.UserPermissions(ctx, in, opts...)
 }
 
 // 获取用户资料

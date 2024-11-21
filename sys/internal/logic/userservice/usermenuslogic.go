@@ -54,7 +54,7 @@ func (l *UserMenusLogic) UserMenus(in *sysclient.UserMenusReq) (*sysclient.UserM
 
 }
 
-// 查询用户菜单和权限
+// 查询用户菜单
 func (l *UserMenusLogic) queryUserMenus(userId int64) []*sysclient.UserMenusData {
 	var result []*model.SysMenu
 	if common.IsAdmin(l.ctx, userId, l.svcCtx.DB) {

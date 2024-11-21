@@ -40,6 +40,11 @@ func (s *UserServiceServer) UserMenus(ctx context.Context, in *sysclient.UserMen
 	return l.UserMenus(in)
 }
 
+func (s *UserServiceServer) UserPermissions(ctx context.Context, in *sysclient.UserPermissionReq) (*sysclient.UserPermissionResp, error) {
+	l := userservicelogic.NewUserPermissionsLogic(ctx, s.svcCtx)
+	return l.UserPermissions(in)
+}
+
 // 获取用户资料
 func (s *UserServiceServer) UserProfile(ctx context.Context, in *sysclient.ProfileReq) (*sysclient.ProfileResp, error) {
 	l := userservicelogic.NewUserProfileLogic(ctx, s.svcCtx)

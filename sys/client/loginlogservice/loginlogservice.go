@@ -152,6 +152,8 @@ type (
 	UserMenusData             = sysclient.UserMenusData
 	UserMenusReq              = sysclient.UserMenusReq
 	UserMenusResp             = sysclient.UserMenusResp
+	UserPermissionReq         = sysclient.UserPermissionReq
+	UserPermissionResp        = sysclient.UserPermissionResp
 
 	LoginLogService interface {
 		// 删除系统登录日志表

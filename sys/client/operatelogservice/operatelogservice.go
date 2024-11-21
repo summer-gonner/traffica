@@ -152,6 +152,8 @@ type (
 	UserMenusData             = sysclient.UserMenusData
 	UserMenusReq              = sysclient.UserMenusReq
 	UserMenusResp             = sysclient.UserMenusResp
+	UserPermissionReq         = sysclient.UserPermissionReq
+	UserPermissionResp        = sysclient.UserPermissionResp
 
 	OperateLogService interface {
 		// 添加系统操作日志表

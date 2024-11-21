@@ -293,6 +293,12 @@ message UserMenusData {
 message UserMenusResp {
   repeated UserMenusData userMenuData=1;
 }
+message UserPermissionReq {
+  int64  userId =1;
+}
+message  UserPermissionResp {
+  repeated  string permission=1;
+}
 // 用户信息表
 service UserService {
   // 用户登录
@@ -301,6 +307,7 @@ service UserService {
   rpc UserInfo(InfoReq) returns(InfoResp);
   // 获取当前用户的菜单信息
   rpc UserMenus(UserMenusReq) returns(UserMenusResp);
+  rpc UserPermissions(UserPermissionReq)returns(UserPermissionResp);
   //获取用户资料
   rpc UserProfile(ProfileReq)returns(ProfileResp);
   // 重置用户密码
