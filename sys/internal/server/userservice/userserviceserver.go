@@ -34,7 +34,13 @@ func (s *UserServiceServer) UserInfo(ctx context.Context, in *sysclient.InfoReq)
 	return l.UserInfo(in)
 }
 
-// 获取账号资料
+// 获取当前用户的菜单信息
+func (s *UserServiceServer) UserMenus(ctx context.Context, in *sysclient.UserMenusReq) (*sysclient.UserMenusResp, error) {
+	l := userservicelogic.NewUserMenusLogic(ctx, s.svcCtx)
+	return l.UserMenus(in)
+}
+
+// 获取用户资料
 func (s *UserServiceServer) UserProfile(ctx context.Context, in *sysclient.ProfileReq) (*sysclient.ProfileResp, error) {
 	l := userservicelogic.NewUserProfileLogic(ctx, s.svcCtx)
 	return l.UserProfile(in)

@@ -61,6 +61,7 @@ type (
 	MenuData                  = sysclient.MenuData
 	MenuListData              = sysclient.MenuListData
 	MenuListTree              = sysclient.MenuListTree
+	Meta                      = sysclient.Meta
 	OperateLogListData        = sysclient.OperateLogListData
 	PostData                  = sysclient.PostData
 	PostListData              = sysclient.PostListData
@@ -148,6 +149,9 @@ type (
 	UpdateUserStatusResp      = sysclient.UpdateUserStatusResp
 	UserData                  = sysclient.UserData
 	UserListData              = sysclient.UserListData
+	UserMenusData             = sysclient.UserMenusData
+	UserMenusReq              = sysclient.UserMenusReq
+	UserMenusResp             = sysclient.UserMenusResp
 
 	DictTypeService interface {
 		// 添加字典类型表

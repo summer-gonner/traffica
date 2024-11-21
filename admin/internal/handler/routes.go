@@ -370,6 +370,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodGet,
+					Path:    "/menus",
+					Handler: sysuser.UserMenusHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
 					Path:    "/profile",
 					Handler: sysuser.UserProfileHandler(serverCtx),
 				},

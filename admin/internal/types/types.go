@@ -262,6 +262,23 @@ type MenuTreeMeta struct {
 	Icon  string `json:"icon"`
 }
 
+type Meta struct {
+	Creator     string `json:"creator"`
+	Updater     string `json:"updater"`
+	Title       string `json:"title"`
+	Permission  string `json:"permission"`
+	Type        int    `json:"type"`
+	Icon        string `json:"icon"`
+	OrderNo     int    `json:"orderNo"`
+	Component   string `json:"component"`
+	IsExt       bool   `json:"isExt"`
+	ExtOpenMode int    `json:"extOpenMode"`
+	KeepAlive   int    `json:"keepAlive"`
+	Show        int    `json:"show"`
+	ActiveMenu  string `json:"activeMenu"`
+	Status      int    `json:"status"`
+}
+
 type PostList struct {
 	Id       int64  `json:"id"`
 	PostName string `json:"postName"`
@@ -1144,6 +1161,20 @@ type UserInfoData struct {
 	Name        string             `json:"name"`
 	MenuTree    []*ListMenuTree    `json:"menuTree"`
 	MenuTreeVue []*ListMenuTreeVue `json:"menuTreeVue"`
+}
+
+type UserMenusData struct {
+	Id       string `json:"id"`
+	Path     string `json:"path"`
+	Name     string `json:"name"`
+	Compnent string `json:"compnent"`
+	Meta     Meta   `json:"meta"`
+}
+
+type UserMenusResp struct {
+	Code    string           `json:"code"`
+	Message string           `json:"message"`
+	Data    []*UserMenusData `json:"data"`
 }
 
 type UserProfileData struct {

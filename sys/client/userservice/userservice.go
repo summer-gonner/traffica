@@ -61,6 +61,7 @@ type (
 	MenuData                  = sysclient.MenuData
 	MenuListData              = sysclient.MenuListData
 	MenuListTree              = sysclient.MenuListTree
+	Meta                      = sysclient.Meta
 	OperateLogListData        = sysclient.OperateLogListData
 	PostData                  = sysclient.PostData
 	PostListData              = sysclient.PostListData
@@ -148,13 +149,18 @@ type (
 	UpdateUserStatusResp      = sysclient.UpdateUserStatusResp
 	UserData                  = sysclient.UserData
 	UserListData              = sysclient.UserListData
+	UserMenusData             = sysclient.UserMenusData
+	UserMenusReq              = sysclient.UserMenusReq
+	UserMenusResp             = sysclient.UserMenusResp
 
 	UserService interface {
 		// 用户登录
 		Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
 		// 获取用户个人信息
 		UserInfo(ctx context.Context, in *InfoReq, opts ...grpc.CallOption) (*InfoResp, error)
-		// 获取账号资料
+		// 获取当前用户的菜单信息
+		UserMenus(ctx context.Context, in *UserMenusReq, opts ...grpc.CallOption) (*UserMenusResp, error)
+		// 获取用户资料
 		UserProfile(ctx context.Context, in *ProfileReq, opts ...grpc.CallOption) (*ProfileResp, error)
 		// 重置用户密码
 		ReSetPassword(ctx context.Context, in *ReSetPasswordReq, opts ...grpc.CallOption) (*ReSetPasswordResp, error)
@@ -201,7 +207,13 @@ func (m *defaultUserService) UserInfo(ctx context.Context, in *InfoReq, opts ...
 	return client.UserInfo(ctx, in, opts...)
 }
 
-// 获取账号资料
+// 获取当前用户的菜单信息
+func (m *defaultUserService) UserMenus(ctx context.Context, in *UserMenusReq, opts ...grpc.CallOption) (*UserMenusResp, error) {
+	client := sysclient.NewUserServiceClient(m.cli.Conn())
+	return client.UserMenus(ctx, in, opts...)
+}
+
+// 获取用户资料
 func (m *defaultUserService) UserProfile(ctx context.Context, in *ProfileReq, opts ...grpc.CallOption) (*ProfileResp, error) {
 	client := sysclient.NewUserServiceClient(m.cli.Conn())
 	return client.UserProfile(ctx, in, opts...)

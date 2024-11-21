@@ -262,12 +262,45 @@ message ProfileResp {
   string  phone=5;
   string  remark=6;
 }
+message UserMenusReq {
+  int64  userId=1;
+}
+message  Meta {
+  string  creator=1;
+  string  updater=2;
+  string  title=3;
+  string  permission=4;
+  int32  type=5;
+  string  icon=6;
+  int32  orderNo=7;
+  string  component=8;
+  bool  isExt =9;
+  int32 extOpenMode =10;
+  int32  keepAlive=11;
+  int32  show = 12;
+  string  activeMenu=13;
+  int32  status=14;
+
+}
+message UserMenusData {
+  int64  id =1;
+  string name=2;
+  string path=3;
+  string component=4;
+  repeated  Meta meta=5;
+
+}
+message UserMenusResp {
+  repeated UserMenusData userMenuData=1;
+}
 // 用户信息表
 service UserService {
   // 用户登录
   rpc Login(LoginReq) returns(loginResp);
   // 获取用户个人信息
   rpc UserInfo(InfoReq) returns(InfoResp);
+  // 获取当前用户的菜单信息
+  rpc UserMenus(UserMenusReq) returns(UserMenusResp);
   //获取用户资料
   rpc UserProfile(ProfileReq)returns(ProfileResp);
   // 重置用户密码
