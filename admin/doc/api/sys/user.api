@@ -277,6 +277,11 @@ type (
         Message string `json:"message"`
         Data []string `json:"data"`
     }
+    LogoutResp {
+        Code string `json:"code"`
+        Message string `json:"message"`
+        Data string     `json:"data"`
+    }
 )
 
 @server(
@@ -346,5 +351,7 @@ service admin-api {
 service admin-api {
     @handler UserLogin
     post /api/sys/user/login (LoginReq) returns (LoginResp)
+    @handler UserLogout
+    get /api/sys/user/logout  returns (LogoutResp)
 }
 

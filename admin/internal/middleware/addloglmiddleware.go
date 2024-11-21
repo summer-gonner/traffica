@@ -25,7 +25,7 @@ func (m *AddLogMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		uri := r.RequestURI
-		if uri == "/api/sys/user/login" || uri == "/api/sys/upload" {
+		if uri == "/api/sys/user/login" || uri == "/api/sys/upload" || uri == "/api/sys/user/logout" {
 			logx.WithContext(r.Context()).Infof("Request: %s %s", r.Method, uri)
 			next(w, r)
 			return

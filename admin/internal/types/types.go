@@ -249,6 +249,12 @@ type LoginResp struct {
 	Data    LoginData `json:"data"`
 }
 
+type LogoutResp struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+	Data    string `json:"data"`
+}
+
 type MenuTreeListData struct {
 	Key      string `json:"key"`      // 菜单名称
 	Title    string `json:"title"`    // 菜单名称

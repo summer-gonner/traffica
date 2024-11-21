@@ -11,6 +11,10 @@ Content-Type: application/json
 }
 > {% client.global.set("token", response.body.data.token); %}
 
+#### 退出登录
+GET {{host}}/api/sys/user/logout
+Authorization: Bearer {{token}}
+
 #### 获取个人信息
 GET {{host}}/api/sys/user/info
 Authorization: Bearer {{token}}
