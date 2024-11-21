@@ -18,7 +18,9 @@ Authorization: Bearer {{token}}
 ### 获取个人资料
 GET {{host}}/api/sys/user/profile
 Authorization: Bearer {{token}}
-
+### 获取当前用户菜单
+GET {{host}}/api/sys/user/menus
+Authorization: Bearer {{token}}
 ### 添加用户
 POST {{host}}/api/sys/user/addUser
 Content-Type: application/json
