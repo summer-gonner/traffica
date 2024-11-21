@@ -1,7 +1,7 @@
 
 ###用户登录
 @host = http://127.0.0.1:8888
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0SUQiOjEsImRlcHROYW1lIjoi5oC75YWs5Y-45LiAIiwiZXhwIjoxNzMyMTU1ODc5LCJpYXQiOjE3MzIwNjk0NzksInVzZXJJZCI6MSwidXNlck5hbWUiOiJhZG1pbiJ9.6vCIDzv8rHJ8KRQvh-vIR0Ayj7j32NM_X0_l8aacBAM
+#@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0SUQiOjEsImRlcHROYW1lIjoi5oC75YWs5Y-45LiAIiwiZXhwIjoxNzMyMjc4NTYxLCJpYXQiOjE3MzIxOTIxNjEsInVzZXJJZCI6MSwidXNlck5hbWUiOiJhZG1pbiJ9.eG9mVOptzO_exH9vy9IzHPzrzYUxF49KQPz2BN_4xqw
 POST {{host}}/api/sys/user/login
 Content-Type: application/json
 

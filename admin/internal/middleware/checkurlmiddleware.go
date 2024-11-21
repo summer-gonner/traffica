@@ -20,7 +20,8 @@ var URI_LIST = []string{
 	"/api/sys/user/info",
 	"/api/sys/user/queryAllRelations",
 	"/api/sys/role/queryMenuByRoleId",
-	"/api/sys/user/profile"}
+	"/api/sys/user/profile",
+	"/api/sys/user/menus"}
 
 func NewCheckUrlMiddleware(Redis *redis.Redis) *CheckUrlMiddleware {
 	return &CheckUrlMiddleware{Redis: Redis}

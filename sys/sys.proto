@@ -1335,7 +1335,7 @@ message UserMenusData {
   string name=2;
   string path=3;
   string component=4;
-  repeated  Meta meta=5;
+  Meta meta=5;
 
 }
 message UserMenusResp {

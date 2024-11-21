@@ -85,6 +85,22 @@ func buildUserMenuTree(menus []*model.SysMenu) []*sysclient.UserMenusData {
 				Path:      menu.MenuPath,
 				Name:      menu.MenuName,
 				Component: menu.VueComponent,
+				Meta: &sysclient.Meta{
+					Creator:     menu.CreateBy,
+					Updater:     menu.UpdateBy,
+					Title:       menu.MenuName,
+					Permission:  menu.MenuPerms,
+					Type:        menu.MenuType,
+					Icon:        menu.MenuIcon,
+					OrderNo:     menu.MenuSort,
+					Component:   menu.VueComponent,
+					IsExt:       true,
+					ExtOpenMode: menu.MenuType,
+					KeepAlive:   menu.MenuStatus,
+					Show:        menu.IsVisible,
+					ActiveMenu:  menu.BackgroundURL,
+					Status:      menu.MenuStatus,
+				},
 			})
 		}
 	}
