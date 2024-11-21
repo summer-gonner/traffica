@@ -307,6 +307,7 @@ service UserService {
   rpc UserInfo(InfoReq) returns(InfoResp);
   // 获取当前用户的菜单信息
   rpc UserMenus(UserMenusReq) returns(UserMenusResp);
+  // 获取当前用户的权限
   rpc UserPermissions(UserPermissionReq)returns(UserPermissionResp);
   //获取用户资料
   rpc UserProfile(ProfileReq)returns(ProfileResp);

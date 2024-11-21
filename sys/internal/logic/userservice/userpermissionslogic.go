@@ -56,7 +56,7 @@ func buildUserPermissions(menus []*model.SysMenu) []string {
 	var permissions []string
 	for _, menu := range menus {
 		if menu.MenuType == 1 || menu.MenuType == 0 {
-			permissions = append(permissions, menu.MenuPerms)
+			permissions = append(permissions, menu.BackgroundURL)
 		}
 
 	}

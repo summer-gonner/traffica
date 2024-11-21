@@ -244,35 +244,39 @@ type (
         Message string `json:"message"`
         Data QueryDeptAndPostListData `json:"data"`
     }
-     Meta {
-        Creator      string `json:"creator"`
-        Updater      string `json:"updater"`
-        Title        string `json:"title"`
-        Permission   string `json:"permission"`
-        Type         int    `json:"type"`
-        Icon         string `json:"icon"`
-        OrderNo      int    `json:"orderNo"`
-        Component    string `json:"component"`
-        IsExt        bool   `json:"isExt"`
-        ExtOpenMode  int    `json:"extOpenMode"`
-        KeepAlive    int    `json:"keepAlive"`
-        Show         int    `json:"show"`
-        ActiveMenu   string `json:"activeMenu"`
-        Status       int    `json:"status"`
+    Meta {
+        Creator string `json:"creator"`
+        Updater string `json:"updater"`
+        Title string `json:"title"`
+        Permission string `json:"permission"`
+        Type int `json:"type"`
+        Icon string `json:"icon"`
+        OrderNo int `json:"orderNo"`
+        Component string `json:"component"`
+        IsExt bool `json:"isExt"`
+        ExtOpenMode int `json:"extOpenMode"`
+        KeepAlive int `json:"keepAlive"`
+        Show int `json:"show"`
+        ActiveMenu string `json:"activeMenu"`
+        Status int `json:"status"`
     }
     UserMenusData {
-    Id string  `json:"id"`
-    Path string  `json:"path"`
-    Name string  `json:"name"`
-    Compnent string    `json:"compnent"`
-    Meta Meta `json:"meta"`
+        Id string `json:"id"`
+        Path string `json:"path"`
+        Name string `json:"name"`
+        Compnent string `json:"compnent"`
+        Meta Meta `json:"meta"`
     }
     UserMenusResp {
         Code string `json:"code"`
         Message string `json:"message"`
         Data []*UserMenusData `json:"data"`
     }
-
+    UserPermissionsResp {
+        Code string `json:"code"`
+        Message string `json:"message"`
+        Data []string `json:"data"`
+    }
 )
 
 @server(
@@ -288,9 +292,13 @@ service admin-api {
     //获取用户信息
     @handler UserProfile
     get /profile returns (userProfileResp)
+
     //获取当前用户的菜单
     @handler UserMenus
     get /menus returns (UserMenusResp)
+    //获取当前用户权限
+    @handler UserPermissions
+    get /permissions returns (UserPermissionsResp)
     // 添加用户信息
     @handler AddUser
     post /addUser (AddUserReq) returns (AddUserResp)

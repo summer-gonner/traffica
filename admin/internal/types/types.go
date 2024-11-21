@@ -1177,6 +1177,12 @@ type UserMenusResp struct {
 	Data    []*UserMenusData `json:"data"`
 }
 
+type UserPermissionsResp struct {
+	Code    string   `json:"code"`
+	Message string   `json:"message"`
+	Data    []string `json:"data"`
+}
+
 type UserProfileData struct {
 	Avatar   string `json:"avatar"`
 	Username string `json:"username"`

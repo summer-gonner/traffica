@@ -45,10 +45,28 @@ func (l *UserMenusLogic) UserMenus() (resp *types.UserMenusResp, err error) {
 	var userMenusDatas []*types.UserMenusData
 	for _, u := range userMenusResp.UserMenuData {
 		var userMenusData *types.UserMenusData
+		meta := &types.Meta{
+			Creator:     u.Meta.Creator,
+			Updater:     u.Meta.Creator,
+			Title:       u.Meta.Title,
+			Permission:  u.Meta.Permission,
+			Type:        int(u.Meta.Type),
+			Icon:        u.Meta.Icon,
+			OrderNo:     int(u.Meta.OrderNo),
+			Component:   u.Meta.Component,
+			IsExt:       u.Meta.IsExt,
+			ExtOpenMode: int(u.Meta.ExtOpenMode),
+			KeepAlive:   int(u.Meta.KeepAlive),
+			Show:        int(u.Meta.Show),
+			ActiveMenu:  u.Meta.ActiveMenu,
+			Status:      int(u.Meta.Status),
+		}
 		userMenusData = &types.UserMenusData{
-			Id:   strconv.FormatInt(u.Id, 10),
-			Path: u.Path,
-			Name: u.Name,
+			Id:       strconv.FormatInt(u.Id, 10),
+			Path:     u.Path,
+			Name:     u.Name,
+			Compnent: u.Component,
+			Meta:     *meta,
 		}
 		userMenusDatas = append(userMenusDatas, userMenusData)
 	}

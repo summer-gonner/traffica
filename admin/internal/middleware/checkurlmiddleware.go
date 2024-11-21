@@ -16,12 +16,13 @@ type CheckUrlMiddleware struct {
 	Redis *redis.Redis
 }
 
-var URI_LIST = []string{
+var UriList = []string{
 	"/api/sys/user/info",
 	"/api/sys/user/queryAllRelations",
 	"/api/sys/role/queryMenuByRoleId",
 	"/api/sys/user/profile",
-	"/api/sys/user/menus"}
+	"/api/sys/user/menus",
+	"/api/sys/user/permissions"}
 
 func NewCheckUrlMiddleware(Redis *redis.Redis) *CheckUrlMiddleware {
 	return &CheckUrlMiddleware{Redis: Redis}
@@ -40,7 +41,7 @@ func (m *CheckUrlMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		if stringutils.Contains(URI_LIST, uri) {
+		if stringutils.Contains(UriList, uri) {
 			next(w, r)
 			return
 		}
