@@ -162,6 +162,7 @@ type (
 		UserInfo(ctx context.Context, in *InfoReq, opts ...grpc.CallOption) (*InfoResp, error)
 		// 获取当前用户的菜单信息
 		UserMenus(ctx context.Context, in *UserMenusReq, opts ...grpc.CallOption) (*UserMenusResp, error)
+		// 获取当前用户的权限
 		UserPermissions(ctx context.Context, in *UserPermissionReq, opts ...grpc.CallOption) (*UserPermissionResp, error)
 		// 获取用户资料
 		UserProfile(ctx context.Context, in *ProfileReq, opts ...grpc.CallOption) (*ProfileResp, error)
@@ -216,6 +217,7 @@ func (m *defaultUserService) UserMenus(ctx context.Context, in *UserMenusReq, op
 	return client.UserMenus(ctx, in, opts...)
 }
 
+// 获取当前用户的权限
 func (m *defaultUserService) UserPermissions(ctx context.Context, in *UserPermissionReq, opts ...grpc.CallOption) (*UserPermissionResp, error) {
 	client := sysclient.NewUserServiceClient(m.cli.Conn())
 	return client.UserPermissions(ctx, in, opts...)

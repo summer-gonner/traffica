@@ -2384,6 +2384,7 @@ type UserServiceClient interface {
 	UserInfo(ctx context.Context, in *InfoReq, opts ...grpc.CallOption) (*InfoResp, error)
 	// 获取当前用户的菜单信息
 	UserMenus(ctx context.Context, in *UserMenusReq, opts ...grpc.CallOption) (*UserMenusResp, error)
+	// 获取当前用户的权限
 	UserPermissions(ctx context.Context, in *UserPermissionReq, opts ...grpc.CallOption) (*UserPermissionResp, error)
 	// 获取用户资料
 	UserProfile(ctx context.Context, in *ProfileReq, opts ...grpc.CallOption) (*ProfileResp, error)
@@ -2579,6 +2580,7 @@ type UserServiceServer interface {
 	UserInfo(context.Context, *InfoReq) (*InfoResp, error)
 	// 获取当前用户的菜单信息
 	UserMenus(context.Context, *UserMenusReq) (*UserMenusResp, error)
+	// 获取当前用户的权限
 	UserPermissions(context.Context, *UserPermissionReq) (*UserPermissionResp, error)
 	// 获取用户资料
 	UserProfile(context.Context, *ProfileReq) (*ProfileResp, error)

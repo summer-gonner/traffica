@@ -66,7 +66,7 @@ func (l *UserMenusLogic) queryUserMenus(userId int64) []*sysclient.UserMenusData
 						 left join sys_role sr on sur.role_id = sr.id
 						 left join sys_role_menu srm on sr.id = srm.role_id
 						 left join sys_menu sm on srm.menu_id = sm.id
-				where sur.user_id = ? and sm.is_visible=1
+				where sur.user_id = ? and sm.is_visible=1 and is_deleted=0
 				order by sm.id
 				`
 		db := l.svcCtx.DB
@@ -81,26 +81,24 @@ func buildUserMenuTree(menus []*model.SysMenu) []*sysclient.UserMenusData {
 	for _, menu := range menus {
 		if menu.MenuType == 1 || menu.MenuType == 0 {
 			menuListTrees = append(menuListTrees, &sysclient.UserMenusData{
-				Id:        menu.ID,
-				Path:      menu.MenuPath,
-				Name:      menu.MenuName,
-				Component: menu.VueComponent,
-				Meta: &sysclient.Meta{
-					Creator:     menu.CreateBy,
-					Updater:     menu.UpdateBy,
-					Title:       menu.MenuName,
-					Permission:  menu.MenuPerms,
-					Type:        menu.MenuType,
-					Icon:        menu.MenuIcon,
-					OrderNo:     menu.MenuSort,
-					Component:   menu.VueComponent,
-					IsExt:       true,
-					ExtOpenMode: menu.MenuType,
-					KeepAlive:   menu.MenuStatus,
-					Show:        menu.IsVisible,
-					ActiveMenu:  menu.BackgroundURL,
-					Status:      menu.MenuStatus,
-				},
+				Id:            menu.ID,
+				MenuPath:      menu.MenuPath,
+				MenuName:      menu.MenuName,
+				ParentId:      menu.ParentID,
+				MenuType:      menu.MenuType,
+				MenuIcon:      menu.MenuIcon,
+				MenuSort:      menu.MenuSort,
+				CreateBy:      menu.CreateBy,
+				CreateTime:    menu.CreateTime.Format("2006-01-02T15:04:05Z07:00"),
+				UpdateBy:      menu.UpdateBy,
+				UpdateTime:    menu.UpdateTime.Format("2006-01-02T15:04:05Z07:00"),
+				MenuStatus:    menu.MenuStatus,
+				Remark:        menu.Remark,
+				VuePath:       menu.VuePath,
+				VueComponent:  menu.VueComponent,
+				VueIcon:       menu.VueIcon,
+				VueRedirect:   menu.VueRedirect,
+				BackgroundUrl: menu.BackgroundURL,
 			})
 		}
 	}

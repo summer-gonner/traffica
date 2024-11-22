@@ -40,6 +40,7 @@ func (s *UserServiceServer) UserMenus(ctx context.Context, in *sysclient.UserMen
 	return l.UserMenus(in)
 }
 
+// 获取当前用户的权限
 func (s *UserServiceServer) UserPermissions(ctx context.Context, in *sysclient.UserPermissionReq) (*sysclient.UserPermissionResp, error) {
 	l := userservicelogic.NewUserPermissionsLogic(ctx, s.svcCtx)
 	return l.UserPermissions(in)
