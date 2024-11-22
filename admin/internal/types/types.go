@@ -1169,12 +1169,22 @@ type UserInfoData struct {
 	MenuTreeVue []*ListMenuTreeVue `json:"menuTreeVue"`
 }
 
-type UserMenusData struct {
+type UserMenuChildData struct {
 	Id       string `json:"id"`
 	Path     string `json:"path"`
 	Name     string `json:"name"`
 	Compnent string `json:"compnent"`
 	Meta     Meta   `json:"meta"`
+}
+
+type UserMenusData struct {
+	Id       string              `json:"id"`
+	Path     string              `json:"path"`
+	Name     string              `json:"name"`
+	Compnent string              `json:"compnent"`
+	Meta     Meta                `json:"meta"`
+	Redirect string              `json:"redirect"`
+	Children []UserMenuChildData `json:"children"`
 }
 
 type UserMenusResp struct {
