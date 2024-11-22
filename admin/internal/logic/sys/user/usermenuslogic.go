@@ -3,15 +3,16 @@ package user
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/summer-gonner/traffica/admin/internal/common/errorx"
 	"github.com/summer-gonner/traffica/admin/internal/svc"
 	"github.com/summer-gonner/traffica/admin/internal/types"
 	"github.com/summer-gonner/traffica/sys/sysclient"
 	"github.com/zeromicro/go-zero/core/logc"
+	"github.com/zeromicro/go-zero/core/logx"
 	"google.golang.org/grpc/status"
 	"log"
-
-	"github.com/zeromicro/go-zero/core/logx"
+	"strconv"
 )
 
 type UserMenusLogic struct {
@@ -40,55 +41,94 @@ func (l *UserMenusLogic) UserMenus() (resp *types.UserMenusResp, err error) {
 		s, _ := status.FromError(err)
 		return nil, errorx.NewDefaultError(s.Message())
 	}
-	var userMenusDatas []*types.UserMenusData
-	//for _, u := range userMenusResp.UserMenuData {
-	//	var userMenusData *types.UserMenusData
-	//	meta := &types.Meta{
-	//		Creator:     u.Meta.Creator,
-	//		Updater:     u.Meta.Creator,
-	//		Title:       u.Meta.Title,
-	//		Permission:  u.Meta.Permission,
-	//		Type:        int(u.Meta.Type),
-	//		Icon:        u.Meta.Icon,
-	//		OrderNo:     int(u.Meta.OrderNo),
-	//		Component:   u.Meta.Component,
-	//		IsExt:       u.Meta.IsExt,
-	//		ExtOpenMode: int(u.Meta.ExtOpenMode),
-	//		KeepAlive:   int(u.Meta.KeepAlive),
-	//		Show:        int(u.Meta.Show),
-	//		ActiveMenu:  u.Meta.ActiveMenu,
-	//		Status:      int(u.Meta.Status),
-	//	}
-	//	userMenusData = &types.UserMenusData{
-	//		Id:       strconv.FormatInt(u.Id, 10),
-	//		Path:     u.Path,
-	//		Name:     u.Name,
-	//		Compnent: u.Component,
-	//		Meta:     *meta,
-	//	}
-	//	userMenusDatas = append(userMenusDatas, userMenusData)
-	//}
 	log.Printf("目前当前用户菜单%v", userMenusResp.UserMenuData)
-	var root []*types.UserMenusData
+	var root []*sysclient.UserMenusData
+	var children []*sysclient.UserMenusData
 	if len(userMenusResp.UserMenuData) > 0 {
-		for _, item := range userMenusResp.UserMenuData {
-			if item. {
-
+		for _, userMenuData := range userMenusResp.UserMenuData {
+			if userMenuData.MenuType == 0 { //抽出父级
+				root = append(root, userMenuData)
+			}
+			if userMenuData.MenuType == 1 { //抽出子菜单
+				children = append(children, userMenuData)
 			}
 		}
+	} else {
+		return nil, fmt.Errorf("菜单信息为空")
 	}
+	var buildMenuTrees []*types.UserMenusData
+	if len(root) > 0 {
+		for _, r := range root {
+			userMenuTree := buildCurrentUserMenuTree(r, children)
+			buildMenuTrees = append(buildMenuTrees, userMenuTree)
+		}
+	} else {
+		return nil, fmt.Errorf("所有父级菜单为空")
+	}
+	log.Printf("菜单%v", buildMenuTrees)
 	return &types.UserMenusResp{
 		Code:    "000000",
 		Message: "获取当前用户菜单成功",
-		Data:    userMenusDatas,
+		Data:    buildMenuTrees,
 	}, nil
 
 }
 
-//func  buildCurrentUserMenuTress(parentMenu types.UserMenusData, userMenusDatas []*types.UserMenusResp )  {
-//	for _,userMenusData := range userMenusDatas {
-//		if userMenusData. {
-//
-//		}
-//	}
-//}
+// 构建用户菜单树
+func buildCurrentUserMenuTree(parentMenu *sysclient.UserMenusData, userMenusDatas []*sysclient.UserMenusData) *types.UserMenusData {
+	// 初始化u为一个新的UserMenusData对象
+	u := &types.UserMenusData{
+		Id:        strconv.FormatInt(parentMenu.Id, 10),
+		Name:      parentMenu.MenuName,
+		Path:      parentMenu.MenuPath,
+		Component: "",
+		Redirect:  parentMenu.VueRedirect,
+		Meta: types.Meta{
+			Title:       parentMenu.MenuName,
+			Icon:        parentMenu.MenuIcon,
+			IsExt:       false,
+			ExtOpenMode: 1,
+			Type:        int(parentMenu.MenuType),
+			OrderNo:     int(parentMenu.MenuSort),
+			Show:        int(parentMenu.IsVisible),
+			ActiveMenu:  "",
+			Status:      int(parentMenu.MenuStatus),
+			KeepAlive:   0,
+		},
+	}
+
+	var children []*types.UserMenuChildData
+	for _, userMenusData := range userMenusDatas {
+		// 匹配父子菜单关系
+		if userMenusData.ParentId == parentMenu.Id {
+			child := &types.UserMenuChildData{
+				Id:        strconv.FormatInt(userMenusData.Id, 10),
+				Name:      userMenusData.MenuName,
+				Path:      userMenusData.MenuPath,
+				Component: userMenusData.VueComponent,
+				Meta: types.Meta{
+					Title:       userMenusData.MenuName,
+					Icon:        userMenusData.VueIcon,
+					IsExt:       false,
+					ExtOpenMode: 1,
+					Type:        int(userMenusData.MenuType),
+					OrderNo:     int(userMenusData.MenuSort),
+					Show:        int(userMenusData.IsVisible),
+					ActiveMenu:  "",
+					Status:      int(userMenusData.MenuStatus),
+					KeepAlive:   0,
+				},
+			}
+			children = append(children, child)
+			log.Printf("匹配到子菜单: %v", child) // 输出子菜单信息
+		}
+	}
+
+	// 如果没有子菜单，children会为空
+	u.Children = children
+
+	// 输出父菜单和它的子菜单
+	log.Printf("每个父菜单下面的信息: %v", u)
+
+	return u
+}

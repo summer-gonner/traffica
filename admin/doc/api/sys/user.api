@@ -264,16 +264,16 @@ type (
         Id string `json:"id"`
         Path string `json:"path"`
         Name string `json:"name"`
-        Compnent string `json:"compnent"`
+        Component string `json:"component"`
         Meta Meta `json:"meta"`
         Redirect string     `json:"redirect"`
-        Children []UserMenuChildData `json:"children"`
+        Children []*UserMenuChildData `json:"children"`
     }
     UserMenuChildData {
         Id string `json:"id"`
         Path string `json:"path"`
         Name string `json:"name"`
-        Compnent string `json:"compnent"`
+        Component string `json:"component"`
         Meta Meta `json:"meta"`
     }
     UserMenusResp {
