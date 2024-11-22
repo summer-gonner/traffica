@@ -2,12 +2,8 @@ package user
 
 import (
 	"context"
-	"encoding/json"
-	"strconv"
-
 	"github.com/summer-gonner/traffica/admin/internal/svc"
 	"github.com/summer-gonner/traffica/admin/internal/types"
-
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -26,10 +22,11 @@ func NewUserLogoutLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserLo
 }
 
 func (l *UserLogoutLogic) UserLogout() (resp *types.LogoutResp, err error) {
-	userId, _ := l.ctx.Value("userId").(json.Number).Int64()
+
+	// 构造响应
 	return &types.LogoutResp{
 		Code:    "000000",
 		Message: "退出登录成功",
-		Data:    strconv.FormatInt(userId, 10),
+		Data:    types.LogoutData{Username: ""},
 	}, nil
 }

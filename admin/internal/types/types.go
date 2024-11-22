@@ -249,10 +249,14 @@ type LoginResp struct {
 	Data    LoginData `json:"data"`
 }
 
+type LogoutData struct {
+	Username string `json:"username"`
+}
+
 type LogoutResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-	Data    string `json:"data"`
+	Code    string     `json:"code"`
+	Message string     `json:"message"`
+	Data    LogoutData `json:"data"`
 }
 
 type MenuTreeListData struct {

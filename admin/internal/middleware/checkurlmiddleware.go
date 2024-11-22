@@ -17,12 +17,13 @@ type CheckUrlMiddleware struct {
 }
 
 var UriList = []string{
-	"/api/sys/user/info",
 	"/api/sys/user/queryAllRelations",
 	"/api/sys/role/queryMenuByRoleId",
 	"/api/sys/user/profile",
 	"/api/sys/user/menus",
-	"/api/sys/user/permissions"}
+	"/api/sys/user/permissions",
+	"/api/sys/user/logout",
+}
 
 func NewCheckUrlMiddleware(Redis *redis.Redis) *CheckUrlMiddleware {
 	return &CheckUrlMiddleware{Redis: Redis}

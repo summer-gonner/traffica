@@ -15,10 +15,6 @@ Content-Type: application/json
 GET {{host}}/api/sys/user/logout
 Authorization: Bearer {{token}}
 
-#### 获取个人信息
-GET {{host}}/api/sys/user/info
-Authorization: Bearer {{token}}
-
 ### 获取个人资料
 GET {{host}}/api/sys/user/profile
 Authorization: Bearer {{token}}

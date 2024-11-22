@@ -286,10 +286,13 @@ type (
         Message string `json:"message"`
         Data []string `json:"data"`
     }
+    LogoutData {
+    Username string     `json:"username"`
+    }
     LogoutResp {
         Code string `json:"code"`
         Message string `json:"message"`
-        Data string     `json:"data"`
+        Data LogoutData     `json:"data"`
     }
 )
 
