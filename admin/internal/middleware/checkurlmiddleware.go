@@ -22,6 +22,7 @@ var UriList = []string{
 	"/api/sys/user/profile",
 	"/api/sys/user/menus",
 	"/api/sys/user/permissions",
+	"/api/sys/user/out",
 	"/api/sys/user/logout",
 }
 

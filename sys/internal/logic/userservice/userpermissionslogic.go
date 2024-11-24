@@ -55,7 +55,7 @@ func (l *UserPermissionsLogic) UserPermissions(in *sysclient.UserPermissionReq) 
 func buildUserPermissions(menus []*model.SysMenu) []string {
 	var permissions []string
 	for _, menu := range menus {
-		permissions = append(permissions, menu.BackgroundURL)
+		permissions = append(permissions, menu.MenuPerms)
 	}
 	return permissions
 }

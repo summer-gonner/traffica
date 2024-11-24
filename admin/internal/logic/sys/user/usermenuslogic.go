@@ -41,7 +41,6 @@ func (l *UserMenusLogic) UserMenus() (resp *types.UserMenusResp, err error) {
 		s, _ := status.FromError(err)
 		return nil, errorx.NewDefaultError(s.Message())
 	}
-	log.Printf("目前当前用户菜单%v", userMenusResp.UserMenuData)
 	var root []*sysclient.UserMenusData
 	var children []*sysclient.UserMenusData
 	if len(userMenusResp.UserMenuData) > 0 {
@@ -120,15 +119,11 @@ func buildCurrentUserMenuTree(parentMenu *sysclient.UserMenusData, userMenusData
 				},
 			}
 			children = append(children, child)
-			log.Printf("匹配到子菜单: %v", child) // 输出子菜单信息
 		}
 	}
 
 	// 如果没有子菜单，children会为空
 	u.Children = children
-
-	// 输出父菜单和它的子菜单
-	log.Printf("每个父菜单下面的信息: %v", u)
 
 	return u
 }

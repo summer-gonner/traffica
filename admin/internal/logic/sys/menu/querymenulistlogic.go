@@ -2,6 +2,7 @@ package menu
 
 import (
 	"context"
+	"fmt"
 	"github.com/summer-gonner/traffica/admin/internal/common/errorx"
 	"github.com/summer-gonner/traffica/admin/internal/svc"
 	"github.com/summer-gonner/traffica/admin/internal/types"
@@ -40,40 +41,67 @@ func (l *QueryMenuListLogic) QueryMenuList(req *types.QueryMenuListReq) (*types.
 		return nil, errorx.NewDefaultError(s.Message())
 	}
 
-	var list []*types.QueryMenuListData
+	var root []*sysclient.MenuListData
+	var children []*sysclient.MenuListData
+	if len(result.List) > 0 {
+		for _, menu := range result.List {
+			if menu.MenuType == 0 { //抽出父级
+				root = append(root, menu)
+			} else {
+				children = append(children, menu)
+			}
 
-	for _, menu := range result.List {
-		menuItem := &types.QueryMenuListData{
-			BackgroundUrl: menu.BackgroundUrl,
-			CreateBy:      menu.CreateBy,
-			CreateTime:    menu.CreateTime,
-			Id:            menu.Id,
-			MenuIcon:      menu.MenuIcon,
-			MenuName:      menu.MenuName,
-			MenuPath:      menu.MenuPath,
-			MenuPerms:     menu.MenuPerms,
-			MenuSort:      menu.MenuSort,
-			MenuStatus:    menu.MenuStatus,
-			MenuType:      menu.MenuType,
-			ParentId:      menu.ParentId,
-			Remark:        menu.Remark,
-			UpdateBy:      menu.UpdateBy,
-			UpdateTime:    menu.UpdateTime,
-			VueComponent:  menu.VueComponent,
-			VueIcon:       menu.VueIcon,
-			VuePath:       menu.VuePath,
-			VueRedirect:   menu.VueRedirect,
-			IsVisible:     menu.IsVisible,
 		}
-
-		list = append(list, menuItem)
+	} else {
+		return nil, fmt.Errorf("菜单信息为空")
 	}
-
+	var buildMenuTrees []*types.QueryMenuListData
+	if len(root) > 0 {
+		for _, r := range root {
+			userMenuTree := buildMenuTree(r, children)
+			buildMenuTrees = append(buildMenuTrees, userMenuTree)
+		}
+	} else {
+		return nil, fmt.Errorf("所有父级菜单为空")
+	}
 	return &types.QueryMenuListResp{
 		Code:    "000000",
 		Message: "查询菜单成功",
-		Data:    list,
+		Data:    buildMenuTrees,
 		Success: true,
 		Total:   result.Total,
 	}, nil
+}
+
+// 构建菜单树
+func buildMenuTree(parentMenu *sysclient.MenuListData, userMenusDatas []*sysclient.MenuListData) *types.QueryMenuListData {
+	// 初始化u为一个新的QueryMenuListData对象
+	u := &types.QueryMenuListData{
+		Id:           parentMenu.Id,
+		MenuName:     parentMenu.MenuName,
+		MenuIcon:     parentMenu.MenuIcon,
+		MenuPath:     parentMenu.MenuPath,
+		VueComponent: parentMenu.VueComponent,
+		VueIcon:      parentMenu.VueIcon,
+		MenuType:     parentMenu.MenuType,
+		MenuSort:     parentMenu.MenuSort,
+		IsVisible:    parentMenu.IsVisible,
+		MenuStatus:   parentMenu.MenuStatus,
+		MenuPerms:    parentMenu.MenuPerms,
+	}
+
+	// 查找所有直接子菜单，并递归构建它们的子菜单
+	var children []*types.QueryMenuListData
+	for _, userMenusData := range userMenusDatas {
+		// 匹配父子菜单关系
+		if userMenusData.ParentId == parentMenu.Id {
+			// 递归调用buildMenuTree来构建子菜单
+			child := buildMenuTree(userMenusData, userMenusDatas)
+			children = append(children, child)
+		}
+	}
+	// 设置当前菜单的子菜单列表
+	u.Children = children
+
+	return u
 }

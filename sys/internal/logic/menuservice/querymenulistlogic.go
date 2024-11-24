@@ -61,6 +61,7 @@ func (l *QueryMenuListLogic) QueryMenuList(in *sysclient.QueryMenuListReq) (*sys
 			VueComponent:  menu.VueComponent,
 			VueIcon:       menu.VueIcon,
 			VuePath:       menu.VuePath,
+			IsVisible:     menu.IsVisible,
 		})
 	}
 

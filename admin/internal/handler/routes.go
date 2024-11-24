@@ -39,7 +39,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Handler: sysdept.QueryDeptDetailHandler(serverCtx),
 				},
 				{
-					Method:  http.MethodGet,
+					Method:  http.MethodPost,
 					Path:    "/queryDeptList",
 					Handler: sysdept.QueryDeptListHandler(serverCtx),
 				},
@@ -214,7 +214,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Handler: sysmenu.QueryMenuDetailHandler(serverCtx),
 				},
 				{
-					Method:  http.MethodGet,
+					Method:  http.MethodPost,
 					Path:    "/queryMenuList",
 					Handler: sysmenu.QueryMenuListHandler(serverCtx),
 				},
@@ -299,7 +299,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Handler: sysrole.QueryRoleDetailHandler(serverCtx),
 				},
 				{
-					Method:  http.MethodGet,
+					Method:  http.MethodPost,
 					Path:    "/queryRoleList",
 					Handler: sysrole.QueryRoleListHandler(serverCtx),
 				},
@@ -370,6 +370,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodGet,
+					Path:    "/logout",
+					Handler: sysuser.UserLogoutHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
 					Path:    "/menus",
 					Handler: sysuser.UserMenusHandler(serverCtx),
 				},
@@ -394,7 +399,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Handler: sysuser.QueryUserDetailHandler(serverCtx),
 				},
 				{
-					Method:  http.MethodGet,
+					Method:  http.MethodPost,
 					Path:    "/queryUserList",
 					Handler: sysuser.QueryUserListHandler(serverCtx),
 				},
@@ -435,11 +440,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Method:  http.MethodPost,
 				Path:    "/api/sys/user/login",
 				Handler: sysuser.UserLoginHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodGet,
-				Path:    "/api/sys/user/logout",
-				Handler: sysuser.UserLogoutHandler(serverCtx),
 			},
 		},
 	)
