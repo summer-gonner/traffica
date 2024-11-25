@@ -27,6 +27,5 @@ func (l *UserLogoutLogic) UserLogout() (resp *types.LogoutResp, err error) {
 	return &types.LogoutResp{
 		Code:    "000000",
 		Message: "退出登录成功",
-		Data:    types.LogoutData{Username: ""},
 	}, nil
 }

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "./proto";
+
+
+message  EsReq {
+  string  message=1;
+  string  username=2;
+  string  password=3;
+}
+
+message  EsResp {
+  string  result =1;
+  string  message=2;
+}
+
+
+service EsService {
+  rpc EsConnect(EsReq)returns(EsResp);
+}
