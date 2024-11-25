@@ -9,7 +9,8 @@ type Config struct {
 	rest.RestConf
 
 	//系统
-	SysRpc zrpc.RpcClientConf
+	SysRpc    zrpc.RpcClientConf
+	RecordRpc zrpc.RpcClientConf
 
 	Auth struct {
 		AccessSecret string

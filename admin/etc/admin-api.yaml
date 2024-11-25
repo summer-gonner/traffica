@@ -9,7 +9,12 @@ SysRpc:
       - localhost:2379
     Key: sys.rpc
   NonBlock: true
-
+RecordRpc:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: record.rpc
+  NonBlock: true
 
 Auth:
   AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
