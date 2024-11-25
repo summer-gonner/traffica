@@ -24,6 +24,7 @@ var UriList = []string{
 	"/api/sys/user/permissions",
 	"/api/sys/user/out",
 	"/api/sys/user/logout",
+	"/api/record/es/connect",
 }
 
 func NewCheckUrlMiddleware(Redis *redis.Redis) *CheckUrlMiddleware {

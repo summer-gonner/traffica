@@ -1,0 +1,22 @@
+###用户登录
+@host = http://127.0.0.1:8888
+#@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0SUQiOjEsImRlcHROYW1lIjoi5oC75YWs5Y-45LiAIiwiZXhwIjoxNzMyMjc4NTYxLCJpYXQiOjE3MzIxOTIxNjEsInVzZXJJZCI6MSwidXNlck5hbWUiOiJhZG1pbiJ9.eG9mVOptzO_exH9vy9IzHPzrzYUxF49KQPz2BN_4xqw
+POST {{host}}/api/sys/user/login
+Content-Type: application/json
+
+{
+  "account": "admin",
+  "password": "123456"
+}
+> {% client.global.set("token", response.body.data.token); %}
+
+#### 连接Es
+POST {{host}}/api/record/es/connect
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "address": "http://47.101.198.49:9200",
+  "password": "",
+  "username": ""
+}

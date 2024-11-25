@@ -27,6 +27,6 @@ type (
 )
 service admin-api {
     @handler EsConnect
-    post /api/record/es/connect(EsConnectReq) returns (EsConnectResp)
+    post /connect(EsConnectReq) returns (EsConnectResp)
 
 }

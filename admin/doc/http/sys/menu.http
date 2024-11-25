@@ -17,8 +17,9 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "test",
-  "title": "test",
+  "name": "Es连接",
+  "title": "Es连接",
+  "menuName": "",
   "parentId": 12,
   "url": "",
   "perms": "",
@@ -30,7 +31,7 @@ Authorization: Bearer {{token}}
   "vueComponent": "",
   "vueIcon": "",
   "vueRedirect": "",
-  "backgroundUrl": "/api/member/queryIntegrationChangeHistoryList"
+  "backgroundUrl": "/api/record/es/connect"
 }
 ### 删除菜单信息
 GET {{host}}/api/sys/menu/deleteMenu?ids=[162]

@@ -26,7 +26,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
-					Path:    "/api/record/es/connect",
+					Path:    "/connect",
 					Handler: recordes.EsConnectHandler(serverCtx),
 				},
 			}...,
