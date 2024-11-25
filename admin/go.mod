@@ -5,6 +5,7 @@ go 1.22.7
 toolchain go1.22.9
 
 require (
+	github.com/summer-gonner/traffica/record v0.0.0-20241125094720-94605d829354
 	github.com/summer-gonner/traffica/sys v0.0.0-20241122033504-c35e2fcc0cd8
 	github.com/ua-parser/uap-go v0.0.0-20241012191800-bbb40edc15aa
 	github.com/zeromicro/go-zero v1.7.4
@@ -53,7 +54,6 @@ require (
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/redis/go-redis/v9 v9.7.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
-	github.com/summer-gonner/traffica/record v0.0.0-20241125093949-f37f93bc34d6 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.15 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.15 // indirect
 	go.etcd.io/etcd/client/v3 v3.5.15 // indirect

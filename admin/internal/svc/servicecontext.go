@@ -3,6 +3,7 @@ package svc
 import (
 	"github.com/summer-gonner/traffica/admin/internal/config"
 	middleware2 "github.com/summer-gonner/traffica/admin/internal/middleware"
+	"github.com/summer-gonner/traffica/record/client/esservice"
 	"github.com/summer-gonner/traffica/sys/client/deptservice"
 	"github.com/summer-gonner/traffica/sys/client/dictitemservice"
 	"github.com/summer-gonner/traffica/sys/client/dicttypeservice"
@@ -33,8 +34,8 @@ type ServiceContext struct {
 	MenuService       menuservice.MenuService
 	RoleService       roleservice.RoleService
 	UserService       userservice.UserService
-
-	Redis *redis.Redis
+	EsService         esservice.EsService
+	Redis             *redis.Redis
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
