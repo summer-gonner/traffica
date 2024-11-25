@@ -39,10 +39,10 @@ func (l *AddUserLogic) AddUser(req *types.AddUserReq) (*types.AddUserResp, error
 		DeptId:     req.DeptId,
 		Email:      req.Email,
 		Mobile:     req.Mobile,
-		NickName:   req.NickName,
+		NickName:   req.Nickname,
 		Remark:     req.Remark,
-		UserName:   req.UserName,
-		UserStatus: req.UserStatus,
+		UserName:   req.Username,
+		UserStatus: req.Status,
 		PostIds:    req.PostIds,
 	}
 	_, err := l.svcCtx.UserService.AddUser(l.ctx, &userAddReq)

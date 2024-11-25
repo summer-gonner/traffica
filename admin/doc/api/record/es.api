@@ -19,8 +19,8 @@ type (
           Message string `json:"message"`
       }
 )
-@server(
-    jwt: Auth
+@server (
+    jwt:        Auth
     middleware: CheckUrl
     group:      record/es
     prefix:     /api/record/es

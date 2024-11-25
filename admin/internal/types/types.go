@@ -98,15 +98,15 @@ type AddRoleResp struct {
 }
 
 type AddUserReq struct {
-	Avatar     string  `json:"avatar,optional"`  //头像
-	DeptId     int64   `json:"deptId,optional"`  //部门id
-	PostIds    []int64 `json:"postIds,optional"` //部门id
-	Email      string  `json:"email,optional"`   //邮箱
-	Mobile     string  `json:"mobile"`           //手机号
-	NickName   string  `json:"nickName"`         //昵称
-	Remark     string  `json:"remark,optional"`  //备注信息
-	UserName   string  `json:"userName"`         //用户名
-	UserStatus int32   `json:"userStatus"`       //帐号状态（0正常 1停用）
+	Avatar   string  `json:"avatar,optional"`  //头像
+	DeptId   int64   `json:"deptId,optional"`  //部门id
+	PostIds  []int64 `json:"postIds,optional"` //部门id
+	Email    string  `json:"email,optional"`   //邮箱
+	Mobile   string  `json:"mobile"`           //手机号
+	Nickname string  `json:"nickname"`         //昵称
+	Remark   string  `json:"remark,optional"`  //备注信息
+	Username string  `json:"username"`         //用户名
+	Status   int32   `json:"status"`           //帐号状态（0正常 1停用）
 }
 
 type AddUserResp struct {
@@ -864,13 +864,13 @@ type QueryUserDetailData struct {
 	LoginIp    string  `json:"loginIp"`    //登录ip
 	LoginTime  string  `json:"loginTime"`  //登录时间
 	Mobile     string  `json:"mobile"`     //手机号
-	NickName   string  `json:"nickName"`   //昵称
+	Nickname   string  `json:"nickname"`   //昵称
 	Remark     string  `json:"remark"`     //备注信息
 	Salt       string  `json:"salt"`       //加密盐
 	UpdateBy   string  `json:"updateBy"`   //更新者
 	UpdateTime string  `json:"updateTime"` //更新时间
-	UserName   string  `json:"userName"`   //用户名
-	UserStatus int32   `json:"userStatus"` //帐号状态（0正常 1停用）
+	Username   string  `json:"username"`   //用户名
+	Status     int32   `json:"status"`     //帐号状态（0正常 1停用）
 	PostIds    []int64 `json:"postIds"`    //部门id
 }
 
@@ -894,11 +894,11 @@ type QueryUserListData struct {
 	LoginIp    string `json:"loginIp"`    //登录ip
 	LoginTime  string `json:"loginTime"`  //登录时间
 	Mobile     string `json:"mobile"`     //手机号
-	NickName   string `json:"nickName"`   //昵称
+	Nickname   string `json:"nickname"`   //昵称
 	Remark     string `json:"remark"`     //备注信息
 	UpdateBy   string `json:"updateBy"`   //更新者
 	UpdateTime string `json:"updateTime"` //更新时间
-	UserName   string `json:"userName"`   //用户名
+	Username   string `json:"username"`   //用户名
 	UserStatus int32  `json:"userStatus"` //帐号状态（0正常 1停用）
 }
 

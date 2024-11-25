@@ -53,12 +53,12 @@ func (l *QueryUserDetailLogic) QueryUserDetail(req *types.QueryUserDetailReq) (r
 		LoginIp:    item.LoginIp,
 		LoginTime:  item.LoginTime,
 		Mobile:     item.Mobile,
-		NickName:   item.NickName,
+		Nickname:   item.NickName,
 		Remark:     item.Remark,
 		UpdateBy:   item.UpdateBy,
 		UpdateTime: item.UpdateTime,
-		UserName:   item.UserName,
-		UserStatus: item.UserStatus,
+		Username:   item.UserName,
+		Status:     item.UserStatus,
 		PostIds:    item.PostIds,
 	}
 

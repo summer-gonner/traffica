@@ -63,11 +63,11 @@ func (l *QueryUserListLogic) QueryUserList(req *types.QueryUserListReq) (*types.
 			LoginIp:    item.LoginIp,
 			LoginTime:  item.LoginTime,
 			Mobile:     item.Mobile,
-			NickName:   item.NickName,
+			Nickname:   item.NickName,
 			Remark:     item.Remark,
 			UpdateBy:   item.UpdateBy,
 			UpdateTime: item.UpdateTime,
-			UserName:   item.UserName,
+			Username:   item.UserName,
 			UserStatus: item.UserStatus,
 		})
 	}
