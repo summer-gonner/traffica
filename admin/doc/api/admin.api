@@ -8,6 +8,7 @@ import "sys/login_log.api"
 import "sys/operate_log.api"
 import "sys/post.api"
 import "sys/upload.api"
+import "record/es.api"
 
 info (
 	desc:   "traffica"

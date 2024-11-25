@@ -3,10 +3,8 @@ package esservicelogic
 import (
 	"context"
 	"github.com/summer-gonner/traffica/pkg/es"
-
 	"github.com/summer-gonner/traffica/record/internal/svc"
 	"github.com/summer-gonner/traffica/record/recordclient"
-
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -25,10 +23,18 @@ func NewEsConnectLogic(ctx context.Context, svcCtx *svc.ServiceContext) *EsConne
 }
 
 func (l *EsConnectLogic) EsConnect(in *recordclient.EsReq) (*recordclient.EsResp, error) {
-	// todo: add your logic here and delete this line
-	client := &es.Client{
-		Address: "http://47.101.198.49:9200", // 设置为你的 Elasticsearch 地址
-	}
 
-	return &recordclient.EsResp{}, nil
+	client := es.Client{
+		Address:  in.Address,
+		Password: in.Password,
+		Username: in.Username,
+	}
+	err := client.Connect()
+	if err != nil {
+		return nil, err
+	}
+	return &recordclient.EsResp{
+		Result:  true,
+		Message: "es连接成功",
+	}, nil
 }

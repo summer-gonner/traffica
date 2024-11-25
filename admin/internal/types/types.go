@@ -214,6 +214,17 @@ type DeptList struct {
 	ParentId int64  `json:"parentId"`
 }
 
+type EsConnectReq struct {
+	Address  string `json:"address"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type EsConnectResp struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
 type ListMenuTree struct {
 	Id       int64  `json:"id"`       // 编号
 	Path     string `json:"path"`     // 菜单路径

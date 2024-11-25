@@ -6,13 +6,13 @@ option go_package = "./recordclient";
 
 
 message  EsReq {
-  string  message=1;
+  string  address=1;
   string  username=2;
   string  password=3;
 }
 
 message  EsResp {
-  string  result =1;
+  bool  result =1;
   string  message=2;
 }
 

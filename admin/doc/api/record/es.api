@@ -1,0 +1,32 @@
+syntax = "v1"
+
+info(
+    desc: "es"
+    author: "allen.shen"
+    email: "2497822530@qq.com"
+)
+
+
+type (
+      EsConnectReq {
+        Address string    `json:"address"`
+        Username string   `json:"username"`
+        Password string      `json:"password"`
+      }
+
+      EsConnectResp {
+          Code string `json:"code"`
+          Message string `json:"message"`
+      }
+)
+@server(
+    jwt: Auth
+    middleware: CheckUrl
+    group:      record/es
+    prefix:     /api/record/es
+)
+service admin-api {
+    @handler EsConnect
+    post /api/record/es/connect(EsConnectReq) returns (EsConnectResp)
+
+}
