@@ -23,7 +23,7 @@ func (es *Client) Connect() error {
 		elastic.SetSniff(false),                        // 如果需要禁用嗅探（可选）
 	)
 	if err != nil {
-		return fmt.Errorf("connect es error: %s", err)
+		return fmt.Errorf("连接es失败: %s", err)
 	}
 	es.client = client
 	return nil

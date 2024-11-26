@@ -33,6 +33,7 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsReq) (*recordclient.EsResp
 	if err != nil {
 		return nil, err
 	}
+	logx.Infof("es连接成功")
 	return &recordclient.EsResp{
 		Result:  true,
 		Message: "es连接成功",
