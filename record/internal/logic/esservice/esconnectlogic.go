@@ -61,16 +61,16 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsReq) (*recordclient.EsResp
 	if in.Password == "" {
 		return nil, fmt.Errorf("elasticsearch password is empty")
 	}
-
-	client, err := elastic.NewClient(
-		elastic.SetURL(in.Address),
-		//elastic.SetBasicAuth(es.Username, es.Password), // 如果需要用户名和密码
-		elastic.SetSniff(false), // 如果需要禁用嗅探（可选）
-	)
-	if err != nil {
-		return nil, fmt.Errorf("connect es error: %s", err)
-	}
-	logx.Infof("es连接成功%v", client)
+	//
+	//client, err := elastic.NewClient(
+	//	elastic.SetURL(in.Address),
+	//	//elastic.SetBasicAuth(es.Username, es.Password), // 如果需要用户名和密码
+	//	elastic.SetSniff(false), // 如果需要禁用嗅探（可选）
+	//)
+	//if err != nil {
+	//	return nil, fmt.Errorf("connect es error: %s", err)
+	//}
+	//logx.Infof("es连接成功%v", client)
 	return &recordclient.EsResp{
 		Result:  true,
 		Message: "es连接成功",

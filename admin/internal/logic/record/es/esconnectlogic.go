@@ -35,7 +35,7 @@ func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConne
 		return nil, fmt.Errorf("elasticsearch password is empty")
 	}
 	log.Printf("地址：%s 用户名：%s,密码：%s", req.Address, req.Username, req.Password)
-	_, err = l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsReq{
+	res, err := l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsReq{
 		Username: req.Username,
 		Password: req.Password,
 		Address:  req.Address,
@@ -46,7 +46,7 @@ func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConne
 	}
 	return &types.EsConnectResp{
 		Code:    "000000",
-		Message: "Es连接成功",
+		Message: res.Message,
 	}, nil
 
 }
