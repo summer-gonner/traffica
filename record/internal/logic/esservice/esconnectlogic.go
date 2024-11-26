@@ -7,6 +7,7 @@ import (
 	"github.com/summer-gonner/traffica/record/internal/svc"
 	"github.com/summer-gonner/traffica/record/recordclient"
 	"github.com/zeromicro/go-zero/core/logx"
+	"google.golang.org/appengine/log"
 )
 
 type EsConnectLogic struct {
@@ -51,16 +52,6 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsReq) (*recordclient.EsResp
 		return nil, fmt.Errorf("EsReq is nil")
 	}
 
-	if in.Address == "" {
-		return nil, fmt.Errorf("elasticsearch address is empty")
-	}
-	if in.Username == "" {
-		return nil, fmt.Errorf("elasticsearch username is empty")
-	}
-	if in.Password == "" {
-		return nil, fmt.Errorf("elasticsearch password is empty")
-	}
-
 	client, err := elastic.NewClient(
 		elastic.SetURL(in.Address),
 		elastic.SetSniff(false), // 如果需要禁用嗅探（可选）
@@ -68,7 +59,7 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsReq) (*recordclient.EsResp
 	if err != nil {
 		return nil, fmt.Errorf("connect es error: %s", err)
 	}
-	logx.Infof("connect es%v", client)
+	log.Infof(context.Background(), "connect es%v", client)
 	return &recordclient.EsResp{
 		Result:  true,
 		Message: "es连接成功",

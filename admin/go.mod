@@ -5,7 +5,7 @@ go 1.22.7
 toolchain go1.22.9
 
 require (
-	github.com/summer-gonner/traffica/record v0.0.0-20241126134114-e081c7e2e035
+	github.com/summer-gonner/traffica/record v0.0.0-20241126142806-54e4de1c9157
 	github.com/summer-gonner/traffica/sys v0.0.0-20241126103940-d1072874716e
 	github.com/ua-parser/uap-go v0.0.0-20241012191800-bbb40edc15aa
 	github.com/zeromicro/go-zero v1.7.4
