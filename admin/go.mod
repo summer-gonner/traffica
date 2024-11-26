@@ -6,7 +6,7 @@ toolchain go1.22.9
 
 require (
 	github.com/summer-gonner/traffica/record v0.0.0-20241126103940-d1072874716e
-	github.com/summer-gonner/traffica/sys v0.0.0-20241122033504-c35e2fcc0cd8
+	github.com/summer-gonner/traffica/sys v0.0.0-20241126103940-d1072874716e
 	github.com/ua-parser/uap-go v0.0.0-20241012191800-bbb40edc15aa
 	github.com/zeromicro/go-zero v1.7.4
 	google.golang.org/grpc v1.68.0
