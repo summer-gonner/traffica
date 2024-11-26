@@ -5,6 +5,7 @@ go 1.22.7
 require (
 	github.com/olivere/elastic/v7 v7.0.32
 	github.com/zeromicro/go-zero v1.7.4
+	google.golang.org/appengine v1.6.7
 	google.golang.org/grpc v1.68.0
 	google.golang.org/protobuf v1.35.2
 )

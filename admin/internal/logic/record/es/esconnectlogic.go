@@ -42,11 +42,11 @@ func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConne
 	})
 
 	if err != nil {
-		return nil, fmt.Errorf("failed to connect to Elasticsearch at %s with username %s: %w", req.Address, req.Username, err)
+		return nil, fmt.Errorf("连接es失败")
 	}
 	return &types.EsConnectResp{
 		Code:    "000000",
-		Message: res.Message,
+		Message: "连接es成功" + res.Message,
 	}, nil
 
 }
