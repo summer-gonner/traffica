@@ -5,7 +5,6 @@ import (
 	"github.com/summer-gonner/traffica/admin/internal/svc"
 	"github.com/summer-gonner/traffica/admin/internal/types"
 	"github.com/summer-gonner/traffica/record/recordclient"
-
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
