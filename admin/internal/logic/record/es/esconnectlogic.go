@@ -24,21 +24,18 @@ func NewEsConnectLogic(ctx context.Context, svcCtx *svc.ServiceContext) *EsConne
 }
 
 func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConnectResp, err error) {
-	connect, err := l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsReq{
+	_, err = l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsReq{
 		Username: req.Username,
 		Password: req.Password,
 		Address:  req.Address,
 	})
+
 	if err != nil {
-		return &types.EsConnectResp{
-			Code:    "100001",
-			Message: "Es连接失败",
-		}, nil
-	} else {
-		return &types.EsConnectResp{
-			Code:    "000000",
-			Message: connect.Message,
-		}, nil
+		return nil, err
 	}
+	return &types.EsConnectResp{
+		Code:    "000000",
+		Message: "Es连接成功",
+	}, nil
 
 }

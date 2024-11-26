@@ -3,7 +3,9 @@ module github.com/summer-gonner/traffica/record
 go 1.22.7
 
 require (
+	github.com/summer-gonner/traffica/pkg v0.0.0-20241125161516-27fe2a6eb53b
 	github.com/zeromicro/go-zero v1.7.4
+	google.golang.org/appengine v1.6.7
 	google.golang.org/grpc v1.68.0
 	google.golang.org/protobuf v1.35.2
 )
@@ -50,7 +52,6 @@ require (
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/redis/go-redis/v9 v9.7.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
-	github.com/summer-gonner/traffica/pkg v0.0.0-20241125094720-94605d829354 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.15 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.15 // indirect
 	go.etcd.io/etcd/client/v3 v3.5.15 // indirect

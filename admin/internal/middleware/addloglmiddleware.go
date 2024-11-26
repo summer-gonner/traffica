@@ -61,7 +61,7 @@ func (m *AddLogMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 		// 打印响应日志
 		responseBoy := string(recorder.body)
 		// 响应参数较多,可以不打印
-		//logx.WithContext(r.Context()).Infof("Response: %s %s %s", r.Method, r.RequestURI, responseBoy)
+		logx.WithContext(r.Context()).Infof("Response: %s %s %s", r.Method, r.RequestURI, responseBoy)
 
 		userAgent := r.Header.Get("User-Agent")
 		parser := uaparser.NewFromSaved()
