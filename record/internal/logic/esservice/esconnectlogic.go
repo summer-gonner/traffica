@@ -37,8 +37,8 @@ func (es *Client) connect() error {
 	}
 	client, err := elastic.NewClient(
 		elastic.SetURL(es.Address),
-		elastic.SetBasicAuth(es.Username, es.Password), // 如果需要用户名和密码
-		elastic.SetSniff(false),                        // 如果需要禁用嗅探（可选）
+		//elastic.SetBasicAuth(es.Username, es.Password), // 如果需要用户名和密码
+		elastic.SetSniff(false), // 如果需要禁用嗅探（可选）
 	)
 	if err != nil {
 		return fmt.Errorf("connect es error: %s", err)
@@ -62,18 +62,15 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsReq) (*recordclient.EsResp
 		return nil, fmt.Errorf("elasticsearch password is empty")
 	}
 
-	client := &Client{
-		Address:  in.Address, // 设置为你的 Elasticsearch 地址
-		Username: in.Username,
-		Password: in.Password,
-	}
-
-	// 连接到 Elasticsearch
-	err := client.connect()
+	client, err := elastic.NewClient(
+		elastic.SetURL(in.Address),
+		//elastic.SetBasicAuth(es.Username, es.Password), // 如果需要用户名和密码
+		elastic.SetSniff(false), // 如果需要禁用嗅探（可选）
+	)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("connect es error: %s", err)
 	}
-	logx.Infof("es连接成功")
+	logx.Infof("es连接成功%v", client)
 	return &recordclient.EsResp{
 		Result:  true,
 		Message: "es连接成功",
