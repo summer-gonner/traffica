@@ -17,14 +17,27 @@ func (es *Client) Connect() error {
 	if es.Address == "" {
 		return fmt.Errorf("Address is empty")
 	}
-	client, err := elastic.NewClient(
-		elastic.SetURL(es.Address),
-		elastic.SetBasicAuth(es.Username, es.Password), // 如果需要用户名和密码
-		elastic.SetSniff(false),                        // 如果需要禁用嗅探（可选）
-	)
-	if err != nil {
-		return fmt.Errorf("连接es失败: %s", err)
+	if es.Username == "" && es.Password == "" {
+		client, err := elastic.NewClient(
+			elastic.SetURL(es.Address),
+			//elastic.SetBasicAuth(es.Username, es.Password), // 如果需要用户名和密码
+			elastic.SetSniff(false), // 如果需要禁用嗅探（可选）
+		)
+		if err != nil {
+			return fmt.Errorf("连接es失败: %s", err)
+		}
+		es.client = client
+	} else {
+		client, err := elastic.NewClient(
+			elastic.SetURL(es.Address),
+			elastic.SetBasicAuth(es.Username, es.Password), // 如果需要用户名和密码
+			elastic.SetSniff(false),                        // 如果需要禁用嗅探（可选）
+		)
+		if err != nil {
+			return fmt.Errorf("连接es失败: %s", err)
+		}
+		es.client = client
 	}
-	es.client = client
+
 	return nil
 }
