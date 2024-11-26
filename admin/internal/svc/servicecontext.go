@@ -55,6 +55,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		MenuService:       menuservice.NewMenuService(sysClient),
 		RoleService:       roleservice.NewRoleService(sysClient),
 		UserService:       userservice.NewUserService(sysClient),
+		EsService:         esservice.NewEsService(sysClient),
 		CheckUrl:          middleware2.NewCheckUrlMiddleware(newRedis).Handle,
 		AddLog:            middleware2.NewAddLogMiddleware(operateLogService).Handle,
 

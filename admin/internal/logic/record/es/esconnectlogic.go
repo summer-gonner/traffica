@@ -28,12 +28,12 @@ func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConne
 	if req.Address == "" {
 		return nil, fmt.Errorf("elasticsearch address is empty")
 	}
-	if req.Username == "" {
-		return nil, fmt.Errorf("elasticsearch username is empty")
-	}
-	if req.Password == "" {
-		return nil, fmt.Errorf("elasticsearch password is empty")
-	}
+	//if req.Username == "" {
+	//	return nil, fmt.Errorf("elasticsearch username is empty")
+	//}
+	//if req.Password == "" {
+	//	return nil, fmt.Errorf("elasticsearch password is empty")
+	//}
 	log.Printf("地址：%s 用户名：%s,密码：%s", req.Address, req.Username, req.Password)
 	res, err := l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsReq{
 		Username: req.Username,

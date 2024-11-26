@@ -17,6 +17,6 @@ Content-Type: application/json
 
 {
   "address": "http://47.101.198.49:9200",
-  "password": "1",
-  "username": "1"
+  "password": "",
+  "username": ""
 }
