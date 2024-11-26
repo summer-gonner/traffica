@@ -2,10 +2,12 @@ package es
 
 import (
 	"context"
+	"fmt"
 	"github.com/summer-gonner/traffica/admin/internal/svc"
 	"github.com/summer-gonner/traffica/admin/internal/types"
 	"github.com/summer-gonner/traffica/record/recordclient"
 	"github.com/zeromicro/go-zero/core/logx"
+	"log"
 )
 
 type EsConnectLogic struct {
@@ -23,6 +25,16 @@ func NewEsConnectLogic(ctx context.Context, svcCtx *svc.ServiceContext) *EsConne
 }
 
 func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConnectResp, err error) {
+	if req.Address == "" {
+		return nil, fmt.Errorf("elasticsearch address is empty")
+	}
+	if req.Username == "" {
+		return nil, fmt.Errorf("elasticsearch username is empty")
+	}
+	if req.Password == "" {
+		return nil, fmt.Errorf("elasticsearch password is empty")
+	}
+	log.Printf("地址：%s 用户名：%s,密码：%s", req.Address, req.Username, req.Password)
 	_, err = l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsReq{
 		Username: req.Username,
 		Password: req.Password,
@@ -30,7 +42,7 @@ func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConne
 	})
 
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to connect to Elasticsearch at %s with username %s: %w", req.Address, req.Username, err)
 	}
 	return &types.EsConnectResp{
 		Code:    "000000",
