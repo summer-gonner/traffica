@@ -41,7 +41,7 @@ type ServiceContext struct {
 func NewServiceContext(c config.Config) *ServiceContext {
 	newRedis := redis.New(c.Redis.Address, redisConfig(c))
 	sysClient := zrpc.MustNewClient(c.SysRpc)
-
+	recordClient := zrpc.MustNewClient(c.RecordRpc)
 	operateLogService := operatelogservice.NewOperateLogService(sysClient)
 	return &ServiceContext{
 		Config: c,
@@ -55,9 +55,11 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		MenuService:       menuservice.NewMenuService(sysClient),
 		RoleService:       roleservice.NewRoleService(sysClient),
 		UserService:       userservice.NewUserService(sysClient),
-		EsService:         esservice.NewEsService(sysClient),
-		CheckUrl:          middleware2.NewCheckUrlMiddleware(newRedis).Handle,
-		AddLog:            middleware2.NewAddLogMiddleware(operateLogService).Handle,
+
+		EsService: esservice.NewEsService(recordClient),
+
+		CheckUrl: middleware2.NewCheckUrlMiddleware(newRedis).Handle,
+		AddLog:   middleware2.NewAddLogMiddleware(operateLogService).Handle,
 
 		Redis: newRedis,
 	}
