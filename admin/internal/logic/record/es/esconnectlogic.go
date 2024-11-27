@@ -42,7 +42,7 @@ func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConne
 	})
 
 	if err != nil {
-		return nil, fmt.Errorf("连接es失败")
+		return nil, fmt.Errorf("连接es失败:%v", err.Error())
 	}
 	return &types.EsConnectResp{
 		Code:    "000000",
