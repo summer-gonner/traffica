@@ -7,7 +7,6 @@ import (
 	"github.com/summer-gonner/traffica/record/internal/svc"
 	"github.com/summer-gonner/traffica/record/recordclient"
 	"github.com/zeromicro/go-zero/core/logx"
-	"google.golang.org/appengine/log"
 )
 
 type EsConnectLogic struct {
@@ -59,7 +58,7 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsReq) (*recordclient.EsResp
 	if err != nil {
 		return nil, fmt.Errorf("connect es error: %s", err)
 	}
-	log.Infof(context.Background(), "connect es%v", client)
+	logx.Infof("es连接成功%v", client)
 	return &recordclient.EsResp{
 		Result:  true,
 		Message: "es连接成功",

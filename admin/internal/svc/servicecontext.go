@@ -34,8 +34,11 @@ type ServiceContext struct {
 	MenuService       menuservice.MenuService
 	RoleService       roleservice.RoleService
 	UserService       userservice.UserService
-	EsService         esservice.EsService
-	Redis             *redis.Redis
+
+	//es
+	EsService esservice.EsService
+
+	Redis *redis.Redis
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
