@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/olivere/elastic/v7"
+	"github.com/summer-gonner/traffica/record/gen/model"
 	"github.com/summer-gonner/traffica/record/gen/query"
 	"github.com/summer-gonner/traffica/record/internal/svc"
 	"github.com/summer-gonner/traffica/record/recordclient"
@@ -91,12 +92,26 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsConnectReq) (*recordclient
 			elastic.SetSniff(false), // 禁用嗅探（可选）
 		)
 	}
+	result := "Y"
+	res := &result
 
 	// 4. 错误处理：如果连接失败，返回错误
 	if err != nil {
+		result = "N"
+		errStr := err.Error() // Get the error message as a string
+		remark := &errStr
+		_, err := q.WithContext(l.ctx).Where(q.ID.Eq(int64(id))).Updates(model.RecEsInfo{Result: res, Remark: remark})
+		if err != nil {
+			return nil, err
+		}
 		return nil, fmt.Errorf("连接 Elasticsearch 失败: %v", err)
 	}
-
+	errStr := "es连接成功"
+	remark := &errStr
+	_, err = q.WithContext(l.ctx).Where(q.ID.Eq(int64(id))).Updates(model.RecEsInfo{Result: res, Remark: remark})
+	if err != nil {
+		return nil, err
+	}
 	// 5. 连接成功，记录日志
 	logx.Infof("成功连接 Elasticsearch: %v", client)
 

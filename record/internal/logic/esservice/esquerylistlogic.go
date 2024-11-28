@@ -28,24 +28,26 @@ func NewEsQueryListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *EsQue
 }
 
 func (l *EsQueryListLogic) EsQueryList(in *recordclient.EsQueryListReq) (*recordclient.EsQueryListResp, error) {
-	q := query.RecEsInfo
+	rei := query.RecEsInfo
 	// 获取分页参数
-	page := in.CurrentPage
-	size := in.PageSize
-
-	// 确保分页参数有效
-	if page <= 0 {
-		page = 1 // 默认从第1页开始
-	}
-	if size <= 0 {
-		size = 10 // 默认每页返回10条数据
-	}
-	// 计算分页的偏移量
-	offset := (page - 1) * size
 
 	// 查询ES数据并进行分页
-	res, err := q.WithContext(l.ctx).
-		Where(q.Address.Eq(in.Address)).Or().Where(q.Name.Eq(in.Name)).Limit(int(size)).Offset(int(offset)).Find()
+	logx.Infof("开始执行查询，ctx：%v", l.ctx)
+	q := rei.WithContext(l.ctx)
+	if in.Name == "" {
+		q = q.Where(rei.Name.Like("%" + in.Name + "%"))
+	}
+	if in.Address == "" {
+		q = q.Where(rei.Address.Like("%" + in.Address + "%"))
+	}
+	// 确保分页参数有效
+	// 计算分页的偏移量
+	//offset := (in.CurrentPage - 1) * in.PageSize
+	res, err := q.Find()
+	if err != nil {
+		logx.Errorf("查询失败，错误：%v", err)
+	}
+	logx.Infof("查询完成")
 
 	if err != nil {
 		logc.Errorf(l.ctx, "根据es地址：%s,查询es表失败,异常：%s", in.Name, err.Error())
@@ -64,14 +66,14 @@ func (l *EsQueryListLogic) EsQueryList(in *recordclient.EsQueryListReq) (*record
 	}
 	var data *recordclient.EsQueryListData
 	data.Records = records
-	data.CurrentPage = page
-	data.PageSize = size
-	data.TotalPages = int64(size)
-	data.TotalSize = int64(len(records))
+	data.CurrentPage = in.CurrentPage
+	data.PageSize = in.PageSize
+	//data.TotalPages = count / int64(in.PageSize)
+	//data.TotalSize = count
 	// 构造响应
 	resp := &recordclient.EsQueryListResp{
-		Code:    "0",  // 总条数
-		Data:    data, // 当前页数据
+		Code:    "0000000", // 总条数
+		Data:    data,      // 当前页数据
 		Message: "查询成功",
 	}
 

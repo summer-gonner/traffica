@@ -69,5 +69,4 @@ func (l *EsQueryPageLogic) EsQueryPage(req *types.EsQueryPageReq) (resp *types.E
 		},
 	}, nil
 
-	return
 }

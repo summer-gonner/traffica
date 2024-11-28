@@ -143,8 +143,8 @@ github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o
 github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
 github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
-github.com/summer-gonner/traffica/record v0.0.0-20241128071521-b5b9305b2f8f h1:mAR/1YorxJB02kGUN3X8yg7jILAIm8sGY2hx4iHNq1k=
-github.com/summer-gonner/traffica/record v0.0.0-20241128071521-b5b9305b2f8f/go.mod h1:TFJZFj0gHmC0Fe2G4NQ/2qmtPP636U292ikP1c9kNJE=
+github.com/summer-gonner/traffica/record v0.0.0-20241128082515-0311fa304525 h1:aBUZvgSHf1iTY+DHtKBJdm/H0wgNyc/34dGEaqoHjIA=
+github.com/summer-gonner/traffica/record v0.0.0-20241128082515-0311fa304525/go.mod h1:TFJZFj0gHmC0Fe2G4NQ/2qmtPP636U292ikP1c9kNJE=
 github.com/summer-gonner/traffica/sys v0.0.0-20241126173001-0817211ca868 h1:ih2kDnrhTyWPshJ6koY74PZIcK21SD9FahiuCFZH9DI=
 github.com/summer-gonner/traffica/sys v0.0.0-20241126173001-0817211ca868/go.mod h1:7fgSBXT/4Y4Gf0bkhFICC2KWC8IY3wzEhsZUKe94bnI=
 github.com/ua-parser/uap-go v0.0.0-20241012191800-bbb40edc15aa h1:VzPR4xFM7HARqNocjdHg75ZL9SAgFtaF3P57ZdDcG6I=
