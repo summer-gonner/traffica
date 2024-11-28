@@ -5,18 +5,61 @@ package main;
 option go_package = "./proto";
 
 
-message  EsReq {
-  string  address=1;
-  string  username=2;
-  string  password=3;
+message  EsConnectReq {
+  string  id=1;
 }
 
-message  EsResp {
+message  EsConnectResp {
   bool  result =1;
   string  message=2;
 }
 
+message  EsAddReq {
+  string   name=1;
+  string  address=2;
+  string  username=3;
+  string  password=4;
+}
+
+message  EsAddResp {
+  bool  result=1;
+  string  message=2;
+}
+message  EsQueryListReq {
+  int32  currentPage =1;
+  int32  pageSize=2;
+  string name=3;
+  string address=4;
+}
+message EsQueryInfoData {
+   int64  id =1;
+   string  name=2;
+   string  address=3;
+   string  username=4;
+   string  password=5;
+   string  remark=6;
+   string  result=7;
+   string  connect_time=8;
+   string  create_by=9;
+   string  create_time=10;
+   string  update_by=11;
+   string  update_time=12;
+}
+message EsQueryListData {
+   int32  currentPage=1;
+   int32  pageSize=2;
+   int64  totalSize=3;
+   int64  totalPages=4;
+   repeated EsQueryInfoData records=5;
+}
+message  EsQueryListResp {
+  string  code =1;
+  string   message=2;
+  EsQueryListData data=3;
+}
 
 service EsService {
-  rpc EsConnect(EsReq)returns(EsResp);
+  rpc EsConnect(EsConnectReq)returns(EsConnectResp);
+  rpc EsAdd(EsAddReq)returns(EsAddResp);
+  rpc EsQueryList(EsQueryListReq)returns(EsQueryListResp);
 }

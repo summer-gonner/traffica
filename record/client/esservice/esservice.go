@@ -13,11 +13,19 @@ import (
 )
 
 type (
-	EsReq  = recordclient.EsReq
-	EsResp = recordclient.EsResp
+	EsAddReq        = recordclient.EsAddReq
+	EsAddResp       = recordclient.EsAddResp
+	EsConnectReq    = recordclient.EsConnectReq
+	EsConnectResp   = recordclient.EsConnectResp
+	EsQueryInfoData = recordclient.EsQueryInfoData
+	EsQueryListData = recordclient.EsQueryListData
+	EsQueryListReq  = recordclient.EsQueryListReq
+	EsQueryListResp = recordclient.EsQueryListResp
 
 	EsService interface {
-		EsConnect(ctx context.Context, in *EsReq, opts ...grpc.CallOption) (*EsResp, error)
+		EsConnect(ctx context.Context, in *EsConnectReq, opts ...grpc.CallOption) (*EsConnectResp, error)
+		EsAdd(ctx context.Context, in *EsAddReq, opts ...grpc.CallOption) (*EsAddResp, error)
+		EsQueryList(ctx context.Context, in *EsQueryListReq, opts ...grpc.CallOption) (*EsQueryListResp, error)
 	}
 
 	defaultEsService struct {
@@ -31,7 +39,17 @@ func NewEsService(cli zrpc.Client) EsService {
 	}
 }
 
-func (m *defaultEsService) EsConnect(ctx context.Context, in *EsReq, opts ...grpc.CallOption) (*EsResp, error) {
+func (m *defaultEsService) EsConnect(ctx context.Context, in *EsConnectReq, opts ...grpc.CallOption) (*EsConnectResp, error) {
 	client := recordclient.NewEsServiceClient(m.cli.Conn())
 	return client.EsConnect(ctx, in, opts...)
+}
+
+func (m *defaultEsService) EsAdd(ctx context.Context, in *EsAddReq, opts ...grpc.CallOption) (*EsAddResp, error) {
+	client := recordclient.NewEsServiceClient(m.cli.Conn())
+	return client.EsAdd(ctx, in, opts...)
+}
+
+func (m *defaultEsService) EsQueryList(ctx context.Context, in *EsQueryListReq, opts ...grpc.CallOption) (*EsQueryListResp, error) {
+	client := recordclient.NewEsServiceClient(m.cli.Conn())
+	return client.EsQueryList(ctx, in, opts...)
 }

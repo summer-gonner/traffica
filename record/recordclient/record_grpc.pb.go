@@ -19,14 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	EsService_EsConnect_FullMethodName = "/recordclient.EsService/EsConnect"
+	EsService_EsConnect_FullMethodName   = "/recordclient.EsService/EsConnect"
+	EsService_EsAdd_FullMethodName       = "/recordclient.EsService/EsAdd"
+	EsService_EsQueryList_FullMethodName = "/recordclient.EsService/EsQueryList"
 )
 
 // EsServiceClient is the client API for EsService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EsServiceClient interface {
-	EsConnect(ctx context.Context, in *EsReq, opts ...grpc.CallOption) (*EsResp, error)
+	EsConnect(ctx context.Context, in *EsConnectReq, opts ...grpc.CallOption) (*EsConnectResp, error)
+	EsAdd(ctx context.Context, in *EsAddReq, opts ...grpc.CallOption) (*EsAddResp, error)
+	EsQueryList(ctx context.Context, in *EsQueryListReq, opts ...grpc.CallOption) (*EsQueryListResp, error)
 }
 
 type esServiceClient struct {
@@ -37,10 +41,30 @@ func NewEsServiceClient(cc grpc.ClientConnInterface) EsServiceClient {
 	return &esServiceClient{cc}
 }
 
-func (c *esServiceClient) EsConnect(ctx context.Context, in *EsReq, opts ...grpc.CallOption) (*EsResp, error) {
+func (c *esServiceClient) EsConnect(ctx context.Context, in *EsConnectReq, opts ...grpc.CallOption) (*EsConnectResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(EsResp)
+	out := new(EsConnectResp)
 	err := c.cc.Invoke(ctx, EsService_EsConnect_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *esServiceClient) EsAdd(ctx context.Context, in *EsAddReq, opts ...grpc.CallOption) (*EsAddResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EsAddResp)
+	err := c.cc.Invoke(ctx, EsService_EsAdd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *esServiceClient) EsQueryList(ctx context.Context, in *EsQueryListReq, opts ...grpc.CallOption) (*EsQueryListResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EsQueryListResp)
+	err := c.cc.Invoke(ctx, EsService_EsQueryList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +75,9 @@ func (c *esServiceClient) EsConnect(ctx context.Context, in *EsReq, opts ...grpc
 // All implementations must embed UnimplementedEsServiceServer
 // for forward compatibility
 type EsServiceServer interface {
-	EsConnect(context.Context, *EsReq) (*EsResp, error)
+	EsConnect(context.Context, *EsConnectReq) (*EsConnectResp, error)
+	EsAdd(context.Context, *EsAddReq) (*EsAddResp, error)
+	EsQueryList(context.Context, *EsQueryListReq) (*EsQueryListResp, error)
 	mustEmbedUnimplementedEsServiceServer()
 }
 
@@ -59,8 +85,14 @@ type EsServiceServer interface {
 type UnimplementedEsServiceServer struct {
 }
 
-func (UnimplementedEsServiceServer) EsConnect(context.Context, *EsReq) (*EsResp, error) {
+func (UnimplementedEsServiceServer) EsConnect(context.Context, *EsConnectReq) (*EsConnectResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EsConnect not implemented")
+}
+func (UnimplementedEsServiceServer) EsAdd(context.Context, *EsAddReq) (*EsAddResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EsAdd not implemented")
+}
+func (UnimplementedEsServiceServer) EsQueryList(context.Context, *EsQueryListReq) (*EsQueryListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EsQueryList not implemented")
 }
 func (UnimplementedEsServiceServer) mustEmbedUnimplementedEsServiceServer() {}
 
@@ -76,7 +108,7 @@ func RegisterEsServiceServer(s grpc.ServiceRegistrar, srv EsServiceServer) {
 }
 
 func _EsService_EsConnect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EsReq)
+	in := new(EsConnectReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -88,7 +120,43 @@ func _EsService_EsConnect_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: EsService_EsConnect_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EsServiceServer).EsConnect(ctx, req.(*EsReq))
+		return srv.(EsServiceServer).EsConnect(ctx, req.(*EsConnectReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EsService_EsAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EsAddReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EsServiceServer).EsAdd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EsService_EsAdd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EsServiceServer).EsAdd(ctx, req.(*EsAddReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EsService_EsQueryList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EsQueryListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EsServiceServer).EsQueryList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EsService_EsQueryList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EsServiceServer).EsQueryList(ctx, req.(*EsQueryListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -103,6 +171,14 @@ var EsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EsConnect",
 			Handler:    _EsService_EsConnect_Handler,
+		},
+		{
+			MethodName: "EsAdd",
+			Handler:    _EsService_EsAdd_Handler,
+		},
+		{
+			MethodName: "EsQueryList",
+			Handler:    _EsService_EsQueryList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

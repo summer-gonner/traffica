@@ -22,7 +22,17 @@ func NewEsServiceServer(svcCtx *svc.ServiceContext) *EsServiceServer {
 	}
 }
 
-func (s *EsServiceServer) EsConnect(ctx context.Context, in *recordclient.EsReq) (*recordclient.EsResp, error) {
+func (s *EsServiceServer) EsConnect(ctx context.Context, in *recordclient.EsConnectReq) (*recordclient.EsConnectResp, error) {
 	l := esservicelogic.NewEsConnectLogic(ctx, s.svcCtx)
 	return l.EsConnect(in)
+}
+
+func (s *EsServiceServer) EsAdd(ctx context.Context, in *recordclient.EsAddReq) (*recordclient.EsAddResp, error) {
+	l := esservicelogic.NewEsAddLogic(ctx, s.svcCtx)
+	return l.EsAdd(in)
+}
+
+func (s *EsServiceServer) EsQueryList(ctx context.Context, in *recordclient.EsQueryListReq) (*recordclient.EsQueryListResp, error) {
+	l := esservicelogic.NewEsQueryListLogic(ctx, s.svcCtx)
+	return l.EsQueryList(in)
 }
