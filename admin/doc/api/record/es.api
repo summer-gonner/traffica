@@ -9,15 +9,43 @@ info(
 
 type (
       EsConnectReq {
-        Address string    `json:"address"`
-        Username string   `json:"username"`
-        Password string      `json:"password"`
+        Id string    `form:"id"`
       }
 
       EsConnectResp {
           Code string `json:"code"`
           Message string `json:"message"`
       }
+      EsQueryPageReq {
+        CurrentPage int    `json:"currentPage"`
+        PageSize    int  `json:"pageSize"`
+        Name        string  `json:"name"`
+        Address     string      `json:"address"`
+      }
+      EsQueryPageRecordData {
+       Id string    `json:"id"`
+       Name string   `json:"name"`
+       Address string   `json:"address"`
+       CreateTime string   `json:"createTime"`
+       CreateBy string      `json:"createBy"`
+       UpdateBy string    `json:"updateBy"`
+       UpdateTime string   `json:"updateTime"`
+       Remark string    `json:"remark"`
+       Result string    `json:"result"`
+      }
+      EsQueryPageData {
+          CurrentPage int    `json:"currentPage"`
+          PageSize    int  `json:"pageSize"`
+          TotalSize  int64     `json:"totalSize"`
+          TotalPages int64 `json:"totalPages"`
+          Records []*EsQueryPageRecordData `json:"records"`
+      }
+      EsQueryPageResp {
+        Code string     `json:"code"`
+        Message string    `json:"message"`
+        Data  EsQueryPageData   `json:"data"`
+     }
+     
 )
 @server (
     jwt:        Auth
@@ -26,7 +54,10 @@ type (
     prefix:     /api/record/es
 )
 service admin-api {
+    @handler  EsQueryPage
+    post  /queryPage (EsQueryPageReq) returns (EsQueryPageResp)
     @handler EsConnect
-    post /connect (EsConnectReq) returns (EsConnectResp)
+    get /connect (EsConnectReq) returns (EsConnectResp)
+
 
 }

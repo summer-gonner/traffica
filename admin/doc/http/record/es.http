@@ -11,12 +11,5 @@ Content-Type: application/json
 > {% client.global.set("token", response.body.data.token); %}
 
 #### 连接Es
-POST {{host}}/api/record/es/connect
+GET {{host}}/api/record/es/connect?id=1
 Authorization: Bearer {{token}}
-Content-Type: application/json
-
-{
-  "address": "http://47.101.198.49:9200",
-  "password": "",
-  "username": ""
-}

@@ -66,11 +66,12 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsConnectReq) (*recordclient
 	es, err := q.WithContext(l.ctx).Where(q.ID.Eq(int64(id))).First()
 	if err != nil {
 		logc.Errorf(l.ctx, "查询 Elasticsearch 信息失败, 异常: %s", err.Error())
-		return nil, fmt.Errorf("查询 es 信息不存在")
+		return nil, fmt.Errorf("查询 es 信息失败, 异常: %v", err)
 	}
 
 	// 确保查询结果不为空
 	if es == nil {
+		logc.Errorf(l.ctx, "未找到指定的 Elasticsearch 信息, ID: %d", id)
 		return nil, fmt.Errorf("未找到指定的 Elasticsearch 信息")
 	}
 

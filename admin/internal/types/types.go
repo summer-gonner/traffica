@@ -215,14 +215,45 @@ type DeptList struct {
 }
 
 type EsConnectReq struct {
-	Address  string `json:"address"`
-	Username string `json:"username"`
-	Password string `json:"password"`
+	Id string `form:"id"`
 }
 
 type EsConnectResp struct {
 	Code    string `json:"code"`
 	Message string `json:"message"`
+}
+
+type EsQueryPageData struct {
+	CurrentPage int                      `json:"currentPage"`
+	PageSize    int                      `json:"pageSize"`
+	TotalSize   int64                    `json:"totalSize"`
+	TotalPages  int64                    `json:"totalPages"`
+	Records     []*EsQueryPageRecordData `json:"records"`
+}
+
+type EsQueryPageRecordData struct {
+	Id         string `json:"id"`
+	Name       string `json:"name"`
+	Address    string `json:"address"`
+	CreateTime string `json:"createTime"`
+	CreateBy   string `json:"createBy"`
+	UpdateBy   string `json:"updateBy"`
+	UpdateTime string `json:"updateTime"`
+	Remark     string `json:"remark"`
+	Result     string `json:"result"`
+}
+
+type EsQueryPageReq struct {
+	CurrentPage int    `json:"currentPage"`
+	PageSize    int    `json:"pageSize"`
+	Name        string `json:"name"`
+	Address     string `json:"address"`
+}
+
+type EsQueryPageResp struct {
+	Code    string          `json:"code"`
+	Message string          `json:"message"`
+	Data    EsQueryPageData `json:"data"`
 }
 
 type ListMenuTree struct {

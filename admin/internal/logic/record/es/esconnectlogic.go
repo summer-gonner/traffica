@@ -7,7 +7,6 @@ import (
 	"github.com/summer-gonner/traffica/admin/internal/types"
 	"github.com/summer-gonner/traffica/record/recordclient"
 	"github.com/zeromicro/go-zero/core/logx"
-	"log"
 )
 
 type EsConnectLogic struct {
@@ -25,14 +24,11 @@ func NewEsConnectLogic(ctx context.Context, svcCtx *svc.ServiceContext) *EsConne
 }
 
 func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConnectResp, err error) {
-	if req.Address == "" {
-		return nil, fmt.Errorf("elasticsearch address is empty")
+	if req.Id == "" {
+		return nil, fmt.Errorf("elasticsearch id is empty")
 	}
-	log.Printf("地址：%s 用户名：%s,密码：%s", req.Address, req.Username, req.Password)
-	res, err := l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsReq{
-		Username: req.Username,
-		Password: req.Password,
-		Address:  req.Address,
+	res, err := l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsConnectReq{
+		Id: req.Id,
 	})
 
 	if err != nil {
