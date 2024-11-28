@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/summer-gonner/traffica/admin/internal/svc"
 	"github.com/summer-gonner/traffica/admin/internal/types"
+	"github.com/summer-gonner/traffica/admin/response"
 	"github.com/summer-gonner/traffica/record/recordclient"
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -27,16 +28,17 @@ func (l *EsConnectLogic) EsConnect(req *types.EsConnectReq) (resp *types.EsConne
 	if req.Id == "" {
 		return nil, fmt.Errorf("elasticsearch id is empty")
 	}
-	res, err := l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsConnectReq{
+	_, err = l.svcCtx.EsService.EsConnect(l.ctx, &recordclient.EsConnectReq{
 		Id: req.Id,
 	})
 
 	if err != nil {
 		return nil, fmt.Errorf("连接es失败:%v", err.Error())
 	}
+	success := response.ES_CONNECT_SUCCESS
 	return &types.EsConnectResp{
-		Code:    "000000",
-		Message: "连接es成功" + res.Message,
+		Code:    success.Code,
+		Message: success.Message,
 	}, nil
 
 }

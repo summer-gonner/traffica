@@ -3,6 +3,7 @@ package es
 import (
 	"context"
 	"fmt"
+	"github.com/summer-gonner/traffica/admin/response"
 	"github.com/summer-gonner/traffica/record/recordclient"
 	"strconv"
 
@@ -56,10 +57,11 @@ func (l *EsQueryPageLogic) EsQueryPage(req *types.EsQueryPageReq) (resp *types.E
 			records = append(records, record)
 		}
 	}
+	success := response.SUCCESS
 
 	return &types.EsQueryPageResp{
-		Code:    "000000",
-		Message: "查询成功",
+		Code:    success.Code,
+		Message: success.Message,
 		Data: types.EsQueryPageData{
 			CurrentPage: int(res.Data.CurrentPage),
 			PageSize:    int(res.Data.PageSize),

@@ -6,6 +6,7 @@ import (
 	"github.com/olivere/elastic/v7"
 	"github.com/summer-gonner/traffica/record/gen/model"
 	"github.com/summer-gonner/traffica/record/gen/query"
+	"github.com/summer-gonner/traffica/record/http3"
 	"github.com/summer-gonner/traffica/record/internal/svc"
 	"github.com/summer-gonner/traffica/record/recordclient"
 	"github.com/zeromicro/go-zero/core/logc"
@@ -92,12 +93,12 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsConnectReq) (*recordclient
 			elastic.SetSniff(false), // 禁用嗅探（可选）
 		)
 	}
-	result := "Y"
+	result := http3.Y
 	res := &result
 
 	// 4. 错误处理：如果连接失败，返回错误
 	if err != nil {
-		result = "N"
+		result = http3.N
 		errStr := err.Error() // Get the error message as a string
 		remark := &errStr
 		_, err := q.WithContext(l.ctx).Where(q.ID.Eq(int64(id))).Updates(model.RecEsInfo{Result: res, Remark: remark})
@@ -106,7 +107,7 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsConnectReq) (*recordclient
 		}
 		return nil, fmt.Errorf("连接 Elasticsearch 失败: %v", err)
 	}
-	errStr := "es连接成功"
+	errStr := http3.ES_CONNECT_SUCCESS
 	remark := &errStr
 	_, err = q.WithContext(l.ctx).Where(q.ID.Eq(int64(id))).Updates(model.RecEsInfo{Result: res, Remark: remark})
 	if err != nil {
@@ -117,7 +118,7 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsConnectReq) (*recordclient
 
 	// 6. 返回连接成功的响应
 	return &recordclient.EsConnectResp{
-		Result:  true,
-		Message: "连接 Elasticsearch 成功",
+		Code:    http3.SUCCESS,
+		Message: http3.ES_CONNECT_SUCCESS,
 	}, nil
 }

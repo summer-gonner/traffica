@@ -7,14 +7,22 @@ import (
 	"github.com/olivere/elastic/v7"
 )
 
-// ExecuteSearch 查询数据
-func (es *Client) ExecuteSearch(index string, field string, value string) ([]*LogInfo, error) {
-	// 构建查询
-	query := elastic.NewMatchQuery(field, value)
+type EsSearchBody struct {
+	Field string
+	Value string
+}
 
+// ExecuteSearch 查询数据
+func (es *Client) ExecuteSearch(searchBodys []EsSearchBody) ([]*LogInfo, error) {
+	// 构建查询
+	query := elastic.NewBoolQuery()
+	// 遍历传入的多个字段条件
+	for _, item := range searchBodys {
+		// 将每个字段和对应的值添加到 should 子句中，表示 OR 查询
+		query.Must(elastic.NewMatchQuery(item.Field, item.Value))
+	}
 	// 执行查询
 	res, err := es.client.Search().
-		Index(index).
 		Query(query).
 		Do(context.Background())
 	if err != nil {

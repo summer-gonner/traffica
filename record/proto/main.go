@@ -13,8 +13,8 @@ Author: LiuFeiHua
 Date: 2024/6/11 10:52
 */
 func main() {
-	folderPath := "C:\\Users\\philip.shen\\GolandProjects\\traffica\\record\\proto"            // 替换为你的文件夹路径
-	outputFilePath := "C:\\Users\\philip.shen\\GolandProjects\\traffica\\record\\record.proto" // 新文件的路径
+	folderPath := "proto"                                                 // 替换为你的文件夹路径
+	outputFilePath := "D:\\summer-gonner\\traffica\\record\\record.proto" // 新文件的路径
 
 	files, err := ioutil.ReadDir(folderPath)
 	if err != nil {

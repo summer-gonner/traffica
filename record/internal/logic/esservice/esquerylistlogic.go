@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/summer-gonner/traffica/record/gen/query"
+	"github.com/summer-gonner/traffica/record/http3"
 	"github.com/zeromicro/go-zero/core/logc"
 	"math"
 
@@ -79,9 +80,9 @@ func (l *EsQueryListLogic) EsQueryList(in *recordclient.EsQueryListReq) (*record
 	}
 	// 构造响应
 	resp := &recordclient.EsQueryListResp{
-		Code:    "0000000", // 总条数
-		Data:    data,      // 当前页数据
-		Message: "查询成功",
+		Code:    http3.SUCCESS, // 总条数
+		Data:    data,          // 当前页数据
+		Message: http3.QUERY_SUCCESS,
 	}
 
 	return resp, nil

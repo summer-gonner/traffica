@@ -10,7 +10,7 @@ message  EsConnectReq {
 }
 
 message  EsConnectResp {
-  bool  result =1;
+  int32  code =1;
   string  message=2;
 }
 
@@ -53,7 +53,7 @@ message EsQueryListData {
    repeated EsQueryInfoData records=5;
 }
 message  EsQueryListResp {
-  string  code =1;
+  int32  code =1;
   string   message=2;
   EsQueryListData data=3;
 }
