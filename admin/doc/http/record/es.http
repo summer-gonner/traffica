@@ -13,3 +13,15 @@ Content-Type: application/json
 #### 连接Es
 GET {{host}}/api/record/es/connect?id=1
 Authorization: Bearer {{token}}
+
+### es 列表查询
+POST  {{host}}/api/record/es/queryPage
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "currentPage": 1,
+  "pageSize": 10,
+  "name": "sa",
+  "address": "http://47.101.198.49:9200"
+}
