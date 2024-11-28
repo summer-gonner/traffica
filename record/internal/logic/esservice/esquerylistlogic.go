@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/summer-gonner/traffica/record/gen/query"
 	"github.com/zeromicro/go-zero/core/logc"
+	"math"
 
 	"github.com/summer-gonner/traffica/record/internal/svc"
 	"github.com/summer-gonner/traffica/record/recordclient"
@@ -42,8 +43,8 @@ func (l *EsQueryListLogic) EsQueryList(in *recordclient.EsQueryListReq) (*record
 	}
 	// 确保分页参数有效
 	// 计算分页的偏移量
-	//offset := (in.CurrentPage - 1) * in.PageSize
-	res, err := q.Find()
+	offset := (in.CurrentPage - 1) * in.PageSize
+	res, count, err := q.FindByPage(int(offset), int(in.PageSize))
 	if err != nil {
 		logx.Errorf("查询失败，错误：%v", err)
 	}
@@ -61,15 +62,21 @@ func (l *EsQueryListLogic) EsQueryList(in *recordclient.EsQueryListReq) (*record
 		eqd.Username = r.Username
 		eqd.Password = r.Password
 		eqd.Name = r.Name
+		eqd.Remark = *r.Remark
 		eqd.Result = *r.Result
+		eqd.CreateTime = r.CreateTime.Format("2006-01-02 15:04:05")
+		eqd.UpdateTime = r.UpdateTime.Format("2006-01-02 15:04:05")
+		eqd.CreateBy = r.CreateBy
+		eqd.UpdateBy = r.UpdateBy
 		records = append(records, &eqd)
 	}
-	var data *recordclient.EsQueryListData
-	data.Records = records
-	data.CurrentPage = in.CurrentPage
-	data.PageSize = in.PageSize
-	//data.TotalPages = count / int64(in.PageSize)
-	//data.TotalSize = count
+	data := &recordclient.EsQueryListData{
+		Records:     records,
+		CurrentPage: in.CurrentPage,
+		PageSize:    in.PageSize,
+		TotalSize:   count,
+		TotalPages:  int64(math.Ceil(float64(count) / float64(in.PageSize))),
+	}
 	// 构造响应
 	resp := &recordclient.EsQueryListResp{
 		Code:    "0000000", // 总条数

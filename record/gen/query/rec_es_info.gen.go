@@ -6,6 +6,7 @@ package query
 
 import (
 	"context"
+	"github.com/summer-gonner/traffica/record/gen/model"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -13,10 +14,7 @@ import (
 
 	"gorm.io/gen"
 	"gorm.io/gen/field"
-
 	"gorm.io/plugin/dbresolver"
-
-	"github.com/summer-gonner/traffica/record/gen/model"
 )
 
 func newRecEsInfo(db *gorm.DB, opts ...gen.DOOption) recEsInfo {
