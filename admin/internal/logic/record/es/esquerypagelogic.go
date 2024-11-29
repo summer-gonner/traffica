@@ -39,11 +39,11 @@ func (l *EsQueryPageLogic) EsQueryPage(req *types.EsQueryPageReq) (resp *types.E
 	if err != nil {
 		return nil, fmt.Errorf("查询es列表失败:%v", err.Error())
 	}
-	var records []*types.EsQueryPageRecordData
+	var datas []*types.EsQueryPageData
 	if len(res.Data.Records) > 0 {
 		for _, r := range res.Data.Records {
 
-			record := &types.EsQueryPageRecordData{
+			data := &types.EsQueryPageData{
 				Id:         strconv.FormatInt(r.Id, 10),
 				Name:       r.Name,
 				Address:    r.Address,
@@ -54,21 +54,19 @@ func (l *EsQueryPageLogic) EsQueryPage(req *types.EsQueryPageReq) (resp *types.E
 				Result:     r.Result,
 				Remark:     r.Remark,
 			}
-			records = append(records, record)
+			datas = append(datas, data)
 		}
 	}
 	success := response.SUCCESS
 
 	return &types.EsQueryPageResp{
-		Code:    success.Code,
-		Message: success.Message,
-		Data: types.EsQueryPageData{
-			CurrentPage: int(res.Data.CurrentPage),
-			PageSize:    int(res.Data.PageSize),
-			TotalPages:  res.Data.TotalPages,
-			TotalSize:   res.Data.TotalSize,
-			Records:     records,
-		},
+		Code:        success.Code,
+		Message:     success.Message,
+		CurrentPage: int(res.Data.CurrentPage),
+		PageSize:    int(res.Data.PageSize),
+		TotalSize:   res.Data.TotalPages,
+		TotalPages:  res.Data.TotalPages,
+		Data:        datas,
 	}, nil
 
 }

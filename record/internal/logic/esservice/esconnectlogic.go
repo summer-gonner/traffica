@@ -9,7 +9,6 @@ import (
 	"github.com/summer-gonner/traffica/record/http3"
 	"github.com/summer-gonner/traffica/record/internal/svc"
 	"github.com/summer-gonner/traffica/record/recordclient"
-	"github.com/zeromicro/go-zero/core/logc"
 	"github.com/zeromicro/go-zero/core/logx"
 	"strconv"
 )
@@ -57,26 +56,19 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsConnectReq) (*recordclient
 		return nil, fmt.Errorf("EsConnectReq is nil")
 	}
 
-	// 2. 根据es id 从表里查找 es 的信息
-	q := query.RecEsInfo
+	// 2. 根据 es id 从表里查找 es 的信息
+	rei := query.RecEsInfo         // 假设这是查询结构或表的引用
 	id, err := strconv.Atoi(in.Id) // 转换 ID
 	if err != nil {
 		return nil, fmt.Errorf("invalid ES ID format: %v", err)
 	}
 
 	// 查询数据库中的 Elasticsearch 信息
-	es, err := q.WithContext(l.ctx).Where(q.ID.Eq(int64(id))).First()
-	if err != nil {
-		logc.Errorf(l.ctx, "查询 Elasticsearch 信息失败, 异常: %s", err.Error())
-		return nil, fmt.Errorf("查询 es 信息失败, 异常: %v", err)
-	}
-
+	es, _ := rei.WithContext(l.ctx).Where(rei.ID.Eq(int64(id))).First()
 	// 确保查询结果不为空
 	if es == nil {
-		logc.Errorf(l.ctx, "未找到指定的 Elasticsearch 信息, ID: %d", id)
-		return nil, fmt.Errorf("未找到指定的 Elasticsearch 信息")
+		return nil, err
 	}
-
 	// 3. 根据查询的 es 信息，构建 Elasticsearch 客户端
 	var client *elastic.Client
 	if es.Name != "" && es.Password != "" {
@@ -93,26 +85,17 @@ func (l *EsConnectLogic) EsConnect(in *recordclient.EsConnectReq) (*recordclient
 			elastic.SetSniff(false), // 禁用嗅探（可选）
 		)
 	}
-	result := http3.Y
-	res := &result
-
 	// 4. 错误处理：如果连接失败，返回错误
 	if err != nil {
-		result = http3.N
-		errStr := err.Error() // Get the error message as a string
-		remark := &errStr
-		_, err := q.WithContext(l.ctx).Where(q.ID.Eq(int64(id))).Updates(model.RecEsInfo{Result: res, Remark: remark})
-		if err != nil {
-			return nil, err
-		}
-		return nil, fmt.Errorf("连接 Elasticsearch 失败: %v", err)
+		return nil, fmt.Errorf("es连接失败")
 	}
-	errStr := http3.ES_CONNECT_SUCCESS
-	remark := &errStr
-	_, err = q.WithContext(l.ctx).Where(q.ID.Eq(int64(id))).Updates(model.RecEsInfo{Result: res, Remark: remark})
-	if err != nil {
-		return nil, err
-	}
+	// 连接成功，更新数据库状态
+	remark := http3.ES_CONNECT_SUCCESS
+	_, _ = rei.WithContext(l.ctx).Where(rei.ID.Eq(int64(id))).Updates(model.RecEsInfo{
+		Result: &http3.Y,
+		Remark: &remark,
+	})
+
 	// 5. 连接成功，记录日志
 	logx.Infof("成功连接 Elasticsearch: %v", client)
 

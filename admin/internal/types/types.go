@@ -224,14 +224,6 @@ type EsConnectResp struct {
 }
 
 type EsQueryPageData struct {
-	CurrentPage int                      `json:"currentPage"`
-	PageSize    int                      `json:"pageSize"`
-	TotalSize   int64                    `json:"totalSize"`
-	TotalPages  int64                    `json:"totalPages"`
-	Records     []*EsQueryPageRecordData `json:"records"`
-}
-
-type EsQueryPageRecordData struct {
 	Id         string `json:"id"`
 	Name       string `json:"name"`
 	Address    string `json:"address"`
@@ -246,14 +238,18 @@ type EsQueryPageRecordData struct {
 type EsQueryPageReq struct {
 	CurrentPage int    `json:"currentPage"`
 	PageSize    int    `json:"pageSize"`
-	Name        string `json:"name"`
-	Address     string `json:"address"`
+	Name        string `json:"name,optional"`
+	Address     string `json:"address,optional"`
 }
 
 type EsQueryPageResp struct {
-	Code    string          `json:"code"`
-	Message string          `json:"message"`
-	Data    EsQueryPageData `json:"data"`
+	Code        string             `json:"code"`
+	Message     string             `json:"message"`
+	CurrentPage int                `json:"currentPage"`
+	PageSize    int                `json:"pageSize"`
+	TotalSize   int64              `json:"totalSize"`
+	TotalPages  int64              `json:"totalPages"`
+	Data        []*EsQueryPageData `json:"data"`
 }
 
 type ListMenuTree struct {

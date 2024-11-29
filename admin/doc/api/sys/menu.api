@@ -143,7 +143,7 @@ type (
 service admin-api {
 	// 添加菜单信息
 	@handler AddMenu
-	post /addMenu (AddMenuReq) returns (AddMenuResp)
+	post /create (AddMenuReq) returns (AddMenuResp)
 
 	// 删除菜单信息
 	@handler DeleteMenu
@@ -151,7 +151,7 @@ service admin-api {
 
 	// 更新菜单信息
 	@handler UpdateMenu
-	post /updateMenu (UpdateMenuReq) returns (UpdateMenuResp)
+	post /update (UpdateMenuReq) returns (UpdateMenuResp)
 
 	// 批量更新菜单信息状态
 	@handler UpdateMenuStatus
