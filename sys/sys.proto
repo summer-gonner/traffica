@@ -1078,19 +1078,24 @@ message MenuListTree {
   int64 id = 1;
   string name = 2;
   string icon = 3;
-  int64 parent_id = 4;
-  string path = 5;
-  string vue_path = 6;
-  string vue_component = 7;
-  string vue_icon = 8;
-  string vue_redirect = 9;
+  int64  parent_id = 4;
+  string parent_name=5;
+  string permission = 6;
+  int32 order = 7;
+  string route_name=8;
+  string route_path=9;
+  string component_path=10;
+  string redirect =11;
+  bool cache =12;
+  string  description=13;
+  bool  available =14;
 }
 
 message InfoResp {
   string avatar = 1;
   string name = 2;
   repeated MenuListTree menuListTree = 3;
-  repeated string BackgroundUrls = 4;
+//  repeated string BackgroundUrls = 4;
 }
 
 message ReSetPasswordReq {

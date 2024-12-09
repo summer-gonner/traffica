@@ -11,7 +11,6 @@ import (
 	"github.com/zeromicro/go-zero/core/logc"
 	"github.com/zeromicro/go-zero/core/logx"
 	"gorm.io/gorm"
-	"strings"
 )
 
 // UserInfoLogic 获取用户信息
@@ -51,13 +50,12 @@ func (l *UserInfoLogic) UserInfo(in *sysclient.InfoReq) (*sysclient.InfoResp, er
 	}
 
 	//3.查询用户菜单和权限
-	menuList, apiUrls := l.queryUserMenuAndApiUrls(in.UserId)
+	menuList, _ := l.queryUserMenuAndApiUrls(in.UserId)
 
 	return &sysclient.InfoResp{
-		Avatar:         info.Avatar,
-		Name:           info.UserName,
-		MenuListTree:   menuList,
-		BackgroundUrls: apiUrls,
+		Avatar:       info.Avatar,
+		Name:         info.UserName,
+		MenuListTree: menuList,
 	}, nil
 }
 
@@ -85,26 +83,23 @@ func (l *UserInfoLogic) queryUserMenuAndApiUrls(userId int64) ([]*sysclient.Menu
 // 构建返回值
 func buildMenuTree(menus []*model.SysMenu) ([]*sysclient.MenuListTree, []string) {
 	var menuListTrees []*sysclient.MenuListTree
-	var urls []string
 	for _, menu := range menus {
 		if menu.MenuType == 1 || menu.MenuType == 0 {
 			menuListTrees = append(menuListTrees, &sysclient.MenuListTree{
-				Id:           menu.ID,
-				Name:         menu.MenuName,
-				Icon:         menu.MenuIcon,
-				ParentId:     menu.ParentID,
-				Path:         menu.MenuPath,
-				VuePath:      menu.VuePath,
-				VueComponent: menu.VueComponent,
-				VueIcon:      menu.VueIcon,
-				VueRedirect:  menu.VueRedirect,
+				Id:            menu.ID,
+				Name:          menu.MenuName,
+				Icon:          menu.MenuIcon,
+				ParentId:      menu.ParentID,
+				ParentName:    "系统管理",
+				RoutePath:     menu.MenuPath,
+				RouteName:     menu.MenuName,
+				ComponentPath: menu.VueComponent,
+				Available:     true,
+				Description:   "备注",
+				Permission:    menu.MenuPerms,
 			})
 		}
 
-		if len(strings.TrimSpace(menu.BackgroundURL)) != 0 {
-			urls = append(urls, menu.BackgroundURL)
-		}
-
 	}
-	return menuListTrees, urls
+	return menuListTrees, nil
 }

@@ -253,11 +253,21 @@ type EsQueryPageResp struct {
 }
 
 type ListMenuTree struct {
-	Id       int64  `json:"id"`       // 编号
-	Path     string `json:"path"`     // 菜单路径
-	Name     string `json:"name"`     // 菜单名称
-	ParentId int64  `json:"parentId"` // 父菜单ID，一级菜单为0
-	Icon     string `json:"icon"`     // 菜单图标
+	Type          int    `json:"type"`
+	Order         int    `json:"order"`
+	Name          string `json:"name"`
+	Permission    string `json:"permission"`
+	RouteName     string `json:"route_name"`
+	RoutePath     string `json:"route_path"`
+	ComponentPath string `json:"component_path"`
+	Redirect      string `json:"redirect"`
+	ParentId      string `json:"parent_id"`
+	ParentName    string `json:"parent_name"`
+	Cache         bool   `json:"cache"`
+	Hidden        bool   `json:"hidden"`
+	Avaliable     bool   `json:"avaliable"`
+	Id            int64  `json:"id"`   // 编号
+	Icon          string `json:"icon"` // 菜单图标
 }
 
 type ListMenuTreeVue struct {
@@ -273,16 +283,19 @@ type ListMenuTreeVue struct {
 }
 
 type LoginData struct {
-	AccessToken string `json:"token"`
+	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+	ExpiresIn    int64  `json:"expires_in"`
+	TokenType    string `json:"token_type"`
 }
 
 type LoginReq struct {
-	Account  string `json:"account"` //手机号或者用户名
+	Username string `json:"username"` //手机号或者用户名
 	Password string `json:"password"`
 }
 
 type LoginResp struct {
-	Code    string    `json:"code"`
+	Code    int       `json:"code"`
 	Message string    `json:"message"`
 	Data    LoginData `json:"data"`
 }
@@ -1205,10 +1218,14 @@ type UploadResp struct {
 }
 
 type UserInfoData struct {
-	Avatar      string             `json:"avatar"`
-	Name        string             `json:"name"`
-	MenuTree    []*ListMenuTree    `json:"menuTree"`
-	MenuTreeVue []*ListMenuTreeVue `json:"menuTreeVue"`
+	CreateTime string          `json:"createTime"`
+	UpdateTime string          `json:"updateTime"`
+	Id         string          `json:"id"`
+	Nickname   string          `json:"nickname"`
+	Username   string          `json:"username"`
+	Avatar     string          `json:"avatar"`
+	Mobile     string          `json:"mobile"`
+	Menus      []*ListMenuTree `json:"menus"`
 }
 
 type UserMenuChildData struct {
@@ -1256,7 +1273,7 @@ type UserRoleListData struct {
 }
 
 type UserInfoResp struct {
-	Code    string       `json:"code"`
+	Code    int          `json:"code"`
 	Message string       `json:"message"`
 	Data    UserInfoData `json:"data"`
 }

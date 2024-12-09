@@ -37,7 +37,7 @@ func NewUserLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) UserLogi
 func (l *UserLoginLogic) UserLogin(req *types.LoginReq, ip, browser, os string) (*types.LoginResp, error) {
 
 	resp, err := l.svcCtx.UserService.Login(l.ctx, &sysclient.LoginReq{
-		Account:   strings.TrimSpace(req.Account),
+		Account:   strings.TrimSpace(req.Username),
 		Password:  strings.TrimSpace(req.Password),
 		IpAddress: ip,
 		Browser:   browser,
@@ -57,10 +57,12 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginReq, ip, browser, os string) 
 		logc.Errorf(l.ctx, "设置用户：%s,权限到redis异常: %+v", resp.UserName, err)
 	}
 	return &types.LoginResp{
-		Code:    "000000",
+		Code:    200,
 		Message: "登录成功",
 		Data: types.LoginData{
-			AccessToken: resp.AccessToken,
+			AccessToken:  resp.AccessToken,
+			RefreshToken: resp.AccessToken,
+			ExpiresIn:    60 * 60 * 24,
 		},
 	}, nil
 }

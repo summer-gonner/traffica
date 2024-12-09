@@ -19,8 +19,9 @@ Authorization: Bearer {{token}}
 GET {{host}}/api/sys/user/profile
 Authorization: Bearer {{token}}
 ### 获取个人资料
-GET {{host}}/api/sys/user/info
-Authorization: Bearer {{token}}
+#GET {{host}}/api/sys/user/info
+GET https://traffica.free.beeceptor.com/api/sys/user/info
+#Authorization: Bearer {{token}}
 
 ### 获取当前用户菜单
 GET {{host}}/api/sys/user/menus

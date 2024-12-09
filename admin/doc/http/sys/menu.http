@@ -62,5 +62,5 @@ Authorization: Bearer {{token}}
 }
 
 ### 查询菜单信息列表
-POST {{host}}/api/sys/menu/queryMenuList
+POST {{host}}/api/sys/menu/queryPage
 Authorization: Bearer {{token}}

@@ -7,23 +7,36 @@ info(
 type (
     // 用户登录
     LoginReq {
-        Account string `json:"account"` //手机号或者用户名
+        Username string `json:"username"` //手机号或者用户名
         Password string `json:"password"`
     }
     LoginData {
-        AccessToken string `json:"token"`
+        AccessToken string `json:"access_token"`
+        RefreshToken string `json:"refresh_token"`
+        ExpiresIn int64 `json:"expires_in"`
+        TokenType string `json:"token_type"`
     }
     LoginResp {
-        Code string `json:"code"`
+        Code int `json:"code"`
         Message string `json:"message"`
         Data LoginData `json:"data"`
     }
         // 获取个人信息
     ListMenuTree {
+        Type int `json:"type"`
+        Order int `json:"order"`
+        Name string `json:"name"`
+        Permission string `json:"permission"`
+        RouteName string `json:"route_name"`
+        RoutePath string `json:"route_path"`
+        ComponentPath string `json:"component_path"`
+        Redirect string `json:"redirect"`
+        ParentId string `json:"parent_id"`
+        ParentName string `json:"parent_name"`
+        Cache bool `json:"cache"`
+        Hidden bool `json:"hidden"`
+        Avaliable bool `json:"avaliable"`
         Id int64 `json:"id"`             // 编号
-        Path string `json:"path"`        // 菜单路径
-        Name string `json:"name"`        // 菜单名称
-        ParentId int64 `json:"parentId"` // 父菜单ID，一级菜单为0
         Icon string `json:"icon"`        // 菜单图标
     }
     ListMenuTreeVue {
@@ -42,13 +55,17 @@ type (
         Icon string `json:"icon"`
     }
     UserInfoData {
+        CreateTime string `json:"createTime"`
+        UpdateTime string `json:"updateTime"`
+        Id string `json:"id"`
+        Nickname string `json:"nickname"`
+        Username string `json:"username"`
         Avatar string `json:"avatar"`
-        Name string `json:"name"`
-        MenuTree []*ListMenuTree `json:"menuTree"`
-        MenuTreeVue []*ListMenuTreeVue `json:"menuTreeVue"`
+        Mobile string `json:"mobile"`
+        Menus []*ListMenuTree `json:"menus"`
     }
     userInfoResp {
-        Code string `json:"code"`
+        Code int `json:"code"`
         Message string `json:"message"`
         Data UserInfoData `json:"data"`
     }
@@ -75,7 +92,7 @@ type (
         Nickname string `json:"nickname"`         //昵称
         Remark string `json:"remark,optional"`    //备注信息
         Username string `json:"username"`         //用户名
-        Status int32 `json:"status"`      //帐号状态（0正常 1停用）
+        Status int32 `json:"status"`              //帐号状态（0正常 1停用）
     }
     AddUserResp {
         Code string `json:"code"`
@@ -142,7 +159,7 @@ type (
         UpdateBy string `json:"updateBy"`     //更新者
         UpdateTime string `json:"updateTime"` //更新时间
         Username string `json:"username"`     //用户名
-        Status int32 `json:"status"`  //帐号状态（0正常 1停用）
+        Status int32 `json:"status"`          //帐号状态（0正常 1停用）
         PostIds []int64 `json:"postIds"`      //部门id
     }
     QueryUserDetailResp {
@@ -266,7 +283,7 @@ type (
         Name string `json:"name"`
         Component string `json:"component"`
         Meta Meta `json:"meta"`
-        Redirect string     `json:"redirect"`
+        Redirect string `json:"redirect"`
         Children []*UserMenuChildData `json:"children"`
     }
     UserMenuChildData {
@@ -287,7 +304,7 @@ type (
         Data []string `json:"data"`
     }
     LogoutData {
-    Username string     `json:"username"`
+        Username string `json:"username"`
     }
     LogoutResp {
         Code string `json:"code"`
@@ -309,7 +326,7 @@ service admin-api {
     @handler UserProfile
     get /profile returns (userProfileResp)
     @handler UserLogout
-    get /logout  returns (LogoutResp)
+    get /logout returns (LogoutResp)
     //获取当前用户的菜单
     @handler UserMenus
     get /menus returns (UserMenusResp)
@@ -363,6 +380,5 @@ service admin-api {
 service admin-api {
     @handler UserLogin
     post /api/sys/user/login (LoginReq) returns (LoginResp)
-
 }
 
